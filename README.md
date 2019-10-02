@@ -55,7 +55,7 @@ pathCase('ponytaVaporeonPoliwrathButterfree')
 
 We'll compare this package with [blakeembrey/change-case](https://github.com/blakeembrey/change-case), a very famous package on npm.
 
-|  | case-anything  | Second Header |
+|  | case-anything  | change-case |
 | ---  | --- | --- |
 | camelCase | 1.1K (572) | 27.2K (6K) |
 | pascalCase | 1.1K (561) | 27.4K (6.1K) |

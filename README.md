@@ -51,6 +51,19 @@ pathCase('ponytaVaporeonPoliwrathButterfree')
   === 'Ponyta/Vaporeon/Poliwrath/BUTTERFREE'
 ```
 
+## Package size
+
+We'll compare this package with [blakeembrey/change-case](https://github.com/blakeembrey/change-case), a very famous package on npm.
+
+|  | case-anything  | Second Header |
+| ---  | --- | --- |
+| camelCase | 1.1K (572) | 27.2K (6K) |
+| pascalCase | 1.1K (561) | 27.4K (6.1K) |
+| kebabCase | 1.1K (541) | 26.8K (5.9K) |
+| snakeCase | 1.1K (540) | 26.8K (5.9K) |
+| constantCase | 1.1K (540) | 27.2K (6K) |
+| pathCase | 1K (530) | 26.8K (5.9K) |
+
 ## Source code
 
 It is literally just this code:

@@ -1,0 +1,47 @@
+{
+  "name": "case-anything",
+  "version": "0.0.0",
+  "description": "camelCase, kebabCase, ... a simple integration with nano package size. (SMALL footprint!)",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "scripts": {
+    "test": "ava",
+    "rollup": "rollup -c build/rollup.js",
+    "build": "npm run rollup && npm run test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "typescript": "^3.6.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mesqueeb/case-anything.git"
+  },
+  "keywords": [
+    "change-case",
+    "change-casing",
+    "case-change",
+    "casing-change",
+    "camel-case",
+    "pascal-case",
+    "kebab-case",
+    "snake-case",
+    "constant-case",
+    "path-case",
+    "camel",
+    "pascal",
+    "kebab",
+    "snake",
+    "constant",
+    "path",
+    "format-string"
+  ],
+  "author": "Luca Ban - Mesqueeb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mesqueeb/case-anything/issues"
+  },
+  "homepage": "https://github.com/mesqueeb/case-anything#readme"
+}

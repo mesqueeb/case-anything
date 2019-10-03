@@ -1,4 +1,4 @@
-import test from 'ava';
+import test from 'ava'
 import { camelCase, pascalCase, kebabCase, snakeCase, constantCase, pathCase } from '../dist/index.cjs'
 
 const tests = [

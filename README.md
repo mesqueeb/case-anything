@@ -4,7 +4,7 @@
 npm i case-anything
 ```
 
-camelCase, kebabCase, ... a simple integration with nano package size. (SMALL footprint!)
+camelCase, kebab-case, PascalCase... a simple integration with nano package size. (SMALL footprint!)
 
 ## Motivation
 
@@ -32,22 +32,22 @@ import { camelCase, pascalCase, kebabCase, snakeCase, constantCase, pathCase } f
 const testString = 'PonytaVaporeon_Poliwrath-BUTTERFREE'
 // or any variant on this
 
-camelCase('ponyta-vaporeon-poliwrath-butterfree')
+camelCase(testString)
   === 'ponytaVaporeonPoliwrathButterfree'
 
-pascalCase('ponytaVaporeonPoliwrathButterfree')
+pascalCase(testString)
   === 'PonytaVaporeonPoliwrathButterfree'
 
-kebabCase('ponytaVaporeonPoliwrathButterfree')
+kebabCase(testString)
   === 'ponyta-vaporeon-poliwrath-butterfree'
 
-snakeCase('ponytaVaporeonPoliwrathButterfree')
+snakeCase(testString)
   === 'ponyta_vaporeon_poliwrath_butterfree'
 
-constantCase('ponytaVaporeonPoliwrathButterfree')
+constantCase(testString)
   === 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE'
 
-pathCase('ponytaVaporeonPoliwrathButterfree')
+pathCase(testString)
   === 'Ponyta/Vaporeon/Poliwrath/BUTTERFREE'
 ```
 

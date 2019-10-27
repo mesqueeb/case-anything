@@ -83,6 +83,17 @@ function pathCase(string) {
     return getParts(string)
         .join('/');
 }
+/**
+ * converts strings to space case (will add spaces but not change casing)
+ *
+ * @export
+ * @param {string} string
+ * @returns {string} in path case
+ */
+function spaceCase(string) {
+    return getParts(string)
+        .join(' ');
+}
 
 exports.camelCase = camelCase;
 exports.constantCase = constantCase;
@@ -90,3 +101,4 @@ exports.kebabCase = kebabCase;
 exports.pascalCase = pascalCase;
 exports.pathCase = pathCase;
 exports.snakeCase = snakeCase;
+exports.spaceCase = spaceCase;

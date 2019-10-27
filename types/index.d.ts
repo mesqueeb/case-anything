@@ -46,3 +46,11 @@ export declare function constantCase(string: any): any;
  * @returns {string} in path/case
  */
 export declare function pathCase(string: any): any;
+/**
+ * converts strings to space case (will add spaces but not change casing)
+ *
+ * @export
+ * @param {string} string
+ * @returns {string} in path case
+ */
+export declare function spaceCase(string: any): any;

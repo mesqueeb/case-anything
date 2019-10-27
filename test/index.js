@@ -1,5 +1,5 @@
 import test from 'ava'
-import { camelCase, pascalCase, kebabCase, snakeCase, constantCase, pathCase } from '../dist/index.cjs'
+import { spaceCase, camelCase, pascalCase, kebabCase, snakeCase, constantCase, pathCase } from '../dist/index.cjs'
 
 const tests = [
   'ponytaVaporeonPOLIWRATH ButterfreeA',
@@ -10,6 +10,18 @@ const tests = [
   'ponyta_Vaporeon_POLIWRATH_ButterfreeA',
   'ponyta.Vaporeon.POLIWRATH.ButterfreeA',
 ]
+
+test('spaceCase', t => {
+  t.deepEqual(tests.map(spaceCase), [
+    'ponyta Vaporeon POLIWRATH Butterfree A',
+    'Ponyta Vaporeon POLIWRATH Butterfree A',
+    'ponyta vaporeon POLIWRATH Butterfree A',
+    'Ponyta vaporeon POLIWRATH Butterfree A',
+    'ponyta vaporeon POLIWRATH Butterfree A',
+    'ponyta Vaporeon POLIWRATH Butterfree A',
+    'ponyta Vaporeon POLIWRATH Butterfree A',
+  ])
+})
 
 test('camelCase', t => {
   tests.forEach(w => {

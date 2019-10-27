@@ -86,3 +86,15 @@ export function pathCase (string) {
   return getParts(string)
     .join('/')
 }
+
+/**
+ * converts strings to space case (will add spaces but not change casing)
+ *
+ * @export
+ * @param {string} string
+ * @returns {string} in path case
+ */
+export function spaceCase (string) {
+  return getParts(string)
+    .join(' ')
+}

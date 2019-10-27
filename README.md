@@ -29,7 +29,7 @@ case-anything supports tree-shaking.
 ```js
 import { camelCase, pascalCase, kebabCase, snakeCase, constantCase, pathCase } from 'case-anything'
 
-const testString = 'PonytaVaporeon_Poliwrath-BUTTERFREE'
+const testString = 'PonytaVaporeon_poliwrath-BUTTERFREE'
 // or any variant on this
 
 camelCase(testString)
@@ -49,6 +49,17 @@ constantCase(testString)
 
 pathCase(testString)
   === 'Ponyta/Vaporeon/Poliwrath/BUTTERFREE'
+```
+
+There is also `spaceCase`, which will place spaces in between words, but not convert the casing.
+
+```js
+import { spaceCase } from 'case-anything'
+
+const testString = 'PonytaVaporeon_poliwrath-BUTTERFREE'
+
+spaceCase(testString)
+  === 'Ponyta Vaporeon poliwrath BUTTERFREE'
 ```
 
 ## Package size

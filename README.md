@@ -27,7 +27,7 @@ I wanted to try my hand at the smallest iteration possible.
 case-anything supports tree-shaking.
 
 ```js
-import { camelCase, pascalCase, kebabCase, snakeCase, constantCase, pathCase } from 'case-anything'
+import { camelCase, pascalCase, kebabCase, snakeCase, constantCase } from 'case-anything'
 
 const testString = 'PonytaVaporeon_poliwrath-BUTTERFREE'
 // or any variant on this
@@ -51,18 +51,21 @@ pathCase(testString)
   === 'Ponyta/Vaporeon/Poliwrath/BUTTERFREE'
 ```
 
-There is also `spaceCase`, which will place spaces in between words, but not convert the casing.
+There is also `spaceCase` and `pathCase`, which does not convert the casing:
 
 ```js
-import { spaceCase } from 'case-anything'
+import { spaceCase, pathCase } from 'case-anything'
 
 const testString = 'PonytaVaporeon_poliwrath-BUTTERFREE'
 
 spaceCase(testString)
   === 'Ponyta Vaporeon poliwrath BUTTERFREE'
+
+pathCase(testString)
+  === 'Ponyta/Vaporeon/poliwrath/BUTTERFREE'
 ```
 
-There is also upper, lower and capital case. These will all add spaces.
+There is also upper, lower and capital case. These will all convert the casing & also add spaces in between:
 
 ```js
 import { upperCase, lowerCase, capitalCase } from 'case-anything'
@@ -75,6 +78,34 @@ lowerCase(testString)
   === 'ponyta vaporeon poliwrath butterfree'
 capitalCase(testString)
   === 'Ponyta Vaporeon Poliwrath Butterfree'
+```
+
+### Custom split function
+
+The split function used in case-anything will remove any special characters (besides numbers) as well. If however, you require a different split function, you can provide one yourself as second parameter.
+
+This is possible for the `capitalCase`, `pascalCase` or `camelCase`.
+
+One use case example is when working with sentences. Eg. you want the capital case of this sentence: `listen I'm O.K.!`. Let's see how this can be done:
+
+```js
+const testString = "listen I'M O.K.!"
+
+// capitalCase expected behaviour:
+capitalCase(testString)
+  === 'Listen I M O K'
+
+// capitalCase with own split function:
+capitalCase(testString, s => s.split(' '))
+  === "Listen I'm O.k.!"
+```
+
+The reason this is only possible for three functions is because the logic behind the other functions is simple enough to implement yourself. Eg.:
+
+```js
+// snakeCase with own split function:
+testString.split(' ').join('_').toLowerCase()
+  === "listen_i'm_o.k.!"
 ```
 
 ## Package size

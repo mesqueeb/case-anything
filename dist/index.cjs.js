@@ -9,21 +9,34 @@ Object.defineProperty(exports, '__esModule', { value: true });
  * @returns {string[]}
  */
 function getParts(string) {
-    return string.match(/^[a-z]+|[A-Z][a-z]+|[A-Z]+|[a-z]+/g);
+    return string.match(/^[a-z]+|[0-9]+|[A-Z][a-z]+|[A-Z]+|[a-z]+/g);
 }
+/**
+ * Capitalises a single word
+ *
+ * @export
+ * @param {string} string the word
+ * @returns {string} the word with the first character in uppercase and the rest in lowercase
+ */
+function capitaliseWord(string) {
+    return string[0].toUpperCase() + string.slice(1).toLowerCase();
+}
+
 /**
  * converts strings to camelCase
  *
  * @export
  * @param {string} string
+ * @param {function} [splitFn=getParts] the function to split the string. Defaults to `getParts`
  * @returns {string} in camelCase
  */
-function camelCase(string) {
-    return getParts(string)
+function camelCase(string, splitFn) {
+    if (splitFn === void 0) { splitFn = getParts; }
+    return splitFn(string)
         .reduce(function (result, match, index) {
         return (index === 0)
             ? match.toLowerCase()
-            : result + match[0].toUpperCase() + match.slice(1).toLowerCase();
+            : result + capitaliseWord(match);
     }, '');
 }
 /**
@@ -31,12 +44,14 @@ function camelCase(string) {
  *
  * @export
  * @param {string} string
+ * @param {function} [splitFn=getParts] the function to split the string. Defaults to `getParts`
  * @returns {string} in PascalCase
  */
-function pascalCase(string) {
-    return getParts(string)
+function pascalCase(string, splitFn) {
+    if (splitFn === void 0) { splitFn = getParts; }
+    return splitFn(string)
         .reduce(function (result, match) {
-        return result + match[0].toUpperCase() + match.slice(1).toLowerCase();
+        return result + capitaliseWord(match);
     }, '');
 }
 /**
@@ -99,10 +114,16 @@ function spaceCase(string) {
  *
  * @export
  * @param {string} string
+ * @param {function} [splitFn=getParts] the function to split the string. Defaults to `getParts`
  * @returns {string} in Capital Case (with spaces)
  */
-function capitalCase(string) {
-    return spaceCase(pascalCase(string));
+function capitalCase(string, splitFn) {
+    if (splitFn === void 0) { splitFn = getParts; }
+    return splitFn(string)
+        .reduce(function (result, match) {
+        return result + " " + capitaliseWord(match);
+    }, '')
+        .trim();
 }
 /**
  * converts strings to lower case (with spaces)
@@ -130,7 +151,6 @@ function upperCase(string) {
 exports.camelCase = camelCase;
 exports.capitalCase = capitalCase;
 exports.constantCase = constantCase;
-exports.getParts = getParts;
 exports.kebabCase = kebabCase;
 exports.lowerCase = lowerCase;
 exports.pascalCase = pascalCase;

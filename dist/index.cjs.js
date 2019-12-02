@@ -94,11 +94,47 @@ function spaceCase(string) {
     return getParts(string)
         .join(' ');
 }
+/**
+ * converts strings to Capital Case (with spaces)
+ *
+ * @export
+ * @param {string} string
+ * @returns {string} in Capital Case (with spaces)
+ */
+function capitalCase(string) {
+    return spaceCase(pascalCase(string));
+}
+/**
+ * converts strings to lower case (with spaces)
+ *
+ * @export
+ * @param {string} string
+ * @returns {string} in lower case (with spaces)
+ */
+function lowerCase(string) {
+    return getParts(string)
+        .join(' ').toLowerCase();
+}
+/**
+ * converts strings to UPPER CASE (with spaces)
+ *
+ * @export
+ * @param {string} string
+ * @returns {string} in UPPER CASE (with spaces)
+ */
+function upperCase(string) {
+    return getParts(string)
+        .join(' ').toUpperCase();
+}
 
 exports.camelCase = camelCase;
+exports.capitalCase = capitalCase;
 exports.constantCase = constantCase;
+exports.getParts = getParts;
 exports.kebabCase = kebabCase;
+exports.lowerCase = lowerCase;
 exports.pascalCase = pascalCase;
 exports.pathCase = pathCase;
 exports.snakeCase = snakeCase;
 exports.spaceCase = spaceCase;
+exports.upperCase = upperCase;

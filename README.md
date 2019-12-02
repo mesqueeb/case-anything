@@ -62,6 +62,21 @@ spaceCase(testString)
   === 'Ponyta Vaporeon poliwrath BUTTERFREE'
 ```
 
+There is also upper, lower and capital case. These will all add spaces.
+
+```js
+import { upperCase, lowerCase, capitalCase } from 'case-anything'
+
+const testString = 'PonytaVaporeon_poliwrath-BUTTERFREE'
+
+upperCase(testString)
+  === 'PONYTA VAPOREON POLIWRATH BUTTERFREE'
+lowerCase(testString)
+  === 'ponyta vaporeon poliwrath butterfree'
+capitalCase(testString)
+  === 'Ponyta Vaporeon Poliwrath Butterfree'
+```
+
 ## Package size
 
 We'll compare this package with [blakeembrey/change-case](https://github.com/blakeembrey/change-case), a very famous package on npm.

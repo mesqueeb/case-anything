@@ -1,5 +1,16 @@
 import test from 'ava'
-import { spaceCase, camelCase, pascalCase, kebabCase, snakeCase, constantCase, pathCase } from '../dist/index.cjs'
+import {
+  spaceCase,
+  camelCase,
+  pascalCase,
+  kebabCase,
+  snakeCase,
+  constantCase,
+  pathCase,
+  capitalCase,
+  upperCase,
+  lowerCase,
+} from '../dist/index.cjs'
 
 const tests = [
   'ponytaVaporeonPOLIWRATH ButterfreeA',
@@ -20,6 +31,42 @@ test('spaceCase', t => {
     'ponyta vaporeon POLIWRATH Butterfree A',
     'ponyta Vaporeon POLIWRATH Butterfree A',
     'ponyta Vaporeon POLIWRATH Butterfree A',
+  ])
+})
+
+test('capitalCase', t => {
+  t.deepEqual(tests.map(capitalCase), [
+    'Ponyta Vaporeon Poliwrath Butterfree A',
+    'Ponyta Vaporeon Poliwrath Butterfree A',
+    'Ponyta Vaporeon Poliwrath Butterfree A',
+    'Ponyta Vaporeon Poliwrath Butterfree A',
+    'Ponyta Vaporeon Poliwrath Butterfree A',
+    'Ponyta Vaporeon Poliwrath Butterfree A',
+    'Ponyta Vaporeon Poliwrath Butterfree A',
+  ])
+})
+
+test('upperCase', t => {
+  t.deepEqual(tests.map(upperCase), [
+    'PONYTA VAPOREON POLIWRATH BUTTERFREE A',
+    'PONYTA VAPOREON POLIWRATH BUTTERFREE A',
+    'PONYTA VAPOREON POLIWRATH BUTTERFREE A',
+    'PONYTA VAPOREON POLIWRATH BUTTERFREE A',
+    'PONYTA VAPOREON POLIWRATH BUTTERFREE A',
+    'PONYTA VAPOREON POLIWRATH BUTTERFREE A',
+    'PONYTA VAPOREON POLIWRATH BUTTERFREE A',
+  ])
+})
+
+test('lowerCase', t => {
+  t.deepEqual(tests.map(lowerCase), [
+    'ponyta vaporeon poliwrath butterfree a',
+    'ponyta vaporeon poliwrath butterfree a',
+    'ponyta vaporeon poliwrath butterfree a',
+    'ponyta vaporeon poliwrath butterfree a',
+    'ponyta vaporeon poliwrath butterfree a',
+    'ponyta vaporeon poliwrath butterfree a',
+    'ponyta vaporeon poliwrath butterfree a',
   ])
 })
 

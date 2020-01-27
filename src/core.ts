@@ -1,20 +1,18 @@
 import { getParts, capitaliseWord } from './utils'
 
+const noSpecialChars = true
+
 /**
  * converts strings to camelCase
  *
  * @export
  * @param {string} string
- * @param {function} [splitFn=getParts] the function to split the string. Defaults to `getParts`
  * @returns {string} in camelCase
  */
-export function camelCase (string: string, splitFn = getParts): string {
-  return splitFn(string)
-    .reduce((result, match, index) => {
-      return (index === 0)
-        ? match.toLowerCase()
-        : result + capitaliseWord(match)
-    }, '')
+export function camelCase (string: string): string {
+  return getParts(string, noSpecialChars).reduce((result, match, index) => {
+    return index === 0 ? match.toLowerCase() : result + capitaliseWord(match)
+  }, '')
 }
 
 /**
@@ -22,14 +20,12 @@ export function camelCase (string: string, splitFn = getParts): string {
  *
  * @export
  * @param {string} string
- * @param {function} [splitFn=getParts] the function to split the string. Defaults to `getParts`
  * @returns {string} in PascalCase
  */
-export function pascalCase (string: string, splitFn = getParts): string {
-  return splitFn(string)
-    .reduce((result, match) => {
-      return result + capitaliseWord(match)
-    }, '')
+export function pascalCase (string: string): string {
+  return getParts(string, noSpecialChars).reduce((result, match) => {
+    return result + capitaliseWord(match)
+  }, '')
 }
 
 /**
@@ -40,8 +36,9 @@ export function pascalCase (string: string, splitFn = getParts): string {
  * @returns {string} in kebab-case
  */
 export function kebabCase (string: string): string {
-  return getParts(string)
-    .join('-').toLowerCase()
+  return getParts(string, noSpecialChars)
+    .join('-')
+    .toLowerCase()
 }
 
 /**
@@ -52,8 +49,9 @@ export function kebabCase (string: string): string {
  * @returns {string} in snake_case
  */
 export function snakeCase (string: string): string {
-  return getParts(string)
-    .join('_').toLowerCase()
+  return getParts(string, noSpecialChars)
+    .join('_')
+    .toLowerCase()
 }
 
 /**
@@ -64,8 +62,9 @@ export function snakeCase (string: string): string {
  * @returns {string} in CONSTANT_CASE
  */
 export function constantCase (string: string): string {
-  return getParts(string)
-    .join('_').toUpperCase()
+  return getParts(string, noSpecialChars)
+    .join('_')
+    .toUpperCase()
 }
 
 /**
@@ -76,8 +75,7 @@ export function constantCase (string: string): string {
  * @returns {string} in path/case
  */
 export function pathCase (string: string): string {
-  return getParts(string)
-    .join('/')
+  return getParts(string).join('/')
 }
 
 /**
@@ -88,8 +86,7 @@ export function pathCase (string: string): string {
  * @returns {string} in path case
  */
 export function spaceCase (string: string): string {
-  return getParts(string)
-    .join(' ')
+  return getParts(string).join(' ')
 }
 
 /**
@@ -97,11 +94,10 @@ export function spaceCase (string: string): string {
  *
  * @export
  * @param {string} string
- * @param {function} [splitFn=getParts] the function to split the string. Defaults to `getParts`
  * @returns {string} in Capital Case (with spaces)
  */
-export function capitalCase (string: string, splitFn = getParts): string {
-  return splitFn(string)
+export function capitalCase (string: string): string {
+  return getParts(string)
     .reduce((result, match) => {
       return `${result} ${capitaliseWord(match)}`
     }, '')
@@ -117,7 +113,8 @@ export function capitalCase (string: string, splitFn = getParts): string {
  */
 export function lowerCase (string: string): string {
   return getParts(string)
-    .join(' ').toLowerCase()
+    .join(' ')
+    .toLowerCase()
 }
 
 /**
@@ -129,5 +126,6 @@ export function lowerCase (string: string): string {
  */
 export function upperCase (string: string): string {
   return getParts(string)
-    .join(' ').toUpperCase()
+    .join(' ')
+    .toUpperCase()
 }

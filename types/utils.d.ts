@@ -4,7 +4,14 @@
  * @param {string} string
  * @returns {string[]}
  */
-export declare function getParts(string: string): any[];
+export declare function splitOnSpecialChars(string: string): any[];
+/**
+ * A string.match function that will return an array of "string parts"
+ *
+ * @param {string} string
+ * @returns {string[]}
+ */
+export declare function getParts(string: string, noSpecialChars?: boolean): any[];
 /**
  * Capitalises a single word
  *

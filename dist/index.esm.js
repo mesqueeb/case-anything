@@ -4,8 +4,20 @@
  * @param {string} string
  * @returns {string[]}
  */
-function getParts(string) {
+function splitOnSpecialChars(string) {
     return string.match(/^[a-z]+|[A-Z][a-z]+|[a-z]+|[0-9]+|[A-Z]+(?![a-z])/g);
+}
+/**
+ * A string.match function that will return an array of "string parts"
+ *
+ * @param {string} string
+ * @returns {string[]}
+ */
+function getParts(string, noSpecialChars) {
+    if (noSpecialChars === void 0) { noSpecialChars = false; }
+    var target = string.trim();
+    var parts = target.includes(' ') ? target.split(' ') : splitOnSpecialChars(target);
+    return noSpecialChars ? parts.map(function (part) { return part.replace(/[^a-zA-Z0-9]/g, ''); }) : parts;
 }
 /**
  * Capitalises a single word
@@ -18,21 +30,17 @@ function capitaliseWord(string) {
     return string[0].toUpperCase() + string.slice(1).toLowerCase();
 }
 
+var noSpecialChars = true;
 /**
  * converts strings to camelCase
  *
  * @export
  * @param {string} string
- * @param {function} [splitFn=getParts] the function to split the string. Defaults to `getParts`
  * @returns {string} in camelCase
  */
-function camelCase(string, splitFn) {
-    if (splitFn === void 0) { splitFn = getParts; }
-    return splitFn(string)
-        .reduce(function (result, match, index) {
-        return (index === 0)
-            ? match.toLowerCase()
-            : result + capitaliseWord(match);
+function camelCase(string) {
+    return getParts(string, noSpecialChars).reduce(function (result, match, index) {
+        return index === 0 ? match.toLowerCase() : result + capitaliseWord(match);
     }, '');
 }
 /**
@@ -40,13 +48,10 @@ function camelCase(string, splitFn) {
  *
  * @export
  * @param {string} string
- * @param {function} [splitFn=getParts] the function to split the string. Defaults to `getParts`
  * @returns {string} in PascalCase
  */
-function pascalCase(string, splitFn) {
-    if (splitFn === void 0) { splitFn = getParts; }
-    return splitFn(string)
-        .reduce(function (result, match) {
+function pascalCase(string) {
+    return getParts(string, noSpecialChars).reduce(function (result, match) {
         return result + capitaliseWord(match);
     }, '');
 }
@@ -58,8 +63,9 @@ function pascalCase(string, splitFn) {
  * @returns {string} in kebab-case
  */
 function kebabCase(string) {
-    return getParts(string)
-        .join('-').toLowerCase();
+    return getParts(string, noSpecialChars)
+        .join('-')
+        .toLowerCase();
 }
 /**
  * converts strings to snake_case
@@ -69,8 +75,9 @@ function kebabCase(string) {
  * @returns {string} in snake_case
  */
 function snakeCase(string) {
-    return getParts(string)
-        .join('_').toLowerCase();
+    return getParts(string, noSpecialChars)
+        .join('_')
+        .toLowerCase();
 }
 /**
  * converts strings to CONSTANT_CASE
@@ -80,8 +87,9 @@ function snakeCase(string) {
  * @returns {string} in CONSTANT_CASE
  */
 function constantCase(string) {
-    return getParts(string)
-        .join('_').toUpperCase();
+    return getParts(string, noSpecialChars)
+        .join('_')
+        .toUpperCase();
 }
 /**
  * converts strings to path/case
@@ -91,8 +99,7 @@ function constantCase(string) {
  * @returns {string} in path/case
  */
 function pathCase(string) {
-    return getParts(string)
-        .join('/');
+    return getParts(string).join('/');
 }
 /**
  * converts strings to space case (will add spaces but not change casing)
@@ -102,20 +109,17 @@ function pathCase(string) {
  * @returns {string} in path case
  */
 function spaceCase(string) {
-    return getParts(string)
-        .join(' ');
+    return getParts(string).join(' ');
 }
 /**
  * converts strings to Capital Case (with spaces)
  *
  * @export
  * @param {string} string
- * @param {function} [splitFn=getParts] the function to split the string. Defaults to `getParts`
  * @returns {string} in Capital Case (with spaces)
  */
-function capitalCase(string, splitFn) {
-    if (splitFn === void 0) { splitFn = getParts; }
-    return splitFn(string)
+function capitalCase(string) {
+    return getParts(string)
         .reduce(function (result, match) {
         return result + " " + capitaliseWord(match);
     }, '')
@@ -130,7 +134,8 @@ function capitalCase(string, splitFn) {
  */
 function lowerCase(string) {
     return getParts(string)
-        .join(' ').toLowerCase();
+        .join(' ')
+        .toLowerCase();
 }
 /**
  * converts strings to UPPER CASE (with spaces)
@@ -141,7 +146,8 @@ function lowerCase(string) {
  */
 function upperCase(string) {
     return getParts(string)
-        .join(' ').toUpperCase();
+        .join(' ')
+        .toUpperCase();
 }
 
 export { camelCase, capitalCase, constantCase, kebabCase, lowerCase, pascalCase, pathCase, snakeCase, spaceCase, upperCase };

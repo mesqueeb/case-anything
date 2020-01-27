@@ -1,22 +1,19 @@
-import { getParts } from './utils';
 /**
  * converts strings to camelCase
  *
  * @export
  * @param {string} string
- * @param {function} [splitFn=getParts] the function to split the string. Defaults to `getParts`
  * @returns {string} in camelCase
  */
-export declare function camelCase(string: string, splitFn?: typeof getParts): string;
+export declare function camelCase(string: string): string;
 /**
  * converts strings to PascalCase
  *
  * @export
  * @param {string} string
- * @param {function} [splitFn=getParts] the function to split the string. Defaults to `getParts`
  * @returns {string} in PascalCase
  */
-export declare function pascalCase(string: string, splitFn?: typeof getParts): string;
+export declare function pascalCase(string: string): string;
 /**
  * converts strings to kebab-case
  *
@@ -62,10 +59,9 @@ export declare function spaceCase(string: string): string;
  *
  * @export
  * @param {string} string
- * @param {function} [splitFn=getParts] the function to split the string. Defaults to `getParts`
  * @returns {string} in Capital Case (with spaces)
  */
-export declare function capitalCase(string: string, splitFn?: typeof getParts): string;
+export declare function capitalCase(string: string): string;
 /**
  * converts strings to lower case (with spaces)
  *

@@ -13,10 +13,10 @@ import {
 } from '../dist/index.cjs'
 
 const tests = [
-  'ponytaVaporeonPOLIWRATH ButterfreeA',
-  'PonytaVaporeonPOLIWRATH ButterfreeA',
+  'ponytaVaporeonPOLIWRATH_ButterfreeA',
+  'PonytaVaporeonPOLIWRATH_ButterfreeA',
   'ponyta-vaporeon-POLIWRATH-ButterfreeA',
-  'Ponyta vaporeon POLIWRATH ButterfreeA',
+  'Ponyta~vaporeon~POLIWRATH/ButterfreeA',
   'ponyta_vaporeon_POLIWRATH_ButterfreeA',
   'ponyta_Vaporeon_POLIWRATH_ButterfreeA',
   'ponyta.Vaporeon.POLIWRATH.ButterfreeA',
@@ -89,23 +89,26 @@ test('constantCase - QTableA', t => { t.is(constantCase(QTableA), 'Q_TABLE_A') }
 // 3
 const ImaMIB101OK = "I'm a M.I.B. 101 OK?"
 
-test('spaceCase I\'m a M.I.B. 101 OK?', t => { t.is(spaceCase(ImaMIB101OK), 'I m a M I B 101 OK') }) // prettier-ignore
-test('pathCase I\'m a M.I.B. 101 OK?', t => { t.is(pathCase(ImaMIB101OK), 'I/m/a/M/I/B/101/OK') }) // prettier-ignore
-test('capitalCase I\'m a M.I.B. 101 OK?', t => { t.is(capitalCase(ImaMIB101OK), 'I M A M I B 101 Ok') }) // prettier-ignore
-test('upperCase I\'m a M.I.B. 101 OK?', t => { t.is(upperCase(ImaMIB101OK), 'I M A M I B 101 OK') }) // prettier-ignore
-test('lowerCase I\'m a M.I.B. 101 OK?', t => { t.is(lowerCase(ImaMIB101OK), 'i m a m i b 101 ok') }) // prettier-ignore
-test('pascalCase I\'m a M.I.B. 101 OK?', t => { t.is(pascalCase(ImaMIB101OK), 'IMAMIB101Ok') }) // prettier-ignore
-test('camelCase I\'m a M.I.B. 101 OK?', t => { t.is(camelCase(ImaMIB101OK), 'iMAMIB101Ok') }) // prettier-ignore
-test('kebabCase I\'m a M.I.B. 101 OK?', t => { t.is(kebabCase(ImaMIB101OK), 'i-m-a-m-i-b-101-ok') }) // prettier-ignore
-test('snakeCase I\'m a M.I.B. 101 OK?', t => { t.is(snakeCase(ImaMIB101OK), 'i_m_a_m_i_b_101_ok') }) // prettier-ignore
-test('constantCase I\'m a M.I.B. 101 OK?', t => { t.is(constantCase(ImaMIB101OK), 'I_M_A_M_I_B_101_OK') }) // prettier-ignore
+test("camelCase I'm a M.I.B. 101 OK?", t => { t.is(camelCase(ImaMIB101OK),       'imAMib101Ok') }) // prettier-ignore
+test("pascalCase I'm a M.I.B. 101 OK?", t => { t.is(pascalCase(ImaMIB101OK),     'ImAMib101Ok') }) // prettier-ignore
+test("kebabCase I'm a M.I.B. 101 OK?", t => { t.is(kebabCase(ImaMIB101OK),       'im-a-mib-101-ok') }) // prettier-ignore
+test("snakeCase I'm a M.I.B. 101 OK?", t => { t.is(snakeCase(ImaMIB101OK),       'im_a_mib_101_ok') }) // prettier-ignore
+test("constantCase I'm a M.I.B. 101 OK?", t => { t.is(constantCase(ImaMIB101OK), 'IM_A_MIB_101_OK') }) // prettier-ignore
+test("spaceCase I'm a M.I.B. 101 OK?", t => { t.is(spaceCase(ImaMIB101OK),       "I'm a M.I.B. 101 OK?") }) // prettier-ignore
+test("pathCase I'm a M.I.B. 101 OK?", t => { t.is(pathCase(ImaMIB101OK),         "I'm/a/M.I.B./101/OK?") }) // prettier-ignore
+test("lowerCase I'm a M.I.B. 101 OK?", t => { t.is(lowerCase(ImaMIB101OK),       "i'm a m.i.b. 101 ok?") }) // prettier-ignore
+test("upperCase I'm a M.I.B. 101 OK?", t => { t.is(upperCase(ImaMIB101OK),       "I'M A M.I.B. 101 OK?") }) // prettier-ignore
+test("capitalCase I'm a M.I.B. 101 OK?", t => { t.is(capitalCase(ImaMIB101OK),   "I'm A M.i.b. 101 Ok?") }) // prettier-ignore
 
-test('capitalCase -_-', t => {
-  t.is(capitalCase(ImaMIB101OK, s => s.split(' ')), "I'm A M.i.b. 101 Ok?") // prettier-ignore
-})
-test('pascalCase -_-', t => {
-  t.is(pascalCase(ImaMIB101OK, s => s.split(' ')), "I'mAM.i.b.101Ok?") // prettier-ignore
-})
-test('camelCase -_-', t => {
-  t.is(camelCase(ImaMIB101OK, s => s.split(' ')), "i'mAM.i.b.101Ok?") // prettier-ignore
-})
+const listenImOK = "listen I'm O.K.!"
+
+test("camelCase listen I'm O.K.!", t => { t.is(camelCase(listenImOK),       'listenImOk') }) // prettier-ignore
+test("pascalCase listen I'm O.K.!", t => { t.is(pascalCase(listenImOK),     'ListenImOk') }) // prettier-ignore
+test("kebabCase listen I'm O.K.!", t => { t.is(kebabCase(listenImOK),       'listen-im-ok') }) // prettier-ignore
+test("snakeCase listen I'm O.K.!", t => { t.is(snakeCase(listenImOK),       'listen_im_ok') }) // prettier-ignore
+test("constantCase listen I'm O.K.!", t => { t.is(constantCase(listenImOK), 'LISTEN_IM_OK') }) // prettier-ignore
+test("spaceCase listen I'm O.K.!", t => { t.is(spaceCase(listenImOK),       "listen I'm O.K.!") }) // prettier-ignore
+test("pathCase listen I'm O.K.!", t => { t.is(pathCase(listenImOK),         "listen/I'm/O.K.!") }) // prettier-ignore
+test("lowerCase listen I'm O.K.!", t => { t.is(lowerCase(listenImOK),       "listen i'm o.k.!") }) // prettier-ignore
+test("upperCase listen I'm O.K.!", t => { t.is(upperCase(listenImOK),       "LISTEN I'M O.K.!") }) // prettier-ignore
+test("capitalCase listen I'm O.K.!", t => { t.is(capitalCase(listenImOK),   "Listen I'm O.k.!") }) // prettier-ignore

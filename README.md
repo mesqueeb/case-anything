@@ -24,7 +24,7 @@ I wanted to try my hand at the smallest iteration possible.
 
 ## Usage
 
-case-anything supports tree-shaking.
+case-anything supports tree-shaking and is side-effect free!
 
 ```js
 import { camelCase, pascalCase, kebabCase, snakeCase, constantCase } from 'case-anything'
@@ -32,37 +32,27 @@ import { camelCase, pascalCase, kebabCase, snakeCase, constantCase } from 'case-
 const testString = 'PonytaVaporeon_poliwrath-BUTTERFREE'
 // or any variant on this
 
-camelCase(testString)
-  === 'ponytaVaporeonPoliwrathButterfree'
+camelCase(testString) === 'ponytaVaporeonPoliwrathButterfree'
 
-pascalCase(testString)
-  === 'PonytaVaporeonPoliwrathButterfree'
+pascalCase(testString) === 'PonytaVaporeonPoliwrathButterfree'
 
-kebabCase(testString)
-  === 'ponyta-vaporeon-poliwrath-butterfree'
+kebabCase(testString) === 'ponyta-vaporeon-poliwrath-butterfree'
 
-snakeCase(testString)
-  === 'ponyta_vaporeon_poliwrath_butterfree'
+snakeCase(testString) === 'ponyta_vaporeon_poliwrath_butterfree'
 
-constantCase(testString)
-  === 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE'
-
-pathCase(testString)
-  === 'Ponyta/Vaporeon/Poliwrath/BUTTERFREE'
+constantCase(testString) === 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE'
 ```
 
-There is also `spaceCase` and `pathCase`, which does not convert the casing:
+There is also `spaceCase` and `pathCase`, which does **not convert the casing**:
 
 ```js
 import { spaceCase, pathCase } from 'case-anything'
 
 const testString = 'PonytaVaporeon_poliwrath-BUTTERFREE'
 
-spaceCase(testString)
-  === 'Ponyta Vaporeon poliwrath BUTTERFREE'
+spaceCase(testString) === 'Ponyta Vaporeon poliwrath BUTTERFREE'
 
-pathCase(testString)
-  === 'Ponyta/Vaporeon/poliwrath/BUTTERFREE'
+pathCase(testString) === 'Ponyta/Vaporeon/poliwrath/BUTTERFREE'
 ```
 
 There is also upper, lower and capital case. These will all convert the casing & also add spaces in between:
@@ -72,77 +62,66 @@ import { upperCase, lowerCase, capitalCase } from 'case-anything'
 
 const testString = 'PonytaVaporeon_poliwrath-BUTTERFREE'
 
-upperCase(testString)
-  === 'PONYTA VAPOREON POLIWRATH BUTTERFREE'
-lowerCase(testString)
-  === 'ponyta vaporeon poliwrath butterfree'
-capitalCase(testString)
-  === 'Ponyta Vaporeon Poliwrath Butterfree'
+upperCase(testString) === 'PONYTA VAPOREON POLIWRATH BUTTERFREE'
+lowerCase(testString) === 'ponyta vaporeon poliwrath butterfree'
+capitalCase(testString) === 'Ponyta Vaporeon Poliwrath Butterfree'
 ```
 
-### Custom split function
+### When spaces are involved
 
-The split function used in case-anything will remove any special characters (besides numbers) as well. If however, you require a different split function, you can provide one yourself as second parameter.
+As soon as there is a space in the target string, it will regard the input as a "sentence" and only split each part at the spaces.
 
-This is possible for the `capitalCase`, `pascalCase` or `camelCase`.
+See this example to understand each case:
 
-One use case example is when working with sentences. Eg. you want the capital case of this sentence: `listen I'm O.K.!`. Let's see how this can be done:
-
+<!-- prettier-ignore-start -->
 ```js
-const testString = "listen I'M O.K.!"
+const testString = "listen I'm O.K.!"
 
-// capitalCase expected behaviour:
-capitalCase(testString)
-  === 'Listen I M O K'
+// splits on spaces & removes special characters
+camelCase(listenImOK) ===    'listenImOk'
+pascalCase(listenImOK) ===   'ListenImOk'
+kebabCase(listenImOK) ===    'listen-im-ok'
+snakeCase(listenImOK) ===    'listen_im_ok'
+constantCase(listenImOK) === 'LISTEN_IM_OK'
 
-// capitalCase with own split function:
-capitalCase(testString, s => s.split(' '))
-  === "Listen I'm O.k.!"
+// splits on spaces & keeps special characters
+spaceCase(listenImOK) ===    "listen I'm O.K.!"
+pathCase(listenImOK) ===     "listen/I'm/O.K.!"
+lowerCase(listenImOK) ===    "listen i'm o.k.!"
+upperCase(listenImOK) ===    "LISTEN I'M O.K.!"
+capitalCase(listenImOK) ===  "Listen I'm O.k.!"
 ```
+<!-- prettier-ignore-end -->
 
-The reason this is only possible for three functions is because the logic behind the other functions is simple enough to implement yourself. Eg.:
+### When special alphabet is involved
 
-```js
-// snakeCase with own split function:
-testString.split(' ').join('_').toLowerCase()
-  === "listen_i'm_o.k.!"
-```
+Currently what keeps the package small is the fact that I use a simple regex to find all the parts in a string:
+
+- `/^[a-z]+|[A-Z][a-z]+|[a-z]+|[0-9]+|[A-Z]+(?![a-z])/g`
+
+That means that alphabet letters like é, ç, ü, ī and many others aren't compatible.
+
+If there is a simple way to include these via unicode ranges in the regex, please feel free to open a PR or issue!
 
 ## Package size
 
 We'll compare this package with [blakeembrey/change-case](https://github.com/blakeembrey/change-case), a very famous package on npm.
 
-|  | case-anything  | change-case |
-| ---  | --- | --- |
-| camelCase | 1.1K (572) | 27.2K (6K) |
-| pascalCase | 1.1K (561) | 27.4K (6.1K) |
-| kebabCase | 1.1K (541) | 26.8K (5.9K) |
-| snakeCase | 1.1K (540) | 26.8K (5.9K) |
-| constantCase | 1.1K (540) | 27.2K (6K) |
-| pathCase | 1K (530) | 26.8K (5.9K) |
+|              | case-anything | change-case  |
+| ------------ | ------------- | ------------ |
+| camelCase    | 1.1K (572)    | 27.2K (6K)   |
+| pascalCase   | 1.1K (561)    | 27.4K (6.1K) |
+| kebabCase    | 1.1K (541)    | 26.8K (5.9K) |
+| snakeCase    | 1.1K (540)    | 26.8K (5.9K) |
+| constantCase | 1.1K (540)    | 27.2K (6K)   |
+| pathCase     | 1K (530)      | 26.8K (5.9K) |
 
 ## Source code
 
-It is literally just this code:
+What keeps my package small, is that it's literally just a regex:
 
 ```js
-function getParts (string) {
-  return string.match(/^[a-z]+|[A-Z][a-z]+|[A-Z]+|[a-z]+/g)
+export function splitOnSpecialChars (string: string): any[] {
+  return string.match(/^[a-z]+|[A-Z][a-z]+|[a-z]+|[0-9]+|[A-Z]+(?![a-z])/g)
 }
-
-export function camelCase (string) {
-  return getParts(string)
-    .reduce((result, match, index) => {
-      return (index === 0)
-        ? match.toLowerCase()
-        : result + match[0].toUpperCase() + match.slice(1).toLowerCase()
-    }, '')
-}
-
-export function kebabCase (string) {
-  return getParts(string)
-    .join('-').toLowerCase()
-}
-
-// etc...
 ```

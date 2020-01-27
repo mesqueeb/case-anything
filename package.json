@@ -1,20 +1,28 @@
 {
   "name": "case-anything",
-  "version": "0.3.0",
+  "version": "0.3.1",
+  "sideEffects": false,
   "description": "camelCase, kebab-case, PascalCase... a simple integration with nano package size. (SMALL footprint!)",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "typings": "types/index.d.ts",
   "scripts": {
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "test": "ava",
     "rollup": "rollup -c build/rollup.js",
-    "build": "npm run rollup && npm run test"
+    "build": "npm run lint && npm run rollup && npm run test"
   },
   "dependencies": {},
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
     "ava": "^2.4.0",
-    "rollup-plugin-typescript2": "^0.24.3",
-    "typescript": "^3.7.2"
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-tree-shaking": "^1.8.0",
+    "rollup": "^1.29.1",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "typescript": "^3.7.5"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,3 @@
-
 /**
  * A string.match function that will return an array of "string parts"
  *
@@ -6,7 +5,7 @@
  * @returns {string[]}
  */
 export function getParts (string: string): any[] {
-  return string.match(/^[a-z]+|[0-9]+|[A-Z][a-z]+|[A-Z]+|[a-z]+/g)
+  return string.match(/^[a-z]+|[A-Z][a-z]+|[a-z]+|[0-9]+|[A-Z]+(?![a-z])/g)
 }
 
 /**

@@ -5,7 +5,7 @@
  * @returns {string[]}
  */
 function getParts(string) {
-    return string.match(/^[a-z]+|[0-9]+|[A-Z][a-z]+|[A-Z]+|[a-z]+/g);
+    return string.match(/^[a-z]+|[A-Z][a-z]+|[a-z]+|[0-9]+|[A-Z]+(?![a-z])/g);
 }
 /**
  * Capitalises a single word

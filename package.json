@@ -22,6 +22,7 @@
     "eslint-plugin-tree-shaking": "^1.8.0",
     "rollup": "^1.32.1",
     "rollup-plugin-typescript2": "^0.25.3",
+    "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
   },
   "repository": {
@@ -52,5 +53,9 @@
   "bugs": {
     "url": "https://github.com/mesqueeb/case-anything/issues"
   },
-  "homepage": "https://github.com/mesqueeb/case-anything#readme"
+  "homepage": "https://github.com/mesqueeb/case-anything#readme",
+  "ava": {
+    "extensions": ["ts"],
+    "require": ["ts-node/register"]
+  }
 }

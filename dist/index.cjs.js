@@ -20,7 +20,7 @@ function splitOnSpecialChars(string) {
 function getParts(string, noSpecialChars) {
     if (noSpecialChars === void 0) { noSpecialChars = false; }
     var target = string.trim();
-    var parts = target.includes(' ') ? target.split(' ') : splitOnSpecialChars(target);
+    var parts = target.includes(' ') ? target.split(' ').filter(Boolean) : splitOnSpecialChars(target);
     return noSpecialChars ? parts.map(function (part) { return part.replace(/[^a-zA-Z0-9]/g, ''); }) : parts;
 }
 /**

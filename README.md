@@ -93,6 +93,8 @@ capitalCase(listenImOK) ===  "Listen I'm O.k.!"
 ```
 <!-- prettier-ignore-end -->
 
+Also note, that multiple sequential spaces are treated as one space.
+
 ### When special alphabet is involved
 
 Currently what keeps the package small is the fact that I use a simple regex to find all the parts in a string:

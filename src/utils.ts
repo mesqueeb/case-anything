@@ -16,7 +16,7 @@ export function splitOnSpecialChars (string: string): any[] {
  */
 export function getParts (string: string, noSpecialChars = false): any[] {
   const target = string.trim()
-  const parts = target.includes(' ') ? target.split(' ') : splitOnSpecialChars(target)
+  const parts = target.includes(' ') ? target.split(' ').filter(Boolean) : splitOnSpecialChars(target)
   return noSpecialChars ? parts.map(part => part.replace(/[^a-zA-Z0-9]/g, '')) : parts
 }
 

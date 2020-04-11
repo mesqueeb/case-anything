@@ -1,3 +1,8 @@
+// Latin-1 Supplement
+// upper case ranges
+// [À-ÖØ-ß]
+// lower case ranges
+// [à-öø-ÿ]
 /**
  * A string.match function that will return an array of "string parts"
  *
@@ -5,7 +10,7 @@
  * @returns {string[]}
  */
 function splitOnSpecialChars(string) {
-    return string.match(/^[a-z]+|[A-Z][a-z]+|[a-z]+|[0-9]+|[A-Z]+(?![a-z])/g);
+    return string.match(/^[a-zà-öø-ÿ]+|[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ]+|[a-zà-öø-ÿ]+|[0-9]+|[A-ZÀ-ÖØ-ß]+(?![a-zà-öø-ÿ])/g);
 }
 /**
  * A string.match function that will return an array of "string parts"
@@ -17,7 +22,7 @@ function getParts(string, noSpecialChars) {
     if (noSpecialChars === void 0) { noSpecialChars = false; }
     var target = string.trim();
     var parts = target.includes(' ') ? target.split(' ').filter(Boolean) : splitOnSpecialChars(target);
-    return noSpecialChars ? parts.map(function (part) { return part.replace(/[^a-zA-Z0-9]/g, ''); }) : parts;
+    return noSpecialChars ? parts.map(function (part) { return part.replace(/[^a-zA-ZØßø0-9]/g, ''); }) : parts;
 }
 /**
  * Capitalises a single word

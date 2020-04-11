@@ -29,18 +29,18 @@ case-anything supports tree-shaking and is side-effect free!
 ```js
 import { camelCase, pascalCase, kebabCase, snakeCase, constantCase } from 'case-anything'
 
-const testString = 'PonytaVaporeon_poliwrath-BUTTERFREE'
+const str = 'PonytaVaporeon_poliwrath-BUTTERFREE'
 // or any variant on this
 
-camelCase(testString) === 'ponytaVaporeonPoliwrathButterfree'
+camelCase(str) === 'ponytaVaporeonPoliwrathButterfree'
 
-pascalCase(testString) === 'PonytaVaporeonPoliwrathButterfree'
+pascalCase(str) === 'PonytaVaporeonPoliwrathButterfree'
 
-kebabCase(testString) === 'ponyta-vaporeon-poliwrath-butterfree'
+kebabCase(str) === 'ponyta-vaporeon-poliwrath-butterfree'
 
-snakeCase(testString) === 'ponyta_vaporeon_poliwrath_butterfree'
+snakeCase(str) === 'ponyta_vaporeon_poliwrath_butterfree'
 
-constantCase(testString) === 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE'
+constantCase(str) === 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE'
 ```
 
 There is also `spaceCase` and `pathCase`, which does **not convert the casing**:
@@ -48,11 +48,11 @@ There is also `spaceCase` and `pathCase`, which does **not convert the casing**:
 ```js
 import { spaceCase, pathCase } from 'case-anything'
 
-const testString = 'PonytaVaporeon_poliwrath-BUTTERFREE'
+const str = 'PonytaVaporeon_poliwrath-BUTTERFREE'
 
-spaceCase(testString) === 'Ponyta Vaporeon poliwrath BUTTERFREE'
+spaceCase(str) === 'Ponyta Vaporeon poliwrath BUTTERFREE'
 
-pathCase(testString) === 'Ponyta/Vaporeon/poliwrath/BUTTERFREE'
+pathCase(str) === 'Ponyta/Vaporeon/poliwrath/BUTTERFREE'
 ```
 
 There is also upper, lower and capital case. These will all convert the casing & also add spaces in between:
@@ -60,11 +60,11 @@ There is also upper, lower and capital case. These will all convert the casing &
 ```js
 import { upperCase, lowerCase, capitalCase } from 'case-anything'
 
-const testString = 'PonytaVaporeon_poliwrath-BUTTERFREE'
+const str = 'PonytaVaporeon_poliwrath-BUTTERFREE'
 
-upperCase(testString) === 'PONYTA VAPOREON POLIWRATH BUTTERFREE'
-lowerCase(testString) === 'ponyta vaporeon poliwrath butterfree'
-capitalCase(testString) === 'Ponyta Vaporeon Poliwrath Butterfree'
+upperCase(str) === 'PONYTA VAPOREON POLIWRATH BUTTERFREE'
+lowerCase(str) === 'ponyta vaporeon poliwrath butterfree'
+capitalCase(str) === 'Ponyta Vaporeon Poliwrath Butterfree'
 ```
 
 ### When spaces are involved
@@ -75,35 +75,51 @@ See this example to understand each case:
 
 <!-- prettier-ignore-start -->
 ```js
-const testString = "listen I'm O.K.!"
+const str = "listen I'm O.K.!"
 
 // splits on spaces & removes special characters
-camelCase(listenImOK) ===    'listenImOk'
-pascalCase(listenImOK) ===   'ListenImOk'
-kebabCase(listenImOK) ===    'listen-im-ok'
-snakeCase(listenImOK) ===    'listen_im_ok'
-constantCase(listenImOK) === 'LISTEN_IM_OK'
+camelCase(str) ===    'listenImOk'
+pascalCase(str) ===   'ListenImOk'
+kebabCase(str) ===    'listen-im-ok'
+snakeCase(str) ===    'listen_im_ok'
+constantCase(str) === 'LISTEN_IM_OK'
 
 // splits on spaces & keeps special characters
-spaceCase(listenImOK) ===    "listen I'm O.K.!"
-pathCase(listenImOK) ===     "listen/I'm/O.K.!"
-lowerCase(listenImOK) ===    "listen i'm o.k.!"
-upperCase(listenImOK) ===    "LISTEN I'M O.K.!"
-capitalCase(listenImOK) ===  "Listen I'm O.k.!"
+spaceCase(str) ===    "listen I'm O.K.!"
+pathCase(str) ===     "listen/I'm/O.K.!"
+lowerCase(str) ===    "listen i'm o.k.!"
+upperCase(str) ===    "LISTEN I'M O.K.!"
+capitalCase(str) ===  "Listen I'm O.k.!"
 ```
 <!-- prettier-ignore-end -->
 
 Also note, that multiple sequential spaces are treated as one space.
 
-### When special alphabet is involved
+### When special characters are involved
 
-Currently what keeps the package small is the fact that I use a simple regex to find all the parts in a string:
+I have extended regular alphabet with the most common "Latin-1 Supplement" special characters.
 
-- `/^[a-z]+|[A-Z][a-z]+|[a-z]+|[0-9]+|[A-Z]+(?![a-z])/g`
+The coolest thing about this library is that it will **"convert" special characters into regular alphabet** for the cases used as variable names! 😎
 
-That means that alphabet letters like é, ç, ü, ī and many others aren't compatible.
+<!-- prettier-ignore-start -->
+```js
+const str = 'Çâfé Ågård'
 
-If there is a simple way to include these via unicode ranges in the regex, please feel free to open a PR or issue!
+// CONVERTS special characters:
+camelCase(str) ===    'cafeAgard'
+pascalCase(str) ===   'CafeAgard'
+kebabCase(str) ===    'cafe-agard'
+snakeCase(str) ===    'cafe_agard'
+constantCase(str) === 'CAFE_AGARD'
+
+// DOES NOT convert special characters:
+spaceCase(str) ===    "Çâfé Ågård"
+pathCase(str) ===     "Çâfé/Ågård"
+lowerCase(str) ===    "çâfé ågård"
+upperCase(str) ===    "ÇÂFÉ ÅGÅRD"
+capitalCase(str) ===  "Çâfé Ågård"
+```
+<!-- prettier-ignore-end -->
 
 ## Package size
 

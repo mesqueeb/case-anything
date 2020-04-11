@@ -12,6 +12,7 @@ import {
   lowerCase,
 } from '../src/index'
 
+// a bunch of different combinations
 const tests = [
   'ponytaVaporeonPOLIWRATH_ButterfreeA',
   'PonytaVaporeonPOLIWRATH_ButterfreeA',
@@ -22,7 +23,6 @@ const tests = [
   'ponyta.Vaporeon.POLIWRATH.ButterfreeA',
 ]
 
-// 1
 test('camelCase', t => {
   tests.forEach(w => { t.is(camelCase(w), 'ponytaVaporeonPoliwrathButterfreeA') }) // prettier-ignore
 })
@@ -71,7 +71,7 @@ test('pathCase', t => {
   ])
 })
 
-// 2
+// single capital
 const QTableA = 'QTableA'
 
 test('camelCase - QTableA', t => { t.is(camelCase(QTableA), 'qTableA') }) // prettier-ignore
@@ -85,7 +85,7 @@ test('lowerCase - QTableA', t => { t.is(lowerCase(QTableA), 'q table a') }) // p
 test('upperCase - QTableA', t => { t.is(upperCase(QTableA), 'Q TABLE A') }) // prettier-ignore
 test('capitalCase - QTableA', t => { t.is(capitalCase(QTableA), 'Q Table A') }) // prettier-ignore
 
-// 3
+// spaces & non alphabet characters
 const ImaMIB101OK = "I'm a M.I.B. 101 OK?"
 
 test("camelCase I'm a M.I.B. 101 OK?", t => { t.is(camelCase(ImaMIB101OK),       'imAMib101Ok') }) // prettier-ignore
@@ -99,7 +99,7 @@ test("lowerCase I'm a M.I.B. 101 OK?", t => { t.is(lowerCase(ImaMIB101OK),      
 test("upperCase I'm a M.I.B. 101 OK?", t => { t.is(upperCase(ImaMIB101OK),       "I'M A M.I.B. 101 OK?") }) // prettier-ignore
 test("capitalCase I'm a M.I.B. 101 OK?", t => { t.is(capitalCase(ImaMIB101OK),   "I'm A M.i.b. 101 Ok?") }) // prettier-ignore
 
-// 4
+// spaces & non alphabet characters
 const listenImOK = "listen I'm O.K.!"
 
 test("camelCase listen I'm O.K.!", t => { t.is(camelCase(listenImOK),       'listenImOk') }) // prettier-ignore
@@ -113,7 +113,7 @@ test("lowerCase listen I'm O.K.!", t => { t.is(lowerCase(listenImOK),       "lis
 test("upperCase listen I'm O.K.!", t => { t.is(upperCase(listenImOK),       "LISTEN I'M O.K.!") }) // prettier-ignore
 test("capitalCase listen I'm O.K.!", t => { t.is(capitalCase(listenImOK),   "Listen I'm O.k.!") }) // prettier-ignore
 
-// 5
+// double spacing
 const doubleRainbow = 'Double  Rainbow'
 
 test("camelCase Double  Rainbow", t => { t.is(camelCase(doubleRainbow),       'doubleRainbow') }) // prettier-ignore
@@ -127,16 +127,32 @@ test("lowerCase Double  Rainbow", t => { t.is(lowerCase(doubleRainbow),       "d
 test("upperCase Double  Rainbow", t => { t.is(upperCase(doubleRainbow),       "DOUBLE RAINBOW") }) // prettier-ignore
 test("capitalCase Double  Rainbow", t => { t.is(capitalCase(doubleRainbow),   "Double Rainbow") }) // prettier-ignore
 
-// special characters
-const specialChars = `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård`
+const n = (str: string) => str.normalize()
 
-test("camelCase specialChars", t => { t.is(camelCase(specialChars),       `ågårdÎGarçonsÇaféChâteauVoilàÑoëlÉtéLaïeulÅgård`) }) // prettier-ignore
-test("pascalCase specialChars", t => { t.is(pascalCase(specialChars),     `ÅgårdÎGarçonsÇaféChâteauVoilàÑoëlÉtéLaïeulÅgård`) }) // prettier-ignore
-test("kebabCase specialChars", t => { t.is(kebabCase(specialChars),       `ågård-î-garçons-çafé-château-voilà-ñoël-été-laïeul-ågård`) }) // prettier-ignore
-test("snakeCase specialChars", t => { t.is(snakeCase(specialChars),       `ågård_î_garçons_çafé_château_voilà_ñoël_été_laïeul_ågård`) }) // prettier-ignore
-test("constantCase specialChars", t => { t.is(constantCase(specialChars), `ÅGÅRD_Î_GARÇONS_ÇAFÉ_CHÂTEAU_VOILÀ_ÑOËL_ÉTÉ_LAÏEUL_ÅGÅRD`) }) // prettier-ignore
-test("spaceCase specialChars", t => { t.is(spaceCase(specialChars),       `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård`) }) // prettier-ignore
-test("pathCase specialChars", t => { t.is(pathCase(specialChars),         `Ågård/î/garçons/Çafé/château/voilà/ñoël/été/l'aïeul/Ågård`) }) // prettier-ignore
-test("lowerCase specialChars", t => { t.is(lowerCase(specialChars),       `ågård î garçons çafé château voilà ñoël été l'aïeul ågård`) }) // prettier-ignore
-test("upperCase specialChars", t => { t.is(upperCase(specialChars),       `ÅGÅRD Î GARÇONS ÇAFÉ CHÂTEAU VOILÀ ÑOËL ÉTÉ L'AÏEUL ÅGÅRD`) }) // prettier-ignore
-test("capitalCase specialChars", t => { t.is(capitalCase(specialChars),   `Ågård Î Garçons Çafé Château Voilà Ñoël Été L'aïeul Ågård`) }) // prettier-ignore
+// special characters with Canonical Composition:
+const specialCharsNFC = `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`
+
+test("camelCase specialChars NFC", t => { t.is(n(camelCase(specialCharsNFC)),       n(`agardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
+test("pascalCase specialChars NFC", t => { t.is(n(pascalCase(specialCharsNFC)),     n(`AgardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
+test("kebabCase specialChars NFC", t => { t.is(n(kebabCase(specialCharsNFC)),       n(`agard-i-garcons-cafe-chateau-voila-noel-ete-laieul-agard-aoøß-aoøy`)) }) // prettier-ignore
+test("snakeCase specialChars NFC", t => { t.is(n(snakeCase(specialCharsNFC)),       n(`agard_i_garcons_cafe_chateau_voila_noel_ete_laieul_agard_aoøß_aoøy`)) }) // prettier-ignore
+test("constantCase specialChars NFC", t => { t.is(n(constantCase(specialCharsNFC)), n(`AGARD_I_GARCONS_CAFE_CHATEAU_VOILA_NOEL_ETE_LAIEUL_AGARD_AOØSS_AOØY`)) }) // prettier-ignore
+test("spaceCase specialChars NFC", t => { t.is(n(spaceCase(specialCharsNFC)),       n(`Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`)) }) // prettier-ignore
+test("pathCase specialChars NFC", t => { t.is(n(pathCase(specialCharsNFC)),         n(`Ågård/î/garçons/Çafé/château/voilà/ñoël/été/l'aïeul/Ågård/ÀÖØß/àöøÿ`)) }) // prettier-ignore
+test("lowerCase specialChars NFC", t => { t.is(n(lowerCase(specialCharsNFC)),       n(`ågård î garçons çafé château voilà ñoël été l'aïeul ågård àöøß àöøÿ`)) }) // prettier-ignore
+test("upperCase specialChars NFC", t => { t.is(n(upperCase(specialCharsNFC)),       n(`ÅGÅRD Î GARÇONS ÇAFÉ CHÂTEAU VOILÀ ÑOËL ÉTÉ L'AÏEUL ÅGÅRD ÀÖØSS ÀÖØŸ`)) }) // prettier-ignore
+test("capitalCase specialChars NFC", t => { t.is(n(capitalCase(specialCharsNFC)),   n(`Ågård Î Garçons Çafé Château Voilà Ñoël Été L'aïeul Ågård Àöøß Àöøÿ`)) }) // prettier-ignore
+
+// special characters with Canonical Decomposition:
+const specialCharsNFD = `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`
+
+test("camelCase specialChars NFD", t => { t.is(n(camelCase(specialCharsNFD)),       n(`agardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
+test("pascalCase specialChars NFD", t => { t.is(n(pascalCase(specialCharsNFD)),     n(`AgardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
+test("kebabCase specialChars NFD", t => { t.is(n(kebabCase(specialCharsNFD)),       n(`agard-i-garcons-cafe-chateau-voila-noel-ete-laieul-agard-aoøß-aoøy`)) }) // prettier-ignore
+test("snakeCase specialChars NFD", t => { t.is(n(snakeCase(specialCharsNFD)),       n(`agard_i_garcons_cafe_chateau_voila_noel_ete_laieul_agard_aoøß_aoøy`)) }) // prettier-ignore
+test("constantCase specialChars NFD", t => { t.is(n(constantCase(specialCharsNFD)), n(`AGARD_I_GARCONS_CAFE_CHATEAU_VOILA_NOEL_ETE_LAIEUL_AGARD_AOØSS_AOØY`)) }) // prettier-ignore
+test("spaceCase specialChars NFD", t => { t.is(n(spaceCase(specialCharsNFD)),       n(`Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`)) }) // prettier-ignore
+test("pathCase specialChars NFD", t => { t.is(n(pathCase(specialCharsNFD)),         n(`Ågård/î/garçons/Çafé/château/voilà/ñoël/été/l'aïeul/Ågård/ÀÖØß/àöøÿ`)) }) // prettier-ignore
+test("lowerCase specialChars NFD", t => { t.is(n(lowerCase(specialCharsNFD)),       n(`ågård î garçons çafé château voilà ñoël été l'aïeul ågård àöøß àöøÿ`)) }) // prettier-ignore
+test("upperCase specialChars NFD", t => { t.is(n(upperCase(specialCharsNFD)),       n(`ÅGÅRD Î GARÇONS ÇAFÉ CHÂTEAU VOILÀ ÑOËL ÉTÉ L'AÏEUL ÅGÅRD ÀÖØSS ÀÖØŸ`)) }) // prettier-ignore
+test("capitalCase specialChars NFD", t => { t.is(n(capitalCase(specialCharsNFD)),   n(`Ågård Î Garçons Çafé Château Voilà Ñoël Été L'aïeul Ågård Àöøß Àöøÿ`)) }) // prettier-ignore

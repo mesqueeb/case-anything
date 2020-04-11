@@ -1,3 +1,9 @@
+// Latin-1 Supplement
+// upper case ranges
+// [À-ÖØ-ß]
+// lower case ranges
+// [à-öø-ÿ]
+
 /**
  * A string.match function that will return an array of "string parts"
  *
@@ -5,7 +11,7 @@
  * @returns {string[]}
  */
 export function splitOnSpecialChars (string: string): any[] {
-  return string.match(/^[a-z]+|[A-Z][a-z]+|[a-z]+|[0-9]+|[A-Z]+(?![a-z])/g)
+  return string.match(/^[a-zà-öø-ÿ]+|[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ]+|[a-zà-öø-ÿ]+|[0-9]+|[A-ZÀ-ÖØ-ß]+(?![a-zà-öø-ÿ])/g)
 }
 
 /**
@@ -17,7 +23,7 @@ export function splitOnSpecialChars (string: string): any[] {
 export function getParts (string: string, noSpecialChars = false): any[] {
   const target = string.trim()
   const parts = target.includes(' ') ? target.split(' ').filter(Boolean) : splitOnSpecialChars(target)
-  return noSpecialChars ? parts.map(part => part.replace(/[^a-zA-Z0-9]/g, '')) : parts
+  return noSpecialChars ? parts.map(part => part.replace(/[^a-zA-ZÀ-ÖØ-ßà-öø-ÿ0-9]/g, '')) : parts
 }
 
 /**

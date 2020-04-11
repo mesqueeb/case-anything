@@ -126,3 +126,17 @@ test("pathCase Double  Rainbow", t => { t.is(pathCase(doubleRainbow),         "D
 test("lowerCase Double  Rainbow", t => { t.is(lowerCase(doubleRainbow),       "double rainbow") }) // prettier-ignore
 test("upperCase Double  Rainbow", t => { t.is(upperCase(doubleRainbow),       "DOUBLE RAINBOW") }) // prettier-ignore
 test("capitalCase Double  Rainbow", t => { t.is(capitalCase(doubleRainbow),   "Double Rainbow") }) // prettier-ignore
+
+// special characters
+const specialChars = `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård`
+
+test("camelCase specialChars", t => { t.is(camelCase(specialChars),       `ågårdÎGarçonsÇaféChâteauVoilàÑoëlÉtéLaïeulÅgård`) }) // prettier-ignore
+test("pascalCase specialChars", t => { t.is(pascalCase(specialChars),     `ÅgårdÎGarçonsÇaféChâteauVoilàÑoëlÉtéLaïeulÅgård`) }) // prettier-ignore
+test("kebabCase specialChars", t => { t.is(kebabCase(specialChars),       `ågård-î-garçons-çafé-château-voilà-ñoël-été-laïeul-ågård`) }) // prettier-ignore
+test("snakeCase specialChars", t => { t.is(snakeCase(specialChars),       `ågård_î_garçons_çafé_château_voilà_ñoël_été_laïeul_ågård`) }) // prettier-ignore
+test("constantCase specialChars", t => { t.is(constantCase(specialChars), `ÅGÅRD_Î_GARÇONS_ÇAFÉ_CHÂTEAU_VOILÀ_ÑOËL_ÉTÉ_LAÏEUL_ÅGÅRD`) }) // prettier-ignore
+test("spaceCase specialChars", t => { t.is(spaceCase(specialChars),       `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård`) }) // prettier-ignore
+test("pathCase specialChars", t => { t.is(pathCase(specialChars),         `Ågård/î/garçons/Çafé/château/voilà/ñoël/été/l'aïeul/Ågård`) }) // prettier-ignore
+test("lowerCase specialChars", t => { t.is(lowerCase(specialChars),       `ågård î garçons çafé château voilà ñoël été l'aïeul ågård`) }) // prettier-ignore
+test("upperCase specialChars", t => { t.is(upperCase(specialChars),       `ÅGÅRD Î GARÇONS ÇAFÉ CHÂTEAU VOILÀ ÑOËL ÉTÉ L'AÏEUL ÅGÅRD`) }) // prettier-ignore
+test("capitalCase specialChars", t => { t.is(capitalCase(specialChars),   `Ågård Î Garçons Çafé Château Voilà Ñoël Été L'aïeul Ågård`) }) // prettier-ignore

@@ -130,7 +130,7 @@ test("capitalCase Double  Rainbow", t => { t.is(capitalCase(doubleRainbow),   "D
 const n = (str: string) => str.normalize()
 
 // special characters with Canonical Composition:
-const specialCharsNFC = `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`
+const specialCharsNFC = `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`.normalize('NFC')
 
 test("camelCase specialChars NFC", t => { t.is(n(camelCase(specialCharsNFC)),       n(`agardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
 test("pascalCase specialChars NFC", t => { t.is(n(pascalCase(specialCharsNFC)),     n(`AgardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
@@ -144,7 +144,7 @@ test("upperCase specialChars NFC", t => { t.is(n(upperCase(specialCharsNFC)),   
 test("capitalCase specialChars NFC", t => { t.is(n(capitalCase(specialCharsNFC)),   n(`Ågård Î Garçons Çafé Château Voilà Ñoël Été L'aïeul Ågård Àöøß Àöøÿ`)) }) // prettier-ignore
 
 // special characters with Canonical Decomposition:
-const specialCharsNFD = `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`
+const specialCharsNFD = `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`.normalize('NFD')
 
 test("camelCase specialChars NFD", t => { t.is(n(camelCase(specialCharsNFD)),       n(`agardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
 test("pascalCase specialChars NFD", t => { t.is(n(pascalCase(specialCharsNFD)),     n(`AgardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
@@ -156,3 +156,59 @@ test("pathCase specialChars NFD", t => { t.is(n(pathCase(specialCharsNFD)),     
 test("lowerCase specialChars NFD", t => { t.is(n(lowerCase(specialCharsNFD)),       n(`ågård î garçons çafé château voilà ñoël été l'aïeul ågård àöøß àöøÿ`)) }) // prettier-ignore
 test("upperCase specialChars NFD", t => { t.is(n(upperCase(specialCharsNFD)),       n(`ÅGÅRD Î GARÇONS ÇAFÉ CHÂTEAU VOILÀ ÑOËL ÉTÉ L'AÏEUL ÅGÅRD ÀÖØSS ÀÖØŸ`)) }) // prettier-ignore
 test("capitalCase specialChars NFD", t => { t.is(n(capitalCase(specialCharsNFD)),   n(`Ågård Î Garçons Çafé Château Voilà Ñoël Été L'aïeul Ågård Àöøß Àöøÿ`)) }) // prettier-ignore
+
+// special characters with Canonical Composition without spaces:
+const specialCharsNFCnoSpace = `Ågård_î_garçons_Çafé_château_voilà_ñoël_été_laïeul_Ågård_ÀÖØß_àöøÿ`.normalize('NFC')
+
+test("camelCase specialChars NFC - no spaces", t => { t.is(n(camelCase(specialCharsNFCnoSpace)),       n(`agardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
+test("pascalCase specialChars NFC - no spaces", t => { t.is(n(pascalCase(specialCharsNFCnoSpace)),     n(`AgardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
+test("kebabCase specialChars NFC - no spaces", t => { t.is(n(kebabCase(specialCharsNFCnoSpace)),       n(`agard-i-garcons-cafe-chateau-voila-noel-ete-laieul-agard-aoøß-aoøy`)) }) // prettier-ignore
+test("snakeCase specialChars NFC - no spaces", t => { t.is(n(snakeCase(specialCharsNFCnoSpace)),       n(`agard_i_garcons_cafe_chateau_voila_noel_ete_laieul_agard_aoøß_aoøy`)) }) // prettier-ignore
+test("constantCase specialChars NFC - no spaces", t => { t.is(n(constantCase(specialCharsNFCnoSpace)), n(`AGARD_I_GARCONS_CAFE_CHATEAU_VOILA_NOEL_ETE_LAIEUL_AGARD_AOØSS_AOØY`)) }) // prettier-ignore
+test("spaceCase specialChars NFC - no spaces", t => { t.is(n(spaceCase(specialCharsNFCnoSpace)),       n(`Ågård î garçons Çafé château voilà ñoël été laïeul Ågård ÀÖØß àöøÿ`)) }) // prettier-ignore
+test("pathCase specialChars NFC - no spaces", t => { t.is(n(pathCase(specialCharsNFCnoSpace)),         n(`Ågård/î/garçons/Çafé/château/voilà/ñoël/été/laïeul/Ågård/ÀÖØß/àöøÿ`)) }) // prettier-ignore
+test("lowerCase specialChars NFC - no spaces", t => { t.is(n(lowerCase(specialCharsNFCnoSpace)),       n(`ågård î garçons çafé château voilà ñoël été laïeul ågård àöøß àöøÿ`)) }) // prettier-ignore
+test("upperCase specialChars NFC - no spaces", t => { t.is(n(upperCase(specialCharsNFCnoSpace)),       n(`ÅGÅRD Î GARÇONS ÇAFÉ CHÂTEAU VOILÀ ÑOËL ÉTÉ LAÏEUL ÅGÅRD ÀÖØSS ÀÖØŸ`)) }) // prettier-ignore
+test("capitalCase specialChars NFC - no spaces", t => { t.is(n(capitalCase(specialCharsNFCnoSpace)),   n(`Ågård Î Garçons Çafé Château Voilà Ñoël Été Laïeul Ågård Àöøß Àöøÿ`)) }) // prettier-ignore
+
+// special characters with Canonical Decomposition without spaces:
+const specialCharsNFDnoSpace = `Ågård_î_garçons_Çafé_château_voilà_ñoël_été_laïeul_Ågård_ÀÖØß_àöøÿ`.normalize('NFD')
+
+test("camelCase specialChars NFD - no spaces", t => { t.is(n(camelCase(specialCharsNFDnoSpace)),       n(`agardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
+test("pascalCase specialChars NFD - no spaces", t => { t.is(n(pascalCase(specialCharsNFDnoSpace)),     n(`AgardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
+test("kebabCase specialChars NFD - no spaces", t => { t.is(n(kebabCase(specialCharsNFDnoSpace)),       n(`agard-i-garcons-cafe-chateau-voila-noel-ete-laieul-agard-aoøß-aoøy`)) }) // prettier-ignore
+test("snakeCase specialChars NFD - no spaces", t => { t.is(n(snakeCase(specialCharsNFDnoSpace)),       n(`agard_i_garcons_cafe_chateau_voila_noel_ete_laieul_agard_aoøß_aoøy`)) }) // prettier-ignore
+test("constantCase specialChars NFD - no spaces", t => { t.is(n(constantCase(specialCharsNFDnoSpace)), n(`AGARD_I_GARCONS_CAFE_CHATEAU_VOILA_NOEL_ETE_LAIEUL_AGARD_AOØSS_AOØY`)) }) // prettier-ignore
+test("spaceCase specialChars NFD - no spaces", t => { t.is(n(spaceCase(specialCharsNFDnoSpace)),       n(`Ågård î garçons Çafé château voilà ñoël été laïeul Ågård ÀÖØß àöøÿ`)) }) // prettier-ignore
+test("pathCase specialChars NFD - no spaces", t => { t.is(n(pathCase(specialCharsNFDnoSpace)),         n(`Ågård/î/garçons/Çafé/château/voilà/ñoël/été/laïeul/Ågård/ÀÖØß/àöøÿ`)) }) // prettier-ignore
+test("lowerCase specialChars NFD - no spaces", t => { t.is(n(lowerCase(specialCharsNFDnoSpace)),       n(`ågård î garçons çafé château voilà ñoël été laïeul ågård àöøß àöøÿ`)) }) // prettier-ignore
+test("upperCase specialChars NFD - no spaces", t => { t.is(n(upperCase(specialCharsNFDnoSpace)),       n(`ÅGÅRD Î GARÇONS ÇAFÉ CHÂTEAU VOILÀ ÑOËL ÉTÉ LAÏEUL ÅGÅRD ÀÖØSS ÀÖØŸ`)) }) // prettier-ignore
+test("capitalCase specialChars NFD - no spaces", t => { t.is(n(capitalCase(specialCharsNFDnoSpace)),   n(`Ågård Î Garçons Çafé Château Voilà Ñoël Été Laïeul Ågård Àöøß Àöøÿ`)) }) // prettier-ignore
+
+// special characters with Canonical Composition without spaces - short example:
+const specialCharsNFCnoSpaceS = `ÇaféÅgård`.normalize('NFC')
+
+test("camelCase specialChars NFC - no spaces s", t => { t.is(n(camelCase(specialCharsNFCnoSpaceS)),       n(`cafeAgard`)) }) // prettier-ignore
+test("pascalCase specialChars NFC - no spaces s", t => { t.is(n(pascalCase(specialCharsNFCnoSpaceS)),     n(`CafeAgard`)) }) // prettier-ignore
+test("kebabCase specialChars NFC - no spaces s", t => { t.is(n(kebabCase(specialCharsNFCnoSpaceS)),       n(`cafe-agard`)) }) // prettier-ignore
+test("snakeCase specialChars NFC - no spaces s", t => { t.is(n(snakeCase(specialCharsNFCnoSpaceS)),       n(`cafe_agard`)) }) // prettier-ignore
+test("constantCase specialChars NFC - no spaces s", t => { t.is(n(constantCase(specialCharsNFCnoSpaceS)), n(`CAFE_AGARD`)) }) // prettier-ignore
+test("spaceCase specialChars NFC - no spaces s", t => { t.is(n(spaceCase(specialCharsNFCnoSpaceS)),       n(`Çafé Ågård`)) }) // prettier-ignore
+test("pathCase specialChars NFC - no spaces s", t => { t.is(n(pathCase(specialCharsNFCnoSpaceS)),         n(`Çafé/Ågård`)) }) // prettier-ignore
+test("lowerCase specialChars NFC - no spaces s", t => { t.is(n(lowerCase(specialCharsNFCnoSpaceS)),       n(`çafé ågård`)) }) // prettier-ignore
+test("upperCase specialChars NFC - no spaces s", t => { t.is(n(upperCase(specialCharsNFCnoSpaceS)),       n(`ÇAFÉ ÅGÅRD`)) }) // prettier-ignore
+test("capitalCase specialChars NFC - no spaces s", t => { t.is(n(capitalCase(specialCharsNFCnoSpaceS)),   n(`Çafé Ågård`)) }) // prettier-ignore
+
+// special characters with Canonical Decomposition without spaces - short example:
+const specialCharsNFDnoSpaceS = `ÇaféÅgård`.normalize('NFD')
+
+test("camelCase specialChars NFD - no spaces s", t => { t.is(n(camelCase(specialCharsNFDnoSpaceS)),       n(`cafeAgard`)) }) // prettier-ignore
+test("pascalCase specialChars NFD - no spaces s", t => { t.is(n(pascalCase(specialCharsNFDnoSpaceS)),     n(`CafeAgard`)) }) // prettier-ignore
+test("kebabCase specialChars NFD - no spaces s", t => { t.is(n(kebabCase(specialCharsNFDnoSpaceS)),       n(`cafe-agard`)) }) // prettier-ignore
+test("snakeCase specialChars NFD - no spaces s", t => { t.is(n(snakeCase(specialCharsNFDnoSpaceS)),       n(`cafe_agard`)) }) // prettier-ignore
+test("constantCase specialChars NFD - no spaces s", t => { t.is(n(constantCase(specialCharsNFDnoSpaceS)), n(`CAFE_AGARD`)) }) // prettier-ignore
+test("spaceCase specialChars NFD - no spaces s", t => { t.is(n(spaceCase(specialCharsNFDnoSpaceS)),       n(`Çafé Ågård`)) }) // prettier-ignore
+test("pathCase specialChars NFD - no spaces s", t => { t.is(n(pathCase(specialCharsNFDnoSpaceS)),         n(`Çafé/Ågård`)) }) // prettier-ignore
+test("lowerCase specialChars NFD - no spaces s", t => { t.is(n(lowerCase(specialCharsNFDnoSpaceS)),       n(`çafé ågård`)) }) // prettier-ignore
+test("upperCase specialChars NFD - no spaces s", t => { t.is(n(upperCase(specialCharsNFDnoSpaceS)),       n(`ÇAFÉ ÅGÅRD`)) }) // prettier-ignore
+test("capitalCase specialChars NFD - no spaces s", t => { t.is(n(capitalCase(specialCharsNFDnoSpaceS)),   n(`Çafé Ågård`)) }) // prettier-ignore

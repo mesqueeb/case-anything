@@ -21,9 +21,9 @@ export function splitOnSpecialChars (string: string): any[] {
  * @returns {string[]}
  */
 export function getParts (string: string, noSpecialChars = false): any[] {
-  const target = string.trim()
+  const target = string.trim().normalize('NFC')
   const parts = target.includes(' ') ? target.split(' ').filter(Boolean) : splitOnSpecialChars(target)
-  return noSpecialChars ? parts.map(part => part.replace(/[^a-zA-ZØßø0-9]/g, '')) : parts
+  return noSpecialChars ? parts.map(part => part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '')) : parts
 }
 
 /**

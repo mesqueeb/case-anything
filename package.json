@@ -1,6 +1,6 @@
 {
   "name": "case-anything",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "sideEffects": false,
   "description": "camelCase, kebab-case, PascalCase... a simple integration with nano package size. (SMALL footprint!)",
   "main": "dist/index.cjs.js",
@@ -14,15 +14,15 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.23.0",
-    "@typescript-eslint/parser": "^2.23.0",
-    "ava": "^3.5.0",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
+    "ava": "^3.6.0",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-tree-shaking": "^1.8.0",
     "rollup": "^1.32.1",
     "rollup-plugin-typescript2": "^0.25.3",
-    "ts-node": "^8.6.2",
+    "ts-node": "^8.8.2",
     "typescript": "^3.8.3"
   },
   "repository": {
@@ -55,7 +55,11 @@
   },
   "homepage": "https://github.com/mesqueeb/case-anything#readme",
   "ava": {
-    "extensions": ["ts"],
-    "require": ["ts-node/register"]
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
   }
 }

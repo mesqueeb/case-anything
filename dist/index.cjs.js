@@ -24,9 +24,9 @@ function splitOnSpecialChars(string) {
  */
 function getParts(string, noSpecialChars) {
     if (noSpecialChars === void 0) { noSpecialChars = false; }
-    var target = string.trim();
+    var target = string.trim().normalize('NFC');
     var parts = target.includes(' ') ? target.split(' ').filter(Boolean) : splitOnSpecialChars(target);
-    return noSpecialChars ? parts.map(function (part) { return part.replace(/[^a-zA-ZØßø0-9]/g, ''); }) : parts;
+    return noSpecialChars ? parts.map(function (part) { return part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, ''); }) : parts;
 }
 /**
  * Capitalises a single word

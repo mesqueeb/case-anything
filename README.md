@@ -12,6 +12,8 @@ I created this package because most other packages that do simple case changing 
 
 I wanted to try my hand at the smallest iteration possible.
 
+There's also a Better Touch Tool preset with [keyboard shortcuts](#keyboard-shortcuts) to convert selected text system wide!
+
 ## Meet the family
 
 - [merge-anything 🥡](https://github.com/mesqueeb/merge-anything)
@@ -120,6 +122,18 @@ upperCase(str) ===    "ÇÂFÉ ÅGÅRD"
 capitalCase(str) ===  "Çâfé Ågård"
 ```
 <!-- prettier-ignore-end -->
+
+## Keyboard shortcuts
+
+With [Better Touch Tool](https://folivora.ai) you can set up keyboard shortcuts to convert selected text with JavaScript. It even supports multi-cursors in VSCode!
+
+Here is an example triggering keyboard shortcuts to convert the selected text to PascalCase; kebab-case; camelCase:
+
+![keyboard shortcuts example](.media/case-anything%20VSCode.gif?raw=true)
+
+You can download the BTT preset from the source code: [case-anything.bttpreset](case-anything.bttpreset).
+
+(currently only supports PascalCase; kebab-case; camelCase, feel free to open an issue to request other cases.)
 
 ## Package size
 

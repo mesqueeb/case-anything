@@ -1,0 +1,151 @@
+{
+  "BTTPresetCreatorNotes" : "",
+  "BTTPresetInfoURL" : "",
+  "BTTPresetName" : "Change Casing",
+  "BTTPresetColor" : "43.350000, 187.850000, 216.750000, 255.000000",
+  "BTTPresetUUID" : "46668E04-C500-4986-A144-5DF6B155F9FD",
+  "BTTPresetContent" : [
+    {
+      "BTTAppBundleIdentifier" : "BT.G",
+      "BTTAppName" : "Global",
+      "BTTAppAutoInvertIcon" : 1,
+      "BTTTriggers" : [
+        {
+          "BTTTriggerType" : 679,
+          "BTTTriggerTypeDescription" : "Clipboard Manager \/ Java Script Transformer: camelCase",
+          "BTTTriggerClass" : "BTTTriggerTypeOtherTriggers",
+          "BTTPredefinedActionType" : -1,
+          "BTTPredefinedActionName" : "No Action",
+          "BTTAdditionalConfiguration" : "camelCase",
+          "BTTEnabled2" : 1,
+          "BTTAlternateModifierKeys" : 0,
+          "BTTRepeatDelay" : 0,
+          "BTTUUID" : "15DA8D65-0723-4668-A35F-2FC8AEC98E55",
+          "BTTNotesInsteadOfDescription" : 0,
+          "BTTEnabled" : 1,
+          "BTTModifierMode" : 0,
+          "BTTOrder" : 0,
+          "BTTDisplayOrder" : 0,
+          "BTTClipboardTransformerInfo" : {
+            "BTTClipboardTransformerExampleInput" : "new-test",
+            "BTTClipboardTransformerJS" : "async (str) => {\nconst groups = str.match(\/^[a-zà-öø-ÿ]+|[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ]+|[a-zà-öø-ÿ]+|[0-9]+|[A-ZÀ-ÖØ-ß]+(?![a-zà-öø-ÿ])\/g);\n\nreturn groups + str[0].toUpperCase() + str.slice(1).toLowerCase()\n}"
+          },
+          "BTTClipboardTransformerName" : "camelCase"
+        },
+        {
+          "BTTTriggerType" : 630,
+          "BTTTriggerTypeDescription" : "Group",
+          "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
+          "BTTPredefinedActionType" : -1,
+          "BTTPredefinedActionName" : "No Action",
+          "BTTEnabled2" : 1,
+          "BTTKeyboardShortcutKeyboardType" : 0,
+          "BTTRepeatDelay" : 0,
+          "BTTUUID" : "DC91494F-AB92-4E76-8377-C5CE5D59C774",
+          "BTTTriggerOnDown" : 1,
+          "BTTNotesInsteadOfDescription" : 0,
+          "BTTGroupName" : "Change Casing",
+          "BTTEnabled" : 1,
+          "BTTModifierMode" : 0,
+          "BTTShortcutKeyCode" : -1,
+          "BTTShortcutModifierKeys" : -1,
+          "BTTOrder" : 3,
+          "BTTDisplayOrder" : 0,
+          "BTTAutoAdaptToKeyboardLayout" : 0,
+          "BTTAdditionalActions" : [
+            {
+              "BTTTriggerType" : 0,
+              "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
+              "BTTPredefinedActionType" : 284,
+              "BTTPredefinedActionName" : "Transform & Replace Selection With Java Script",
+              "BTTAdditionalActionData" : {
+                "BTTClipboardTransformerExampleInput" : "getProp\nmerge\nflattenArray\nisPlainObject",
+                "SelectedTransformerTab" : 1,
+                "BTTClipboardTransformerJS" : "async (_string) => {\n  \/\/ `noSpecialChars = true` means it converts characters like 'é' to 'e'\n  const noSpecialChars = true\n  function getParts(string) {\n    const target = string.trim().normalize('NFC')\n    const parts = target.includes(' ')\n      ? target.split(' ').filter(Boolean)\n      : target.match(\n          \/^[a-zà-öø-ÿ]+|[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ]+|[a-zà-öø-ÿ]+|[0-9]+|[A-ZÀ-ÖØ-ß]+(?![a-zà-öø-ÿ])\/g\n        )\n    return noSpecialChars\n      ? parts.map(function (part) {\n          return part.normalize('NFD').replace(\/[^a-zA-ZØßø0-9]\/g, '')\n        })\n      : parts\n  }\n  function pascalCase(string) {\n    const parts = getParts(string)\n    return parts.reduce((result, match, index) => {\n      return result + match[0].toUpperCase() + match.slice(1).toLowerCase()\n    }, '')\n  }\n  return _string.split('\\n').map(pascalCase).join('\\n')\n}\n"
+              },
+              "BTTAdditionalConfiguration" : "1318920",
+              "BTTEnabled2" : 1,
+              "BTTKeyboardShortcutKeyboardType" : 1797,
+              "BTTRepeatDelay" : 0,
+              "BTTUUID" : "42E01192-5FE3-497B-8DFC-9BD33EDCF072",
+              "BTTTriggerOnDown" : 1,
+              "BTTNotesInsteadOfDescription" : 0,
+              "BTTLayoutIndependentChar" : "p",
+              "BTTEnabled" : 1,
+              "BTTModifierMode" : 0,
+              "BTTShortcutKeyCode" : 15,
+              "BTTShortcutModifierKeys" : 1310720,
+              "BTTOrder" : 0,
+              "BTTDisplayOrder" : 0,
+              "BTTAutoAdaptToKeyboardLayout" : 0
+            },
+            {
+              "BTTTriggerType" : 0,
+              "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
+              "BTTPredefinedActionType" : 284,
+              "BTTPredefinedActionName" : "Transform & Replace Selection With Java Script",
+              "BTTAdditionalActionData" : {
+                "SelectedTransformerTab" : 1,
+                "BTTClipboardTransformerJS" : "async (_string) => {\n  \/\/ `noSpecialChars = true` means it converts characters like 'é' to 'e'\n  const noSpecialChars = true\n  function getParts(string) {\n    const target = string.trim().normalize('NFC')\n    const parts = target.includes(' ')\n      ? target.split(' ').filter(Boolean)\n      : target.match(\n          \/^[a-zà-öø-ÿ]+|[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ]+|[a-zà-öø-ÿ]+|[0-9]+|[A-ZÀ-ÖØ-ß]+(?![a-zà-öø-ÿ])\/g\n        )\n    return noSpecialChars\n      ? parts.map(function (part) {\n          return part.normalize('NFD').replace(\/[^a-zA-ZØßø0-9]\/g, '')\n        })\n      : parts\n  }\n  function camelCase(string) {\n    const parts = getParts(string)\n    return parts.reduce((result, match, index) => {\n      return index === 0\n        ? match.toLowerCase()\n        : result + match[0].toUpperCase() + match.slice(1).toLowerCase()\n    }, '')\n  }\n  return _string.split('\\n').map(camelCase).join('\\n')\n}\n"
+              },
+              "BTTAdditionalConfiguration" : "1318920",
+              "BTTEnabled2" : 1,
+              "BTTKeyboardShortcutKeyboardType" : 1797,
+              "BTTRepeatDelay" : 0,
+              "BTTUUID" : "4298E68A-3B68-451F-8011-79292AB8D924",
+              "BTTTriggerOnDown" : 1,
+              "BTTNotesInsteadOfDescription" : 0,
+              "BTTLayoutIndependentChar" : "c",
+              "BTTEnabled" : 1,
+              "BTTModifierMode" : 0,
+              "BTTShortcutKeyCode" : 34,
+              "BTTShortcutModifierKeys" : 1310720,
+              "BTTOrder" : 1,
+              "BTTDisplayOrder" : 0,
+              "BTTAutoAdaptToKeyboardLayout" : 0
+            },
+            {
+              "BTTTriggerType" : 0,
+              "BTTTriggerClass" : "BTTTriggerTypeKeyboardShortcut",
+              "BTTPredefinedActionType" : 284,
+              "BTTPredefinedActionName" : "Transform & Replace Selection With Java Script",
+              "BTTAdditionalActionData" : {
+                "SelectedTransformerTab" : 1,
+                "BTTClipboardTransformerJS" : "async (_string) => {\n  \/\/ `noSpecialChars = true` means it converts characters like 'é' to 'e'\n  const noSpecialChars = true\n  function getParts(string) {\n    const target = string.trim().normalize('NFC')\n    const parts = target.includes(' ')\n      ? target.split(' ').filter(Boolean)\n      : target.match(\n          \/^[a-zà-öø-ÿ]+|[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ]+|[a-zà-öø-ÿ]+|[0-9]+|[A-ZÀ-ÖØ-ß]+(?![a-zà-öø-ÿ])\/g\n        )\n    return noSpecialChars\n      ? parts.map(function (part) {\n          return part.normalize('NFD').replace(\/[^a-zA-ZØßø0-9]\/g, '')\n        })\n      : parts\n  }\n  function kebabCase(string) {\n    const parts = getParts(string)\n    return parts.join('-').toLowerCase()\n  }\n  return _string.split('\\n').map(kebabCase).join('\\n')\n}\n"
+              },
+              "BTTAdditionalConfiguration" : "1318920",
+              "BTTEnabled2" : 1,
+              "BTTKeyboardShortcutKeyboardType" : 1797,
+              "BTTRepeatDelay" : 0,
+              "BTTUUID" : "E9C55859-662F-4974-8062-E5F9F766181F",
+              "BTTTriggerOnDown" : 1,
+              "BTTNotesInsteadOfDescription" : 0,
+              "BTTLayoutIndependentChar" : "k",
+              "BTTEnabled" : 1,
+              "BTTModifierMode" : 0,
+              "BTTShortcutKeyCode" : 9,
+              "BTTShortcutModifierKeys" : 1310720,
+              "BTTOrder" : 2,
+              "BTTDisplayOrder" : 0,
+              "BTTAutoAdaptToKeyboardLayout" : 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "BTTAppBundleIdentifier" : "com.apple.finder",
+      "BTTAppName" : "Finder",
+      "BTTAppAutoInvertIcon" : 1,
+      "BTTAppSpecificSettings" : {
+
+      },
+      "BTTTriggers" : [
+
+      ]
+    }
+  ],
+  "BTTPresetSnapAreas" : [
+
+  ]
+}

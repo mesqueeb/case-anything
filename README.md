@@ -125,7 +125,7 @@ capitalCase(str) ===  "Çâfé Ågård"
 
 ## Keyboard shortcuts
 
-With [Better Touch Tool](https://folivora.ai) you can set up keyboard shortcuts to convert selected text with JavaScript. This repo provides an easy to install preset that has shortcuts for pascal, kebab and camel case! (thanks to @AndrewKoch) It even supports multi-cursors in VSCode!
+With [Better Touch Tool](https://folivora.ai) you can set up keyboard shortcuts to convert selected text with JavaScript. This repo provides an easy to install preset that has shortcuts for pascal, kebab and camel case! (thanks to [@AndrewKoch](https://github.com/AndrewKoch)) It even supports multi-cursors in VSCode!
 
 Here is an example triggering keyboard shortcuts to convert the selected text to PascalCase; kebab-case; camelCase:
 

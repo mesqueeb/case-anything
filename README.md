@@ -10,7 +10,7 @@ camelCase, kebab-case, PascalCase **and more**... a simple integration with nano
 
 I created this package because most other packages that do simple case changing are so big...
 
-I wanted to try my hand at the smallest iteration possible.
+I wanted to try my hand at the smallest iteration possible. (and it's [12+ times smaller](#package-size) than the next popular case changing package!!)
 
 There's also a Better Touch Tool preset with [keyboard shortcuts](#keyboard-shortcuts) to convert selected text system wide!
 

@@ -1,6 +1,6 @@
 {
   "name": "case-anything",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "sideEffects": false,
   "description": "camelCase, kebab-case, PascalCase... a simple integration with nano package size. (SMALL footprint!)",
   "main": "dist/index.cjs.js",
@@ -9,8 +9,8 @@
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "test": "ava",
-    "rollup": "rollup -c build/rollup.js",
-    "build": "npm run lint && npm run rollup && npm run test"
+    "rollup": "rollup -c build.js",
+    "build": "rm -rf ./dist && npm run lint && npm run rollup && npm run test"
   },
   "dependencies": {},
   "devDependencies": {

@@ -4,7 +4,7 @@
 npm i case-anything
 ```
 
-camelCase, kebab-case, PascalCase... a simple integration with nano package size. (SMALL footprint!)
+camelCase, kebab-case, PascalCase **and more**... a simple integration with nano package size. (SMALL footprint!)
 
 ## Motivation
 

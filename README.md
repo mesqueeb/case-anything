@@ -4,7 +4,7 @@
 npm i case-anything
 ```
 
-10 case changing functions: camelCase, kebab-case, PascalCase **and more**...
+10 case changing functions: camelCase, kebab-case, PascalCase **and more**...<br />
 A simple integration with nano package size. (SMALL footprint!)
 
 ## Motivation

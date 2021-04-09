@@ -72,13 +72,13 @@ capitalCase(str) === 'Ponyta Vaporeon Poliwrath Butterfree'
 
 ### When spaces are involved
 
-As soon as there is a space in the target string, it will regard the input as a "sentence" and only split each part at the spaces.
+As soon as there is a space in the target string, it will regard the input as a _sentence_ and only split each part at the spaces.
 
 See this example to understand each case:
 
 <!-- prettier-ignore-start -->
 ```js
-const str = "listen I'm O.K.!"
+const str = `listen I'm O.K.!`
 
 // splits on spaces & removes special characters
 camelCase(str) ===    'listenImOk'
@@ -88,11 +88,11 @@ snakeCase(str) ===    'listen_im_ok'
 constantCase(str) === 'LISTEN_IM_OK'
 
 // splits on spaces & keeps special characters
-spaceCase(str) ===    "listen I'm O.K.!"
-pathCase(str) ===     "listen/I'm/O.K.!"
-lowerCase(str) ===    "listen i'm o.k.!"
-upperCase(str) ===    "LISTEN I'M O.K.!"
-capitalCase(str) ===  "Listen I'm O.k.!"
+spaceCase(str) ===    `listen I'm O.K.!`
+pathCase(str) ===     `listen/I'm/O.K.!`
+lowerCase(str) ===    `listen i'm o.k.!`
+upperCase(str) ===    `LISTEN I'M O.K.!`
+capitalCase(str) ===  `Listen I'm O.k.!`
 ```
 <!-- prettier-ignore-end -->
 
@@ -100,7 +100,7 @@ Also note, that multiple sequential spaces are treated as one space.
 
 ### When special characters are involved
 
-I have extended regular alphabet with the most common "Latin-1 Supplement" special characters.
+I have extended regular alphabet with the most common _Latin-1 Supplement_ special characters.
 
 The coolest thing about this library is that it will **"convert" special characters into regular alphabet** for the cases used as variable names! 😎
 
@@ -116,11 +116,11 @@ snakeCase(str) ===    'cafe_agard'
 constantCase(str) === 'CAFE_AGARD'
 
 // DOES NOT convert special characters:
-spaceCase(str) ===    "Çâfé Ågård"
-pathCase(str) ===     "Çâfé/Ågård"
-lowerCase(str) ===    "çâfé ågård"
-upperCase(str) ===    "ÇÂFÉ ÅGÅRD"
-capitalCase(str) ===  "Çâfé Ågård"
+spaceCase(str) ===    'Çâfé Ågård'
+pathCase(str) ===     'Çâfé/Ågård'
+lowerCase(str) ===    'çâfé ågård'
+upperCase(str) ===    'ÇÂFÉ ÅGÅRD'
+capitalCase(str) ===  'Çâfé Ågård'
 ```
 <!-- prettier-ignore-end -->
 

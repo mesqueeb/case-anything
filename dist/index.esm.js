@@ -68,9 +68,7 @@ function pascalCase(string) {
  * @returns {string} in kebab-case
  */
 function kebabCase(string) {
-    return getParts(string, noSpecialChars)
-        .join('-')
-        .toLowerCase();
+    return getParts(string, noSpecialChars).join('-').toLowerCase();
 }
 /**
  * converts strings to snake_case
@@ -80,9 +78,7 @@ function kebabCase(string) {
  * @returns {string} in snake_case
  */
 function snakeCase(string) {
-    return getParts(string, noSpecialChars)
-        .join('_')
-        .toLowerCase();
+    return getParts(string, noSpecialChars).join('_').toLowerCase();
 }
 /**
  * converts strings to CONSTANT_CASE
@@ -92,9 +88,7 @@ function snakeCase(string) {
  * @returns {string} in CONSTANT_CASE
  */
 function constantCase(string) {
-    return getParts(string, noSpecialChars)
-        .join('_')
-        .toUpperCase();
+    return getParts(string, noSpecialChars).join('_').toUpperCase();
 }
 /**
  * converts strings to path/case
@@ -126,7 +120,7 @@ function spaceCase(string) {
 function capitalCase(string) {
     return getParts(string)
         .reduce(function (result, match) {
-        return result + " " + capitaliseWord(match);
+        return "".concat(result, " ").concat(capitaliseWord(match));
     }, '')
         .trim();
 }
@@ -138,9 +132,7 @@ function capitalCase(string) {
  * @returns {string} in lower case (with spaces)
  */
 function lowerCase(string) {
-    return getParts(string)
-        .join(' ')
-        .toLowerCase();
+    return getParts(string).join(' ').toLowerCase();
 }
 /**
  * converts strings to UPPER CASE (with spaces)
@@ -150,9 +142,7 @@ function lowerCase(string) {
  * @returns {string} in UPPER CASE (with spaces)
  */
 function upperCase(string) {
-    return getParts(string)
-        .join(' ')
-        .toUpperCase();
+    return getParts(string).join(' ').toUpperCase();
 }
 
 export { camelCase, capitalCase, constantCase, kebabCase, lowerCase, pascalCase, pathCase, snakeCase, spaceCase, upperCase };

@@ -9,7 +9,7 @@ const noSpecialChars = true
  * @param {string} string
  * @returns {string} in camelCase
  */
-export function camelCase (string: string): string {
+export function camelCase(string: string): string {
   return getParts(string, noSpecialChars).reduce((result, match, index) => {
     return index === 0 ? match.toLowerCase() : result + capitaliseWord(match)
   }, '')
@@ -22,7 +22,7 @@ export function camelCase (string: string): string {
  * @param {string} string
  * @returns {string} in PascalCase
  */
-export function pascalCase (string: string): string {
+export function pascalCase(string: string): string {
   return getParts(string, noSpecialChars).reduce((result, match) => {
     return result + capitaliseWord(match)
   }, '')
@@ -35,10 +35,8 @@ export function pascalCase (string: string): string {
  * @param {string} string
  * @returns {string} in kebab-case
  */
-export function kebabCase (string: string): string {
-  return getParts(string, noSpecialChars)
-    .join('-')
-    .toLowerCase()
+export function kebabCase(string: string): string {
+  return getParts(string, noSpecialChars).join('-').toLowerCase()
 }
 
 /**
@@ -48,10 +46,8 @@ export function kebabCase (string: string): string {
  * @param {string} string
  * @returns {string} in snake_case
  */
-export function snakeCase (string: string): string {
-  return getParts(string, noSpecialChars)
-    .join('_')
-    .toLowerCase()
+export function snakeCase(string: string): string {
+  return getParts(string, noSpecialChars).join('_').toLowerCase()
 }
 
 /**
@@ -61,10 +57,8 @@ export function snakeCase (string: string): string {
  * @param {string} string
  * @returns {string} in CONSTANT_CASE
  */
-export function constantCase (string: string): string {
-  return getParts(string, noSpecialChars)
-    .join('_')
-    .toUpperCase()
+export function constantCase(string: string): string {
+  return getParts(string, noSpecialChars).join('_').toUpperCase()
 }
 
 /**
@@ -74,7 +68,7 @@ export function constantCase (string: string): string {
  * @param {string} string
  * @returns {string} in path/case
  */
-export function pathCase (string: string): string {
+export function pathCase(string: string): string {
   return getParts(string).join('/')
 }
 
@@ -85,7 +79,7 @@ export function pathCase (string: string): string {
  * @param {string} string
  * @returns {string} in path case
  */
-export function spaceCase (string: string): string {
+export function spaceCase(string: string): string {
   return getParts(string).join(' ')
 }
 
@@ -96,7 +90,7 @@ export function spaceCase (string: string): string {
  * @param {string} string
  * @returns {string} in Capital Case (with spaces)
  */
-export function capitalCase (string: string): string {
+export function capitalCase(string: string): string {
   return getParts(string)
     .reduce((result, match) => {
       return `${result} ${capitaliseWord(match)}`
@@ -111,10 +105,8 @@ export function capitalCase (string: string): string {
  * @param {string} string
  * @returns {string} in lower case (with spaces)
  */
-export function lowerCase (string: string): string {
-  return getParts(string)
-    .join(' ')
-    .toLowerCase()
+export function lowerCase(string: string): string {
+  return getParts(string).join(' ').toLowerCase()
 }
 
 /**
@@ -124,8 +116,6 @@ export function lowerCase (string: string): string {
  * @param {string} string
  * @returns {string} in UPPER CASE (with spaces)
  */
-export function upperCase (string: string): string {
-  return getParts(string)
-    .join(' ')
-    .toUpperCase()
+export function upperCase(string: string): string {
+  return getParts(string).join(' ').toUpperCase()
 }

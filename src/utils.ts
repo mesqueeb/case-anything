@@ -10,7 +10,7 @@
  * @param {string} string
  * @returns {string[]}
  */
-export function splitOnSpecialChars (string: string): any[] {
+export function splitOnSpecialChars(string: string): any[] {
   return string.match(/^[a-zà-öø-ÿ]+|[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ]+|[a-zà-öø-ÿ]+|[0-9]+|[A-ZÀ-ÖØ-ß]+(?![a-zà-öø-ÿ])/g)
 }
 
@@ -20,10 +20,10 @@ export function splitOnSpecialChars (string: string): any[] {
  * @param {string} string
  * @returns {string[]}
  */
-export function getParts (string: string, noSpecialChars = false): any[] {
+export function getParts(string: string, noSpecialChars = false): any[] {
   const target = string.trim().normalize('NFC')
   const parts = target.includes(' ') ? target.split(' ').filter(Boolean) : splitOnSpecialChars(target)
-  return noSpecialChars ? parts.map(part => part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '')) : parts
+  return noSpecialChars ? parts.map((part) => part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '')) : parts
 }
 
 /**
@@ -33,6 +33,6 @@ export function getParts (string: string, noSpecialChars = false): any[] {
  * @param {string} string the word
  * @returns {string} the word with the first character in uppercase and the rest in lowercase
  */
-export function capitaliseWord (string: string): string {
+export function capitaliseWord(string: string): string {
   return string[0].toUpperCase() + string.slice(1).toLowerCase()
 }

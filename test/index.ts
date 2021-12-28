@@ -23,31 +23,31 @@ const tests = [
   'ponyta.Vaporeon.POLIWRATH.ButterfreeA',
 ]
 
-test('camelCase', t => {
+test('camelCase', (t) => {
   tests.forEach(w => { t.is(camelCase(w), 'ponytaVaporeonPoliwrathButterfreeA') }) // prettier-ignore
 })
-test('pascalCase', t => {
+test('pascalCase', (t) => {
   tests.forEach(w => { t.is(pascalCase(w), 'PonytaVaporeonPoliwrathButterfreeA') }) // prettier-ignore
 })
-test('kebabCase', t => {
+test('kebabCase', (t) => {
   tests.forEach(w => { t.is(kebabCase(w), 'ponyta-vaporeon-poliwrath-butterfree-a') }) // prettier-ignore
 })
-test('snakeCase', t => {
+test('snakeCase', (t) => {
   tests.forEach(w => { t.is(snakeCase(w), 'ponyta_vaporeon_poliwrath_butterfree_a') }) // prettier-ignore
 })
-test('constantCase', t => {
+test('constantCase', (t) => {
   tests.forEach(w => { t.is(constantCase(w), 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A') }) // prettier-ignore
 })
-test('lowerCase', t => {
+test('lowerCase', (t) => {
   tests.forEach(w => { t.is(lowerCase(w), 'ponyta vaporeon poliwrath butterfree a') }) // prettier-ignore
 })
-test('upperCase', t => {
+test('upperCase', (t) => {
   tests.forEach(w => { t.is(upperCase(w), 'PONYTA VAPOREON POLIWRATH BUTTERFREE A') }) // prettier-ignore
 })
-test('capitalCase', t => {
+test('capitalCase', (t) => {
   tests.forEach(w => { t.is(capitalCase(w), 'Ponyta Vaporeon Poliwrath Butterfree A') }) // prettier-ignore
 })
-test('spaceCase', t => {
+test('spaceCase', (t) => {
   t.deepEqual(tests.map(spaceCase), [
     'ponyta Vaporeon POLIWRATH Butterfree A',
     'Ponyta Vaporeon POLIWRATH Butterfree A',
@@ -59,7 +59,7 @@ test('spaceCase', t => {
   ])
 })
 
-test('pathCase', t => {
+test('pathCase', (t) => {
   t.deepEqual(tests.map(pathCase), [
     'ponyta/Vaporeon/POLIWRATH/Butterfree/A',
     'Ponyta/Vaporeon/POLIWRATH/Butterfree/A',
@@ -212,3 +212,17 @@ test("pathCase specialChars NFD - no spaces s", t => { t.is(n(pathCase(specialCh
 test("lowerCase specialChars NFD - no spaces s", t => { t.is(n(lowerCase(specialCharsNFDnoSpaceS)),       n(`çafé ågård`)) }) // prettier-ignore
 test("upperCase specialChars NFD - no spaces s", t => { t.is(n(upperCase(specialCharsNFDnoSpaceS)),       n(`ÇAFÉ ÅGÅRD`)) }) // prettier-ignore
 test("capitalCase specialChars NFD - no spaces s", t => { t.is(n(capitalCase(specialCharsNFDnoSpaceS)),   n(`Çafé Ågård`)) }) // prettier-ignore
+
+// keep special characters:
+const $mesqueeb = `$mesqueeb.BluesJazz@github.com`
+
+test("camelCase keep special characters", t => { t.is(n(camelCase($mesqueeb)),       n(`mesqueebBluesJazzGithubCom`)) }) // prettier-ignore
+test("pascalCase keep special characters", t => { t.is(n(pascalCase($mesqueeb)),     n(`MesqueebBluesJazzGithubCom`)) }) // prettier-ignore
+test("kebabCase keep special characters", t => { t.is(n(kebabCase($mesqueeb)),       n(`mesqueeb-blues-jazz-github-com`)) }) // prettier-ignore
+test("snakeCase keep special characters", t => { t.is(n(snakeCase($mesqueeb)),       n(`mesqueeb_blues_jazz_github_com`)) }) // prettier-ignore
+test("constantCase keep special characters", t => { t.is(n(constantCase($mesqueeb)), n(`MESQUEEB_BLUES_JAZZ_GITHUB_COM`)) }) // prettier-ignore
+test("spaceCase keep special characters", t => { t.is(n(spaceCase($mesqueeb)),       n(`mesqueeb Blues Jazz github com`)) }) // prettier-ignore
+test("pathCase keep special characters", t => { t.is(n(pathCase($mesqueeb)),         n(`mesqueeb/Blues/Jazz/github/com`)) }) // prettier-ignore
+test("lowerCase keep special characters", t => { t.is(n(lowerCase($mesqueeb)),       n(`mesqueeb blues jazz github com`)) }) // prettier-ignore
+test("upperCase keep special characters", t => { t.is(n(upperCase($mesqueeb)),       n(`MESQUEEB BLUES JAZZ GITHUB COM`)) }) // prettier-ignore
+test("capitalCase keep special characters", t => { t.is(n(capitalCase($mesqueeb)),   n(`Mesqueeb Blues Jazz Github Com`)) }) // prettier-ignore

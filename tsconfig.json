@@ -2,10 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "declaration": true,
-    "declarationDir": "./types/"
+    "declarationDir": "./dist/types/"
   },
-  "include": [
-    "src/**/*",
-    "test/**/*"
-  ]
+  "include": ["src/**/*", "test/**/*"]
 }

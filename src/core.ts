@@ -1,6 +1,6 @@
 import { getParts, capitaliseWord } from './utils'
 
-const noSpecialChars = true
+// const stripSpecialCharacters = true
 
 /**
  * converts strings to camelCase
@@ -9,8 +9,9 @@ const noSpecialChars = true
  * @param {string} string
  * @returns {string} in camelCase
  */
-export function camelCase(string: string): string {
-  return getParts(string, noSpecialChars).reduce((result, match, index) => {
+export function camelCase(string: string, stripSpecialCharacters = true): string {
+  console.log(`getParts(string, stripSpecialCharacters) → `, getParts(string, stripSpecialCharacters))
+  return getParts(string, stripSpecialCharacters).reduce((result, match, index) => {
     return index === 0 ? match.toLowerCase() : result + capitaliseWord(match)
   }, '')
 }
@@ -22,8 +23,8 @@ export function camelCase(string: string): string {
  * @param {string} string
  * @returns {string} in PascalCase
  */
-export function pascalCase(string: string): string {
-  return getParts(string, noSpecialChars).reduce((result, match) => {
+export function pascalCase(string: string, stripSpecialCharacters = true): string {
+  return getParts(string, stripSpecialCharacters).reduce((result, match) => {
     return result + capitaliseWord(match)
   }, '')
 }
@@ -35,8 +36,8 @@ export function pascalCase(string: string): string {
  * @param {string} string
  * @returns {string} in kebab-case
  */
-export function kebabCase(string: string): string {
-  return getParts(string, noSpecialChars).join('-').toLowerCase()
+export function kebabCase(string: string, stripSpecialCharacters = true): string {
+  return getParts(string, stripSpecialCharacters).join('-').toLowerCase()
 }
 
 /**
@@ -46,8 +47,8 @@ export function kebabCase(string: string): string {
  * @param {string} string
  * @returns {string} in snake_case
  */
-export function snakeCase(string: string): string {
-  return getParts(string, noSpecialChars).join('_').toLowerCase()
+export function snakeCase(string: string, stripSpecialCharacters = true): string {
+  return getParts(string, stripSpecialCharacters).join('_').toLowerCase()
 }
 
 /**
@@ -57,8 +58,8 @@ export function snakeCase(string: string): string {
  * @param {string} string
  * @returns {string} in CONSTANT_CASE
  */
-export function constantCase(string: string): string {
-  return getParts(string, noSpecialChars).join('_').toUpperCase()
+export function constantCase(string: string, stripSpecialCharacters = true): string {
+  return getParts(string, stripSpecialCharacters).join('_').toUpperCase()
 }
 
 /**

@@ -16,9 +16,14 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=12.13",
+    "npm": ">=7"
+  },
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "test": "ava",
+    "test--only": "ava --match='*only:*'",
     "rollup": "rollup -c build.js",
     "build": "rm -rf ./dist && npm run lint && npm run rollup && npm run test",
     "release": "npm run build && np"

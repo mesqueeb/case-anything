@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "target": "ES6",
+    "lib": ["ESNext"],
     "baseUrl": ".",
     "declaration": true,
     "declarationDir": "./dist/types/"

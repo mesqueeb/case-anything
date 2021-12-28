@@ -5,7 +5,7 @@
  * @param {string} string
  * @returns {string} in camelCase
  */
-export declare function camelCase(string: string): string;
+export declare function camelCase(string: string, stripSpecialCharacters?: boolean): string;
 /**
  * converts strings to PascalCase
  *
@@ -13,7 +13,7 @@ export declare function camelCase(string: string): string;
  * @param {string} string
  * @returns {string} in PascalCase
  */
-export declare function pascalCase(string: string): string;
+export declare function pascalCase(string: string, stripSpecialCharacters?: boolean): string;
 /**
  * converts strings to kebab-case
  *
@@ -21,7 +21,7 @@ export declare function pascalCase(string: string): string;
  * @param {string} string
  * @returns {string} in kebab-case
  */
-export declare function kebabCase(string: string): string;
+export declare function kebabCase(string: string, stripSpecialCharacters?: boolean): string;
 /**
  * converts strings to snake_case
  *
@@ -29,7 +29,7 @@ export declare function kebabCase(string: string): string;
  * @param {string} string
  * @returns {string} in snake_case
  */
-export declare function snakeCase(string: string): string;
+export declare function snakeCase(string: string, stripSpecialCharacters?: boolean): string;
 /**
  * converts strings to CONSTANT_CASE
  *
@@ -37,7 +37,7 @@ export declare function snakeCase(string: string): string;
  * @param {string} string
  * @returns {string} in CONSTANT_CASE
  */
-export declare function constantCase(string: string): string;
+export declare function constantCase(string: string, stripSpecialCharacters?: boolean): string;
 /**
  * converts strings to path/case
  *

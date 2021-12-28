@@ -3,39 +3,42 @@
 // [À-ÖØ-ß]
 // lower case ranges
 // [à-öø-ÿ]
+const magicSplit = /^[a-zà-öø-ÿ]+|[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ]+|[a-zà-öø-ÿ]+|[0-9]+|[A-ZÀ-ÖØ-ß]+(?![a-zà-öø-ÿ])/g;
 /**
  * A string.match function that will return an array of "string parts"
- *
- * @param {string} string
- * @returns {string[]}
  */
 function splitOnSpecialChars(string) {
-    return string.match(/^[a-zà-öø-ÿ]+|[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ]+|[a-zà-öø-ÿ]+|[0-9]+|[A-ZÀ-ÖØ-ß]+(?![a-zà-öø-ÿ])/g);
+    return string.match(magicSplit);
+}
+/**
+ * A string.matchAll function that will return an array of "string parts" and the indexes at which it split each part
+ */
+function getPartsAndIndexes(string) {
+    const result = { parts: [], indexes: [] };
+    const matches = string.matchAll(magicSplit);
+    for (const match of matches) {
+        result.parts.push(match[0]);
+        result.indexes.push(match.index);
+    }
+    return result;
 }
 /**
  * A string.match function that will return an array of "string parts"
- *
- * @param {string} string
- * @returns {string[]}
  */
-function getParts(string, noSpecialChars) {
-    if (noSpecialChars === void 0) { noSpecialChars = false; }
-    var target = string.trim().normalize('NFC');
-    var parts = target.includes(' ') ? target.split(' ').filter(Boolean) : splitOnSpecialChars(target);
-    return noSpecialChars ? parts.map(function (part) { return part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, ''); }) : parts;
+function getParts(string, stripSpecialCharacters = false) {
+    const target = string.trim().normalize('NFC');
+    const parts = target.includes(' ') ? target.split(' ').filter(Boolean) : splitOnSpecialChars(target);
+    return stripSpecialCharacters ? parts.map((part) => part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '')) : parts;
 }
 /**
  * Capitalises a single word
- *
- * @export
- * @param {string} string the word
- * @returns {string} the word with the first character in uppercase and the rest in lowercase
+ * @returns the word with the first character in uppercase and the rest in lowercase
  */
 function capitaliseWord(string) {
     return string[0].toUpperCase() + string.slice(1).toLowerCase();
 }
 
-var noSpecialChars = true;
+// const stripSpecialCharacters = true
 /**
  * converts strings to camelCase
  *
@@ -43,8 +46,9 @@ var noSpecialChars = true;
  * @param {string} string
  * @returns {string} in camelCase
  */
-function camelCase(string) {
-    return getParts(string, noSpecialChars).reduce(function (result, match, index) {
+function camelCase(string, stripSpecialCharacters = true) {
+    console.log(`getParts(string, stripSpecialCharacters) → `, getParts(string, stripSpecialCharacters));
+    return getParts(string, stripSpecialCharacters).reduce((result, match, index) => {
         return index === 0 ? match.toLowerCase() : result + capitaliseWord(match);
     }, '');
 }
@@ -55,8 +59,8 @@ function camelCase(string) {
  * @param {string} string
  * @returns {string} in PascalCase
  */
-function pascalCase(string) {
-    return getParts(string, noSpecialChars).reduce(function (result, match) {
+function pascalCase(string, stripSpecialCharacters = true) {
+    return getParts(string, stripSpecialCharacters).reduce((result, match) => {
         return result + capitaliseWord(match);
     }, '');
 }
@@ -67,8 +71,8 @@ function pascalCase(string) {
  * @param {string} string
  * @returns {string} in kebab-case
  */
-function kebabCase(string) {
-    return getParts(string, noSpecialChars).join('-').toLowerCase();
+function kebabCase(string, stripSpecialCharacters = true) {
+    return getParts(string, stripSpecialCharacters).join('-').toLowerCase();
 }
 /**
  * converts strings to snake_case
@@ -77,8 +81,8 @@ function kebabCase(string) {
  * @param {string} string
  * @returns {string} in snake_case
  */
-function snakeCase(string) {
-    return getParts(string, noSpecialChars).join('_').toLowerCase();
+function snakeCase(string, stripSpecialCharacters = true) {
+    return getParts(string, stripSpecialCharacters).join('_').toLowerCase();
 }
 /**
  * converts strings to CONSTANT_CASE
@@ -87,8 +91,8 @@ function snakeCase(string) {
  * @param {string} string
  * @returns {string} in CONSTANT_CASE
  */
-function constantCase(string) {
-    return getParts(string, noSpecialChars).join('_').toUpperCase();
+function constantCase(string, stripSpecialCharacters = true) {
+    return getParts(string, stripSpecialCharacters).join('_').toUpperCase();
 }
 /**
  * converts strings to path/case
@@ -119,8 +123,8 @@ function spaceCase(string) {
  */
 function capitalCase(string) {
     return getParts(string)
-        .reduce(function (result, match) {
-        return "".concat(result, " ").concat(capitaliseWord(match));
+        .reduce((result, match) => {
+        return `${result} ${capitaliseWord(match)}`;
     }, '')
         .trim();
 }
@@ -145,4 +149,4 @@ function upperCase(string) {
     return getParts(string).join(' ').toUpperCase();
 }
 
-export { camelCase, capitalCase, constantCase, kebabCase, lowerCase, pascalCase, pathCase, snakeCase, spaceCase, upperCase };
+export { camelCase, capitalCase, constantCase, getPartsAndIndexes, kebabCase, lowerCase, pascalCase, pathCase, snakeCase, spaceCase, upperCase };

@@ -13,62 +13,97 @@ import {
 } from '../src/index'
 
 // a bunch of different combinations
-const tests = [
-  'ponytaVaporeonPOLIWRATH_ButterfreeA',
-  'PonytaVaporeonPOLIWRATH_ButterfreeA',
-  'ponyta-vaporeon-POLIWRATH-ButterfreeA',
-  'Ponyta~vaporeon~POLIWRATH/ButterfreeA',
-  'ponyta_vaporeon_POLIWRATH_ButterfreeA',
-  'ponyta_Vaporeon_POLIWRATH_ButterfreeA',
-  'ponyta.Vaporeon.POLIWRATH.ButterfreeA',
-]
 
 test('camelCase', (t) => {
-  tests.forEach(w => { t.is(camelCase(w), 'ponytaVaporeonPoliwrathButterfreeA') }) // prettier-ignore
+  t.is(camelCase('ponytaVaporeonPOLIWRATH_ButterfreeA'), 'ponytaVaporeonPoliwrathButterfreeA') // prettier-ignore
+  t.is(camelCase('PonytaVaporeonPOLIWRATH_ButterfreeA'), 'ponytaVaporeonPoliwrathButterfreeA') // prettier-ignore
+  t.is(camelCase('ponyta-vaporeon-POLIWRATH-ButterfreeA'), 'ponytaVaporeonPoliwrathButterfreeA') // prettier-ignore
+  t.is(camelCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA'), 'ponytaVaporeonPoliwrathButterfreeA') // prettier-ignore
+  t.is(camelCase('ponyta_vaporeon_POLIWRATH_ButterfreeA'), 'ponytaVaporeonPoliwrathButterfreeA') // prettier-ignore
+  t.is(camelCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA'), 'ponytaVaporeonPoliwrathButterfreeA') // prettier-ignore
+  t.is(camelCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA'), 'ponytaVaporeonPoliwrathButterfreeA') // prettier-ignore
 })
 test('pascalCase', (t) => {
-  tests.forEach(w => { t.is(pascalCase(w), 'PonytaVaporeonPoliwrathButterfreeA') }) // prettier-ignore
+  t.is(pascalCase('ponytaVaporeonPOLIWRATH_ButterfreeA'), 'PonytaVaporeonPoliwrathButterfreeA') // prettier-ignore
+  t.is(pascalCase('PonytaVaporeonPOLIWRATH_ButterfreeA'), 'PonytaVaporeonPoliwrathButterfreeA') // prettier-ignore
+  t.is(pascalCase('ponyta-vaporeon-POLIWRATH-ButterfreeA'), 'PonytaVaporeonPoliwrathButterfreeA') // prettier-ignore
+  t.is(pascalCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA'), 'PonytaVaporeonPoliwrathButterfreeA') // prettier-ignore
+  t.is(pascalCase('ponyta_vaporeon_POLIWRATH_ButterfreeA'), 'PonytaVaporeonPoliwrathButterfreeA') // prettier-ignore
+  t.is(pascalCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA'), 'PonytaVaporeonPoliwrathButterfreeA') // prettier-ignore
+  t.is(pascalCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA'), 'PonytaVaporeonPoliwrathButterfreeA') // prettier-ignore
 })
 test('kebabCase', (t) => {
-  tests.forEach(w => { t.is(kebabCase(w), 'ponyta-vaporeon-poliwrath-butterfree-a') }) // prettier-ignore
+  t.is(kebabCase('ponytaVaporeonPOLIWRATH_ButterfreeA'), 'ponyta-vaporeon-poliwrath-butterfree-a') // prettier-ignore
+  t.is(kebabCase('PonytaVaporeonPOLIWRATH_ButterfreeA'), 'ponyta-vaporeon-poliwrath-butterfree-a') // prettier-ignore
+  t.is(kebabCase('ponyta-vaporeon-POLIWRATH-ButterfreeA'), 'ponyta-vaporeon-poliwrath-butterfree-a') // prettier-ignore
+  t.is(kebabCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA'), 'ponyta-vaporeon-poliwrath-butterfree-a') // prettier-ignore
+  t.is(kebabCase('ponyta_vaporeon_POLIWRATH_ButterfreeA'), 'ponyta-vaporeon-poliwrath-butterfree-a') // prettier-ignore
+  t.is(kebabCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA'), 'ponyta-vaporeon-poliwrath-butterfree-a') // prettier-ignore
+  t.is(kebabCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA'), 'ponyta-vaporeon-poliwrath-butterfree-a') // prettier-ignore
 })
 test('snakeCase', (t) => {
-  tests.forEach(w => { t.is(snakeCase(w), 'ponyta_vaporeon_poliwrath_butterfree_a') }) // prettier-ignore
+  t.is(snakeCase('ponytaVaporeonPOLIWRATH_ButterfreeA'), 'ponyta_vaporeon_poliwrath_butterfree_a') // prettier-ignore
+  t.is(snakeCase('PonytaVaporeonPOLIWRATH_ButterfreeA'), 'ponyta_vaporeon_poliwrath_butterfree_a') // prettier-ignore
+  t.is(snakeCase('ponyta-vaporeon-POLIWRATH-ButterfreeA'), 'ponyta_vaporeon_poliwrath_butterfree_a') // prettier-ignore
+  t.is(snakeCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA'), 'ponyta_vaporeon_poliwrath_butterfree_a') // prettier-ignore
+  t.is(snakeCase('ponyta_vaporeon_POLIWRATH_ButterfreeA'), 'ponyta_vaporeon_poliwrath_butterfree_a') // prettier-ignore
+  t.is(snakeCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA'), 'ponyta_vaporeon_poliwrath_butterfree_a') // prettier-ignore
+  t.is(snakeCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA'), 'ponyta_vaporeon_poliwrath_butterfree_a') // prettier-ignore
 })
 test('constantCase', (t) => {
-  tests.forEach(w => { t.is(constantCase(w), 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A') }) // prettier-ignore
+  t.is(constantCase('ponytaVaporeonPOLIWRATH_ButterfreeA'), 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A') // prettier-ignore
+  t.is(constantCase('PonytaVaporeonPOLIWRATH_ButterfreeA'), 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A') // prettier-ignore
+  t.is(constantCase('ponyta-vaporeon-POLIWRATH-ButterfreeA'), 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A') // prettier-ignore
+  t.is(constantCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA'), 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A') // prettier-ignore
+  t.is(constantCase('ponyta_vaporeon_POLIWRATH_ButterfreeA'), 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A') // prettier-ignore
+  t.is(constantCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA'), 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A') // prettier-ignore
+  t.is(constantCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA'), 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A') // prettier-ignore
 })
 test('lowerCase', (t) => {
-  tests.forEach(w => { t.is(lowerCase(w), 'ponyta vaporeon poliwrath butterfree a') }) // prettier-ignore
+  t.is(lowerCase('ponytaVaporeonPOLIWRATH_ButterfreeA'), 'ponyta vaporeon poliwrath _butterfree a') // prettier-ignore
+  t.is(lowerCase('PonytaVaporeonPOLIWRATH_ButterfreeA'), 'ponyta vaporeon poliwrath _butterfree a') // prettier-ignore
+  t.is(lowerCase('ponyta-vaporeon-POLIWRATH-ButterfreeA'), 'ponyta -vaporeon -poliwrath -butterfree a') // prettier-ignore
+  t.is(lowerCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA'), 'ponyta ~vaporeon ~poliwrath /butterfree a') // prettier-ignore
+  t.is(lowerCase('ponyta_vaporeon_POLIWRATH_ButterfreeA'), 'ponyta _vaporeon _poliwrath _butterfree a') // prettier-ignore
+  t.is(lowerCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA'), 'ponyta _vaporeon _poliwrath _butterfree a') // prettier-ignore
+  t.is(lowerCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA'), 'ponyta .vaporeon .poliwrath .butterfree a') // prettier-ignore
 })
 test('upperCase', (t) => {
-  tests.forEach(w => { t.is(upperCase(w), 'PONYTA VAPOREON POLIWRATH BUTTERFREE A') }) // prettier-ignore
+  t.is(upperCase('ponytaVaporeonPOLIWRATH_ButterfreeA'), 'PONYTA VAPOREON POLIWRATH _BUTTERFREE A') // prettier-ignore
+  t.is(upperCase('PonytaVaporeonPOLIWRATH_ButterfreeA'), 'PONYTA VAPOREON POLIWRATH _BUTTERFREE A') // prettier-ignore
+  t.is(upperCase('ponyta-vaporeon-POLIWRATH-ButterfreeA'), 'PONYTA -VAPOREON -POLIWRATH -BUTTERFREE A') // prettier-ignore
+  t.is(upperCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA'), 'PONYTA ~VAPOREON ~POLIWRATH /BUTTERFREE A') // prettier-ignore
+  t.is(upperCase('ponyta_vaporeon_POLIWRATH_ButterfreeA'), 'PONYTA _VAPOREON _POLIWRATH _BUTTERFREE A') // prettier-ignore
+  t.is(upperCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA'), 'PONYTA _VAPOREON _POLIWRATH _BUTTERFREE A') // prettier-ignore
+  t.is(upperCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA'), 'PONYTA .VAPOREON .POLIWRATH .BUTTERFREE A') // prettier-ignore
 })
 test('capitalCase', (t) => {
-  tests.forEach(w => { t.is(capitalCase(w), 'Ponyta Vaporeon Poliwrath Butterfree A') }) // prettier-ignore
+  t.is(capitalCase('ponytaVaporeonPOLIWRATH_ButterfreeA'), 'Ponyta Vaporeon Poliwrath _Butterfree A') // prettier-ignore
+  t.is(capitalCase('PonytaVaporeonPOLIWRATH_ButterfreeA'), 'Ponyta Vaporeon Poliwrath _Butterfree A') // prettier-ignore
+  t.is(capitalCase('ponyta-vaporeon-POLIWRATH-ButterfreeA'), 'Ponyta -Vaporeon -Poliwrath -Butterfree A') // prettier-ignore
+  t.is(capitalCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA'), 'Ponyta ~Vaporeon ~Poliwrath /Butterfree A') // prettier-ignore
+  t.is(capitalCase('ponyta_vaporeon_POLIWRATH_ButterfreeA'), 'Ponyta _Vaporeon _Poliwrath _Butterfree A') // prettier-ignore
+  t.is(capitalCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA'), 'Ponyta _Vaporeon _Poliwrath _Butterfree A') // prettier-ignore
+  t.is(capitalCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA'), 'Ponyta .Vaporeon .Poliwrath .Butterfree A') // prettier-ignore
 })
 test('spaceCase', (t) => {
-  t.deepEqual(tests.map(spaceCase), [
-    'ponyta Vaporeon POLIWRATH Butterfree A',
-    'Ponyta Vaporeon POLIWRATH Butterfree A',
-    'ponyta vaporeon POLIWRATH Butterfree A',
-    'Ponyta vaporeon POLIWRATH Butterfree A',
-    'ponyta vaporeon POLIWRATH Butterfree A',
-    'ponyta Vaporeon POLIWRATH Butterfree A',
-    'ponyta Vaporeon POLIWRATH Butterfree A',
-  ])
+  t.is(spaceCase('ponytaVaporeonPOLIWRATH_ButterfreeA'), 'ponyta Vaporeon POLIWRATH _Butterfree A') // prettier-ignore
+  t.is(spaceCase('PonytaVaporeonPOLIWRATH_ButterfreeA'), 'Ponyta Vaporeon POLIWRATH _Butterfree A') // prettier-ignore
+  t.is(spaceCase('ponyta-vaporeon-POLIWRATH-ButterfreeA'), 'ponyta -vaporeon -POLIWRATH -Butterfree A') // prettier-ignore
+  t.is(spaceCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA'), 'Ponyta ~vaporeon ~POLIWRATH /Butterfree A') // prettier-ignore
+  t.is(spaceCase('ponyta_vaporeon_POLIWRATH_ButterfreeA'), 'ponyta _vaporeon _POLIWRATH _Butterfree A') // prettier-ignore
+  t.is(spaceCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA'), 'ponyta _Vaporeon _POLIWRATH _Butterfree A') // prettier-ignore
+  t.is(spaceCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA'), 'ponyta .Vaporeon .POLIWRATH .Butterfree A') // prettier-ignore
 })
 
 test('pathCase', (t) => {
-  t.deepEqual(tests.map(pathCase), [
-    'ponyta/Vaporeon/POLIWRATH/Butterfree/A',
-    'Ponyta/Vaporeon/POLIWRATH/Butterfree/A',
-    'ponyta/vaporeon/POLIWRATH/Butterfree/A',
-    'Ponyta/vaporeon/POLIWRATH/Butterfree/A',
-    'ponyta/vaporeon/POLIWRATH/Butterfree/A',
-    'ponyta/Vaporeon/POLIWRATH/Butterfree/A',
-    'ponyta/Vaporeon/POLIWRATH/Butterfree/A',
-  ])
+  t.is(pathCase('ponytaVaporeonPOLIWRATH_ButterfreeA'), 'ponyta/Vaporeon/POLIWRATH/_Butterfree/A') // prettier-ignore
+  t.is(pathCase('PonytaVaporeonPOLIWRATH_ButterfreeA'), 'Ponyta/Vaporeon/POLIWRATH/_Butterfree/A') // prettier-ignore
+  t.is(pathCase('ponyta-vaporeon-POLIWRATH-ButterfreeA'), 'ponyta/-vaporeon/-POLIWRATH/-Butterfree/A') // prettier-ignore
+  t.is(pathCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA'), 'Ponyta/~vaporeon/~POLIWRATH/Butterfree/A') // prettier-ignore
+  t.is(pathCase('ponyta_vaporeon_POLIWRATH_ButterfreeA'), 'ponyta/_vaporeon/_POLIWRATH/_Butterfree/A') // prettier-ignore
+  t.is(pathCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA'), 'ponyta/_Vaporeon/_POLIWRATH/_Butterfree/A') // prettier-ignore
+  t.is(pathCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA'), 'ponyta/.Vaporeon/.POLIWRATH/.Butterfree/A') // prettier-ignore
 })
 
 // single capital
@@ -165,11 +200,11 @@ test("pascalCase specialChars NFC - no spaces", t => { t.is(n(pascalCase(special
 test("kebabCase specialChars NFC - no spaces", t => { t.is(n(kebabCase(specialCharsNFCnoSpace)),       n(`agard-i-garcons-cafe-chateau-voila-noel-ete-laieul-agard-aoøß-aoøy`)) }) // prettier-ignore
 test("snakeCase specialChars NFC - no spaces", t => { t.is(n(snakeCase(specialCharsNFCnoSpace)),       n(`agard_i_garcons_cafe_chateau_voila_noel_ete_laieul_agard_aoøß_aoøy`)) }) // prettier-ignore
 test("constantCase specialChars NFC - no spaces", t => { t.is(n(constantCase(specialCharsNFCnoSpace)), n(`AGARD_I_GARCONS_CAFE_CHATEAU_VOILA_NOEL_ETE_LAIEUL_AGARD_AOØSS_AOØY`)) }) // prettier-ignore
-test("spaceCase specialChars NFC - no spaces", t => { t.is(n(spaceCase(specialCharsNFCnoSpace)),       n(`Ågård î garçons Çafé château voilà ñoël été laïeul Ågård ÀÖØß àöøÿ`)) }) // prettier-ignore
-test("pathCase specialChars NFC - no spaces", t => { t.is(n(pathCase(specialCharsNFCnoSpace)),         n(`Ågård/î/garçons/Çafé/château/voilà/ñoël/été/laïeul/Ågård/ÀÖØß/àöøÿ`)) }) // prettier-ignore
-test("lowerCase specialChars NFC - no spaces", t => { t.is(n(lowerCase(specialCharsNFCnoSpace)),       n(`ågård î garçons çafé château voilà ñoël été laïeul ågård àöøß àöøÿ`)) }) // prettier-ignore
-test("upperCase specialChars NFC - no spaces", t => { t.is(n(upperCase(specialCharsNFCnoSpace)),       n(`ÅGÅRD Î GARÇONS ÇAFÉ CHÂTEAU VOILÀ ÑOËL ÉTÉ LAÏEUL ÅGÅRD ÀÖØSS ÀÖØŸ`)) }) // prettier-ignore
-test("capitalCase specialChars NFC - no spaces", t => { t.is(n(capitalCase(specialCharsNFCnoSpace)),   n(`Ågård Î Garçons Çafé Château Voilà Ñoël Été Laïeul Ågård Àöøß Àöøÿ`)) }) // prettier-ignore
+test("spaceCase specialChars NFC - no spaces", t => { t.is(n(spaceCase(specialCharsNFCnoSpace)),       n(`Ågård _î _garçons _Çafé _château _voilà _ñoël _été _laïeul _Ågård _ÀÖØß _àöøÿ`)) }) // prettier-ignore
+test("pathCase specialChars NFC - no spaces", t => { t.is(n(pathCase(specialCharsNFCnoSpace)),         n(`Ågård/_î/_garçons/_Çafé/_château/_voilà/_ñoël/_été/_laïeul/_Ågård/_ÀÖØß/_àöøÿ`)) }) // prettier-ignore
+test("lowerCase specialChars NFC - no spaces", t => { t.is(n(lowerCase(specialCharsNFCnoSpace)),       n(`ågård _î _garçons _çafé _château _voilà _ñoël _été _laïeul _ågård _àöøß _àöøÿ`)) }) // prettier-ignore
+test("upperCase specialChars NFC - no spaces", t => { t.is(n(upperCase(specialCharsNFCnoSpace)),       n(`ÅGÅRD _Î _GARÇONS _ÇAFÉ _CHÂTEAU _VOILÀ _ÑOËL _ÉTÉ _LAÏEUL _ÅGÅRD _ÀÖØSS _ÀÖØŸ`)) }) // prettier-ignore
+test("capitalCase specialChars NFC - no spaces", t => { t.is(n(capitalCase(specialCharsNFCnoSpace)),   n(`Ågård _Î _Garçons _Çafé _Château _Voilà _Ñoël _Été _Laïeul _Ågård _Àöøß _Àöøÿ`)) }) // prettier-ignore
 
 // special characters with Canonical Decomposition without spaces:
 const specialCharsNFDnoSpace = `Ågård_î_garçons_Çafé_château_voilà_ñoël_été_laïeul_Ågård_ÀÖØß_àöøÿ`.normalize('NFD')
@@ -179,11 +214,11 @@ test("pascalCase specialChars NFD - no spaces", t => { t.is(n(pascalCase(special
 test("kebabCase specialChars NFD - no spaces", t => { t.is(n(kebabCase(specialCharsNFDnoSpace)),       n(`agard-i-garcons-cafe-chateau-voila-noel-ete-laieul-agard-aoøß-aoøy`)) }) // prettier-ignore
 test("snakeCase specialChars NFD - no spaces", t => { t.is(n(snakeCase(specialCharsNFDnoSpace)),       n(`agard_i_garcons_cafe_chateau_voila_noel_ete_laieul_agard_aoøß_aoøy`)) }) // prettier-ignore
 test("constantCase specialChars NFD - no spaces", t => { t.is(n(constantCase(specialCharsNFDnoSpace)), n(`AGARD_I_GARCONS_CAFE_CHATEAU_VOILA_NOEL_ETE_LAIEUL_AGARD_AOØSS_AOØY`)) }) // prettier-ignore
-test("spaceCase specialChars NFD - no spaces", t => { t.is(n(spaceCase(specialCharsNFDnoSpace)),       n(`Ågård î garçons Çafé château voilà ñoël été laïeul Ågård ÀÖØß àöøÿ`)) }) // prettier-ignore
-test("pathCase specialChars NFD - no spaces", t => { t.is(n(pathCase(specialCharsNFDnoSpace)),         n(`Ågård/î/garçons/Çafé/château/voilà/ñoël/été/laïeul/Ågård/ÀÖØß/àöøÿ`)) }) // prettier-ignore
-test("lowerCase specialChars NFD - no spaces", t => { t.is(n(lowerCase(specialCharsNFDnoSpace)),       n(`ågård î garçons çafé château voilà ñoël été laïeul ågård àöøß àöøÿ`)) }) // prettier-ignore
-test("upperCase specialChars NFD - no spaces", t => { t.is(n(upperCase(specialCharsNFDnoSpace)),       n(`ÅGÅRD Î GARÇONS ÇAFÉ CHÂTEAU VOILÀ ÑOËL ÉTÉ LAÏEUL ÅGÅRD ÀÖØSS ÀÖØŸ`)) }) // prettier-ignore
-test("capitalCase specialChars NFD - no spaces", t => { t.is(n(capitalCase(specialCharsNFDnoSpace)),   n(`Ågård Î Garçons Çafé Château Voilà Ñoël Été Laïeul Ågård Àöøß Àöøÿ`)) }) // prettier-ignore
+test("spaceCase specialChars NFD - no spaces", t => { t.is(n(spaceCase(specialCharsNFDnoSpace)),       n(`Ågård _î _garçons _Çafé _château _voilà _ñoël _été _laïeul _Ågård _ÀÖØß _àöøÿ`)) }) // prettier-ignore
+test("pathCase specialChars NFD - no spaces", t => { t.is(n(pathCase(specialCharsNFDnoSpace)),         n(`Ågård/_î/_garçons/_Çafé/_château/_voilà/_ñoël/_été/_laïeul/_Ågård/_ÀÖØß/_àöøÿ`)) }) // prettier-ignore
+test("lowerCase specialChars NFD - no spaces", t => { t.is(n(lowerCase(specialCharsNFDnoSpace)),       n(`ågård _î _garçons _çafé _château _voilà _ñoël _été _laïeul _ågård _àöøß _àöøÿ`)) }) // prettier-ignore
+test("upperCase specialChars NFD - no spaces", t => { t.is(n(upperCase(specialCharsNFDnoSpace)),       n(`ÅGÅRD _Î _GARÇONS _ÇAFÉ _CHÂTEAU _VOILÀ _ÑOËL _ÉTÉ _LAÏEUL _ÅGÅRD _ÀÖØSS _ÀÖØŸ`)) }) // prettier-ignore
+test("capitalCase specialChars NFD - no spaces", t => { t.is(n(capitalCase(specialCharsNFDnoSpace)),   n(`Ågård _Î _Garçons _Çafé _Château _Voilà _Ñoël _Été _Laïeul _Ågård _Àöøß _Àöøÿ`)) }) // prettier-ignore
 
 // special characters with Canonical Composition without spaces - short example:
 const specialCharsNFCnoSpaceS = `ÇaféÅgård`.normalize('NFC')
@@ -213,30 +248,56 @@ test("lowerCase specialChars NFD - no spaces s", t => { t.is(n(lowerCase(special
 test("upperCase specialChars NFD - no spaces s", t => { t.is(n(upperCase(specialCharsNFDnoSpaceS)),       n(`ÇAFÉ ÅGÅRD`)) }) // prettier-ignore
 test("capitalCase specialChars NFD - no spaces s", t => { t.is(n(capitalCase(specialCharsNFDnoSpaceS)),   n(`Çafé Ågård`)) }) // prettier-ignore
 
-// remove special characters:
-const $mesqueeb = `$mesqueeb.BluesJazz@github.com`
+// No spaces involved
 
-test("camelCase remove special characters", t => { t.is(n(camelCase($mesqueeb, true)),       n(`mesqueebBluesJazzGithubCom`)) }) // prettier-ignore
-test("pascalCase remove special characters", t => { t.is(n(pascalCase($mesqueeb, true)),     n(`MesqueebBluesJazzGithubCom`)) }) // prettier-ignore
-test("kebabCase remove special characters", t => { t.is(n(kebabCase($mesqueeb, true)),       n(`mesqueeb-blues-jazz-github-com`)) }) // prettier-ignore
-test("snakeCase remove special characters", t => { t.is(n(snakeCase($mesqueeb, true)),       n(`mesqueeb_blues_jazz_github_com`)) }) // prettier-ignore
-test("constantCase remove special characters", t => { t.is(n(constantCase($mesqueeb, true)), n(`MESQUEEB_BLUES_JAZZ_GITHUB_COM`)) }) // prettier-ignore
-test("spaceCase remove special characters", t => { t.is(n(spaceCase($mesqueeb)),       n(`mesqueeb Blues Jazz github com`)) }) // prettier-ignore
-test("pathCase remove special characters", t => { t.is(n(pathCase($mesqueeb)),         n(`mesqueeb/Blues/Jazz/github/com`)) }) // prettier-ignore
-test("lowerCase remove special characters", t => { t.is(n(lowerCase($mesqueeb)),       n(`mesqueeb blues jazz github com`)) }) // prettier-ignore
-test("upperCase remove special characters", t => { t.is(n(upperCase($mesqueeb)),       n(`MESQUEEB BLUES JAZZ GITHUB COM`)) }) // prettier-ignore
-test("capitalCase remove special characters", t => { t.is(n(capitalCase($mesqueeb)),   n(`Mesqueeb Blues Jazz Github Com`)) }) // prettier-ignore
+// 2nd param `stripSpecialCharacters` — `true` by default for...
+test("camelCase remove special characters", t => { t.is(n(camelCase(`$mesqueeb.BluesJazz@github.com`)),       n(`mesqueebBluesJazzGithubCom`)) }) // prettier-ignore
+test("pascalCase remove special characters", t => { t.is(n(pascalCase(`$mesqueeb.BluesJazz@github.com`)),     n(`MesqueebBluesJazzGithubCom`)) }) // prettier-ignore
+test("kebabCase remove special characters", t => { t.is(n(kebabCase(`$mesqueeb.BluesJazz@github.com`)),       n(`mesqueeb-blues-jazz-github-com`)) }) // prettier-ignore
+test("snakeCase remove special characters", t => { t.is(n(snakeCase(`$mesqueeb.BluesJazz@github.com`)),       n(`mesqueeb_blues_jazz_github_com`)) }) // prettier-ignore
+test("constantCase remove special characters", t => { t.is(n(constantCase(`$mesqueeb.BluesJazz@github.com`)), n(`MESQUEEB_BLUES_JAZZ_GITHUB_COM`)) }) // prettier-ignore
+// when `stripSpecialCharacters` is `false`...
+test("camelCase keep special characters", t => { t.is(n(camelCase(`$mesqueeb.BluesJazz@github.com`, false)),       n(`$mesqueeb.bluesJazz@github.com`)) }) // prettier-ignore
+test("pascalCase keep special characters", t => { t.is(n(pascalCase(`$mesqueeb.BluesJazz@github.com`, false)),     n(`$Mesqueeb.BluesJazz@Github.Com`)) }) // prettier-ignore
+test("kebabCase keep special characters", t => { t.is(n(kebabCase(`$mesqueeb.BluesJazz@github.com`, false)),       n(`$mesqueeb-.blues-jazz-@github-.com`)) }) // prettier-ignore
+test("snakeCase keep special characters", t => { t.is(n(snakeCase(`$mesqueeb.BluesJazz@github.com`, false)),       n(`$mesqueeb_.blues_jazz_@github_.com`)) }) // prettier-ignore
+test("constantCase keep special characters", t => { t.is(n(constantCase(`$mesqueeb.BluesJazz@github.com`, false)), n(`$MESQUEEB_.BLUES_JAZZ_@GITHUB_.COM`)) }) // prettier-ignore
+// 2nd param `stripSpecialCharacters` — `false` by default for...
+test("spaceCase keep special characters", t => { t.is(n(spaceCase(`$mesqueeb.BluesJazz@github.com`)),       n(`$mesqueeb .Blues Jazz @github .com`)) }) // prettier-ignore
+test("pathCase keep special characters", t => { t.is(n(pathCase(`$mesqueeb.BluesJazz@github.com`)),         n(`$mesqueeb/.Blues/Jazz/@github/.com`)) }) // prettier-ignore
+test("lowerCase keep special characters", t => { t.is(n(lowerCase(`$mesqueeb.BluesJazz@github.com`)),       n(`$mesqueeb .blues jazz @github .com`)) }) // prettier-ignore
+test("upperCase keep special characters", t => { t.is(n(upperCase(`$mesqueeb.BluesJazz@github.com`)),       n(`$MESQUEEB .BLUES JAZZ @GITHUB .COM`)) }) // prettier-ignore
+test("capitalCase keep special characters", t => { t.is(n(capitalCase(`$mesqueeb.BluesJazz@github.com`)),   n(`$Mesqueeb .Blues Jazz @Github .Com`)) }) // prettier-ignore
+// when `stripSpecialCharacters` is `true`...
+test("spaceCase remove special characters", t => { t.is(n(spaceCase(`$mesqueeb.BluesJazz@github.com`, true)),       n(`mesqueeb Blues Jazz github com`)) }) // prettier-ignore
+test("pathCase remove special characters", t => { t.is(n(pathCase(`$mesqueeb.BluesJazz@github.com`, true)),         n(`mesqueeb/Blues/Jazz/github/com`)) }) // prettier-ignore
+test("lowerCase remove special characters", t => { t.is(n(lowerCase(`$mesqueeb.BluesJazz@github.com`, true)),       n(`mesqueeb blues jazz github com`)) }) // prettier-ignore
+test("upperCase remove special characters", t => { t.is(n(upperCase(`$mesqueeb.BluesJazz@github.com`, true)),       n(`MESQUEEB BLUES JAZZ GITHUB COM`)) }) // prettier-ignore
+test("capitalCase remove special characters", t => { t.is(n(capitalCase(`$mesqueeb.BluesJazz@github.com`, true)),   n(`Mesqueeb Blues Jazz Github Com`)) }) // prettier-ignore
 
-// keep special characters:
-const $var = `$mesqueeb.BluesJazz@github.com`
+// Spaces involved
 
-test("camelCase keep special characters", t => { t.is(n(camelCase($var, false)),       n(`$mesqueeb.bluesJazz@gmail.com`)) }) // prettier-ignore
-test("pascalCase keep special characters", t => { t.is(n(pascalCase($var, false)),     n(`$Mesqueeb.BluesJazz@Gmail.Com`)) }) // prettier-ignore
-test("kebabCase keep special characters", t => { t.is(n(kebabCase($var, false)),       n(`$mesqueeb.blues-jazz@gmail.com`)) }) // prettier-ignore
-test("snakeCase keep special characters", t => { t.is(n(snakeCase($var, false)),       n(`$mesqueeb.blues_jazz@gmail.com`)) }) // prettier-ignore
-test("constantCase keep special characters", t => { t.is(n(constantCase($var, false)), n(`$MESQUEEB.BLUES_JAZZ@GMAIL.COM`)) }) // prettier-ignore
-// test("spaceCase keep special characters", t => { t.is(n(spaceCase($mesqueeb)),       n(`$mesqueeb.Blues Jazz@gmail.com`)) }) // prettier-ignore
-// test("pathCase keep special characters", t => { t.is(n(pathCase($mesqueeb)),         n(`$mesqueeb.Blues/Jazz@gmail.com`)) }) // prettier-ignore
-// test("lowerCase keep special characters", t => { t.is(n(lowerCase($mesqueeb)),       n(`$mesqueeb.bluesjazz@gmail.com`)) }) // prettier-ignore
-// test("upperCase keep special characters", t => { t.is(n(upperCase($mesqueeb)),       n(`$MESQUEEB.BLUESJAZZ@GMAIL.COM`)) }) // prettier-ignore
-// test("capitalCase keep special characters", t => { t.is(n(capitalCase($mesqueeb)),   n(`$Mesqueeb.BluesJazz@Gmail.Com`)) }) // prettier-ignore
+// 2nd param `stripSpecialCharacters` — `true` by default for...
+test("spaced — camelCase remove special characters", t => { t.is(n(camelCase(`$mesqueeb .BluesJazz @github _POWER`)),       n(`mesqueebBluesjazzGithubPower`)) }) // prettier-ignore
+test("spaced — pascalCase remove special characters", t => { t.is(n(pascalCase(`$mesqueeb .BluesJazz @github _POWER`)),     n(`MesqueebBluesjazzGithubPower`)) }) // prettier-ignore
+test("spaced — kebabCase remove special characters", t => { t.is(n(kebabCase(`$mesqueeb .BluesJazz @github _POWER`)),       n(`mesqueeb-bluesjazz-github-power`)) }) // prettier-ignore
+test("spaced — snakeCase remove special characters", t => { t.is(n(snakeCase(`$mesqueeb .BluesJazz @github _POWER`)),       n(`mesqueeb_bluesjazz_github_power`)) }) // prettier-ignore
+test("spaced — constantCase remove special characters", t => { t.is(n(constantCase(`$mesqueeb .BluesJazz @github _POWER`)), n(`MESQUEEB_BLUESJAZZ_GITHUB_POWER`)) }) // prettier-ignore
+// when `stripSpecialCharacters` is `false`...
+test("spaced — camelCase keep special characters", t => { t.is(n(camelCase(`$mesqueeb .BluesJazz @github _POWER`, false)),       n(`$mesqueeb.bluesjazz@github_power`)) }) // prettier-ignore
+test("spaced — pascalCase keep special characters", t => { t.is(n(pascalCase(`$mesqueeb .BluesJazz @github _POWER`, false)),     n(`$Mesqueeb.Bluesjazz@Github_Power`)) }) // prettier-ignore
+test("spaced — kebabCase keep special characters", t => { t.is(n(kebabCase(`$mesqueeb .BluesJazz @github _POWER`, false)),       n(`$mesqueeb-.bluesjazz-@github-_power`)) }) // prettier-ignore
+test("spaced — snakeCase keep special characters", t => { t.is(n(snakeCase(`$mesqueeb .BluesJazz @github _POWER`, false)),       n(`$mesqueeb_.bluesjazz_@github__power`)) }) // prettier-ignore
+test("spaced — constantCase keep special characters", t => { t.is(n(constantCase(`$mesqueeb .BluesJazz @github _POWER`, false)), n(`$MESQUEEB_.BLUESJAZZ_@GITHUB__POWER`)) }) // prettier-ignore
+// 2nd param `stripSpecialCharacters` — `false` by default for...
+test("spaced — spaceCase keep special characters", t => { t.is(n(spaceCase(`$mesqueeb .BluesJazz @github _POWER`)),       n(`$mesqueeb .BluesJazz @github _POWER`)) }) // prettier-ignore
+test("spaced — pathCase keep special characters", t => { t.is(n(pathCase(`$mesqueeb .BluesJazz @github _POWER`)),         n(`$mesqueeb/.BluesJazz/@github/_POWER`)) }) // prettier-ignore
+test("spaced — lowerCase keep special characters", t => { t.is(n(lowerCase(`$mesqueeb .BluesJazz @github _POWER`)),       n(`$mesqueeb .bluesjazz @github _power`)) }) // prettier-ignore
+test("spaced — upperCase keep special characters", t => { t.is(n(upperCase(`$mesqueeb .BluesJazz @github _POWER`)),       n(`$MESQUEEB .BLUESJAZZ @GITHUB _POWER`)) }) // prettier-ignore
+test("spaced — capitalCase keep special characters", t => { t.is(n(capitalCase(`$mesqueeb .BluesJazz @github _POWER`)),   n(`$Mesqueeb .Bluesjazz @Github _Power`)) }) // prettier-ignore
+// when `stripSpecialCharacters` is `true`...
+test("spaced — spaceCase remove special characters", t => { t.is(n(spaceCase(`$mesqueeb .BluesJazz @github _POWER`, true)),       n(`mesqueeb BluesJazz github POWER`)) }) // prettier-ignore
+test("spaced — pathCase remove special characters", t => { t.is(n(pathCase(`$mesqueeb .BluesJazz @github _POWER`, true)),         n(`mesqueeb/BluesJazz/github/POWER`)) }) // prettier-ignore
+test("spaced — lowerCase remove special characters", t => { t.is(n(lowerCase(`$mesqueeb .BluesJazz @github _POWER`, true)),       n(`mesqueeb bluesjazz github power`)) }) // prettier-ignore
+test("spaced — upperCase remove special characters", t => { t.is(n(upperCase(`$mesqueeb .BluesJazz @github _POWER`, true)),       n(`MESQUEEB BLUESJAZZ GITHUB POWER`)) }) // prettier-ignore
+test("spaced — capitalCase remove special characters", t => { t.is(n(capitalCase(`$mesqueeb .BluesJazz @github _POWER`, true)),   n(`Mesqueeb Bluesjazz Github Power`)) }) // prettier-ignore

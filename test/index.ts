@@ -37,7 +37,7 @@ test('snakeCase', (t) => {
   tests.forEach(w => { t.is(snakeCase(w), 'ponyta_vaporeon_poliwrath_butterfree_a') }) // prettier-ignore
 })
 test('adaCase', (t) => {
-  tests.forEach(w => { t.is(adaCase(w), 'Ponyta-Vaporeon-Poliwrath-Butterfree-A') }) // prettier-ignore
+  tests.forEach(w => { t.is(adaCase(w), 'Ponyta_Vaporeon_Poliwrath_Butterfree_A') }) // prettier-ignore
 })
 test('constantCase', (t) => {
   tests.forEach(w => { t.is(constantCase(w), 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A') }) // prettier-ignore

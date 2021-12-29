@@ -1,104 +1,136 @@
-import { getParts, capitaliseWord, magicSplit } from './utils'
-
-// const stripSpecialCharacters = true
+import { splitAndPrefix, capitaliseWord, magicSplit } from './utils'
 
 /**
- * converts strings to camelCase
- * @param string
- * @returns in camelCase
+ * # 🐪 camelCase
+ * converts a string to camelCase
  */
-export function camelCase(string: string, stripSpecialCharacters = true): string {
-  return getParts(string, stripSpecialCharacters).reduce((result, match, index) => {
-    return index === 0 || !match[0].match(magicSplit) ? result + match.toLowerCase() : result + capitaliseWord(match)
+export function camelCase(
+  string: string,
+  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
+): string {
+  return splitAndPrefix(string, options).reduce((result, word, index) => {
+    return index === 0 || !word[0].match(magicSplit) ? result + word.toLowerCase() : result + capitaliseWord(word)
   }, '')
 }
 
 /**
- * converts strings to PascalCase
- * @param string
- * @returns in PascalCase
+ * # 🐫 PascalCase
+ * converts a string to PascalCase (also called UpperCamelCase)
  */
-export function pascalCase(string: string, stripSpecialCharacters = true): string {
-  return getParts(string, stripSpecialCharacters).reduce((result, match) => {
-    return result + capitaliseWord(match)
+export function pascalCase(
+  string: string,
+  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
+): string {
+  return splitAndPrefix(string, options).reduce((result, word) => {
+    return result + capitaliseWord(word)
   }, '')
 }
 
 /**
- * converts strings to kebab-case
- * @param string
- * @returns in kebab-case
+ * # 🐫 UpperCamelCase
+ * converts a string to UpperCamelCase (also called PascalCase)
  */
-export function kebabCase(string: string, stripSpecialCharacters = true): string {
-  return getParts(string, stripSpecialCharacters).join('-').toLowerCase()
+export const upperCamelCase = pascalCase
+
+/**
+ * # 🥙 kebab-case
+ * converts a string to kebab-case
+ */
+export function kebabCase(
+  string: string,
+  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
+): string {
+  return splitAndPrefix(string, { ...options, prefix: '-' })
+    .join('')
+    .toLowerCase()
 }
 
 /**
- * converts strings to snake_case
- * @param string
- * @returns in snake_case
+ * # 🐍 snake_case
+ * converts a string to snake_case
  */
-export function snakeCase(string: string, stripSpecialCharacters = true): string {
-  return getParts(string, stripSpecialCharacters).join('_').toLowerCase()
+export function snakeCase(
+  string: string,
+  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
+): string {
+  return splitAndPrefix(string, { ...options, prefix: '_' })
+    .join('')
+    .toLowerCase()
 }
 
 /**
- * converts strings to CONSTANT_CASE
- * @param string
- * @returns in CONSTANT_CASE
+ * # 📣 CONSTANT_CASE
+ * converts a string to CONSTANT_CASE
  */
-export function constantCase(string: string, stripSpecialCharacters = true): string {
-  return getParts(string, stripSpecialCharacters).join('_').toUpperCase()
+export function constantCase(
+  string: string,
+  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
+): string {
+  return splitAndPrefix(string, { ...options, prefix: '_' })
+    .join('')
+    .toUpperCase()
 }
 
 /**
- * converts strings to path/case
- * @param string
- * @returns in path/case
+ * # 📂 path/case
+ * converts a string to path/case (does not change casing)
  */
-export function pathCase(string: string, stripSpecialCharacters = false): string {
-  return getParts(string, stripSpecialCharacters)
-    .map((p) => p.replaceAll('/', ''))
-    .join('/')
+export function pathCase(
+  string: string,
+  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: true }
+): string {
+  return splitAndPrefix(string, options).reduce((result, word, i) => {
+    const prefix = i === 0 || word[0] === '/' ? '' : '/'
+    return result + prefix + word
+  }, '')
 }
 
 /**
- * converts strings to space case (will add spaces but not change casing)
- * @param string
- * @returns in path case
+ * # 🛰 space case
+ * converts a string to space case (will add spaces but not change casing)
  */
-export function spaceCase(string: string, stripSpecialCharacters = false): string {
-  return getParts(string, stripSpecialCharacters).join(' ')
+export function spaceCase(
+  string: string,
+  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: true }
+): string {
+  return splitAndPrefix(string, { ...options, prefix: ' ' }).join('')
 }
 
 /**
- * converts strings to Capital Case (with spaces)
- * @param string
- * @returns in Capital Case (with spaces)
+ * # 🏛 Capital Case
+ * converts a string to Capital Case (and adds spaces)
  */
-export function capitalCase(string: string, stripSpecialCharacters = false): string {
-  return getParts(string, stripSpecialCharacters)
-    .reduce((result, match) => {
-      return `${result} ${capitaliseWord(match)}`
-    }, '')
-    .trim()
+export function capitalCase(
+  string: string,
+  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: true }
+): string {
+  return splitAndPrefix(string, { ...options, prefix: ' ' }).reduce((result, word) => {
+    return result + capitaliseWord(word)
+  }, '')
 }
 
 /**
- * converts strings to lower case (with spaces)
- * @param string
- * @returns in lower case (with spaces)
+ * # 🔡 lower case
+ * converts a string to lower case (and adds spaces)
  */
-export function lowerCase(string: string, stripSpecialCharacters = false): string {
-  const parts = getParts(string, stripSpecialCharacters)
-  return parts.join(' ').toLowerCase()
+export function lowerCase(
+  string: string,
+  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: true }
+): string {
+  return splitAndPrefix(string, { ...options, prefix: ' ' })
+    .join('')
+    .toLowerCase()
 }
 
 /**
- * converts strings to UPPER CASE (with spaces)
- * @param string
- * @returns in UPPER CASE (with spaces)
+ * # 🔠 UPPER CASE
+ * converts a string to UPPER CASE (and adds spaces)
  */
-export function upperCase(string: string, stripSpecialCharacters = false): string {
-  return getParts(string, stripSpecialCharacters).join(' ').toUpperCase()
+export function upperCase(
+  string: string,
+  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: true }
+): string {
+  return splitAndPrefix(string, { ...options, prefix: ' ' })
+    .join('')
+    .toUpperCase()
 }

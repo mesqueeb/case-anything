@@ -29,6 +29,17 @@ export function pascalCase(string: string): string {
 }
 
 /**
+ * converts strings to dot.notation
+ *
+ * @export
+ * @param {string} string
+ * @returns {string} in dot.notation
+ */
+export function dotCase(string: string): string {
+  return getParts(string, noSpecialChars).join('.').toLowerCase()
+}
+
+/**
  * converts strings to kebab-case
  *
  * @export

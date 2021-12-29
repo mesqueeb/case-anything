@@ -1,6 +1,7 @@
 export {
   camelCase,
   pascalCase,
+  dotCase,
   kebabCase,
   snakeCase,
   constantCase,

@@ -105,6 +105,77 @@ test('pathCase', (t) => {
   t.is(pathCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA'), 'ponyta/_Vaporeon/_POLIWRATH/_Butterfree/A') // prettier-ignore
   t.is(pathCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA'), 'ponyta/.Vaporeon/.POLIWRATH/.Butterfree/A') // prettier-ignore
 })
+test('lowerCase & strip special characters', (t) => {
+  /**
+   * Wether or not to strip special characters.
+   * defaults to `false` for `lowerCase`, made `true` it these examples below.
+   */
+  const strip = true
+  t.is(lowerCase('ponytaVaporeonPOLIWRATH_ButterfreeA', strip), 'ponyta vaporeon poliwrath butterfree a') // prettier-ignore
+  t.is(lowerCase('PonytaVaporeonPOLIWRATH_ButterfreeA', strip), 'ponyta vaporeon poliwrath butterfree a') // prettier-ignore
+  t.is(lowerCase('ponyta-vaporeon-POLIWRATH-ButterfreeA', strip), 'ponyta vaporeon poliwrath butterfree a') // prettier-ignore
+  t.is(lowerCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA', strip), 'ponyta vaporeon poliwrath butterfree a') // prettier-ignore
+  t.is(lowerCase('ponyta_vaporeon_POLIWRATH_ButterfreeA', strip), 'ponyta vaporeon poliwrath butterfree a') // prettier-ignore
+  t.is(lowerCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA', strip), 'ponyta vaporeon poliwrath butterfree a') // prettier-ignore
+  t.is(lowerCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA', strip), 'ponyta vaporeon poliwrath butterfree a') // prettier-ignore
+})
+test('upperCase & strip special characters', (t) => {
+  /**
+   * Wether or not to strip special characters.
+   * defaults to `false` for `upperCase`, made `true` it these examples below.
+   */
+  const strip = true
+  t.is(upperCase('ponytaVaporeonPOLIWRATH_ButterfreeA', strip), 'PONYTA VAPOREON POLIWRATH BUTTERFREE A') // prettier-ignore
+  t.is(upperCase('PonytaVaporeonPOLIWRATH_ButterfreeA', strip), 'PONYTA VAPOREON POLIWRATH BUTTERFREE A') // prettier-ignore
+  t.is(upperCase('ponyta-vaporeon-POLIWRATH-ButterfreeA', strip), 'PONYTA VAPOREON POLIWRATH BUTTERFREE A') // prettier-ignore
+  t.is(upperCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA', strip), 'PONYTA VAPOREON POLIWRATH BUTTERFREE A') // prettier-ignore
+  t.is(upperCase('ponyta_vaporeon_POLIWRATH_ButterfreeA', strip), 'PONYTA VAPOREON POLIWRATH BUTTERFREE A') // prettier-ignore
+  t.is(upperCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA', strip), 'PONYTA VAPOREON POLIWRATH BUTTERFREE A') // prettier-ignore
+  t.is(upperCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA', strip), 'PONYTA VAPOREON POLIWRATH BUTTERFREE A') // prettier-ignore
+})
+test('capitalCase & strip special characters', (t) => {
+  /**
+   * Wether or not to strip special characters.
+   * defaults to `false` for `capitalCase`, made `true` it these examples below.
+   */
+  const strip = true
+  t.is(capitalCase('ponytaVaporeonPOLIWRATH_ButterfreeA', strip), 'Ponyta Vaporeon Poliwrath Butterfree A') // prettier-ignore
+  t.is(capitalCase('PonytaVaporeonPOLIWRATH_ButterfreeA', strip), 'Ponyta Vaporeon Poliwrath Butterfree A') // prettier-ignore
+  t.is(capitalCase('ponyta-vaporeon-POLIWRATH-ButterfreeA', strip), 'Ponyta Vaporeon Poliwrath Butterfree A') // prettier-ignore
+  t.is(capitalCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA', strip), 'Ponyta Vaporeon Poliwrath Butterfree A') // prettier-ignore
+  t.is(capitalCase('ponyta_vaporeon_POLIWRATH_ButterfreeA', strip), 'Ponyta Vaporeon Poliwrath Butterfree A') // prettier-ignore
+  t.is(capitalCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA', strip), 'Ponyta Vaporeon Poliwrath Butterfree A') // prettier-ignore
+  t.is(capitalCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA', strip), 'Ponyta Vaporeon Poliwrath Butterfree A') // prettier-ignore
+})
+test('spaceCase & strip special characters', (t) => {
+  /**
+   * Wether or not to strip special characters.
+   * defaults to `false` for `spaceCase`, made `true` it these examples below.
+   */
+  const strip = true
+  t.is(spaceCase('ponytaVaporeonPOLIWRATH_ButterfreeA', strip), 'ponyta Vaporeon POLIWRATH Butterfree A') // prettier-ignore
+  t.is(spaceCase('PonytaVaporeonPOLIWRATH_ButterfreeA', strip), 'Ponyta Vaporeon POLIWRATH Butterfree A') // prettier-ignore
+  t.is(spaceCase('ponyta-vaporeon-POLIWRATH-ButterfreeA', strip), 'ponyta vaporeon POLIWRATH Butterfree A') // prettier-ignore
+  t.is(spaceCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA', strip), 'Ponyta vaporeon POLIWRATH Butterfree A') // prettier-ignore
+  t.is(spaceCase('ponyta_vaporeon_POLIWRATH_ButterfreeA', strip), 'ponyta vaporeon POLIWRATH Butterfree A') // prettier-ignore
+  t.is(spaceCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA', strip), 'ponyta Vaporeon POLIWRATH Butterfree A') // prettier-ignore
+  t.is(spaceCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA', strip), 'ponyta Vaporeon POLIWRATH Butterfree A') // prettier-ignore
+})
+
+test('pathCase & strip special characters', (t) => {
+  /**
+   * Wether or not to strip special characters.
+   * defaults to `false` for `pathCase`, made `true` it these examples below.
+   */
+  const strip = true
+  t.is(pathCase('ponytaVaporeonPOLIWRATH_ButterfreeA', strip), 'ponyta/Vaporeon/POLIWRATH/Butterfree/A') // prettier-ignore
+  t.is(pathCase('PonytaVaporeonPOLIWRATH_ButterfreeA', strip), 'Ponyta/Vaporeon/POLIWRATH/Butterfree/A') // prettier-ignore
+  t.is(pathCase('ponyta-vaporeon-POLIWRATH-ButterfreeA', strip), 'ponyta/vaporeon/POLIWRATH/Butterfree/A') // prettier-ignore
+  t.is(pathCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA', strip), 'Ponyta/vaporeon/POLIWRATH/Butterfree/A') // prettier-ignore
+  t.is(pathCase('ponyta_vaporeon_POLIWRATH_ButterfreeA', strip), 'ponyta/vaporeon/POLIWRATH/Butterfree/A') // prettier-ignore
+  t.is(pathCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA', strip), 'ponyta/Vaporeon/POLIWRATH/Butterfree/A') // prettier-ignore
+  t.is(pathCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA', strip), 'ponyta/Vaporeon/POLIWRATH/Butterfree/A') // prettier-ignore
+})
 
 // single capital
 const QTableA = 'QTableA'

@@ -52,6 +52,7 @@
     "kebab-case",
     "snake-case",
     "constant-case",
+    "train-case",
     "path-case",
     "camel",
     "pascal",

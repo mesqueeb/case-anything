@@ -9,4 +9,5 @@ export {
   capitalCase,
   lowerCase,
   upperCase,
+  trainCase
 } from './core'

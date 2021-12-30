@@ -52,6 +52,7 @@
     "kebab-case",
     "snake-case",
     "constant-case",
+    "cobol-case",
     "path-case",
     "camel",
     "pascal",

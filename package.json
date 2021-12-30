@@ -51,6 +51,7 @@
     "pascal-case",
     "kebab-case",
     "snake-case",
+    "ada-case",
     "constant-case",
     "path-case",
     "camel",

@@ -53,6 +53,7 @@
     "snake-case",
     "constant-case",
     "path-case",
+    "dot-case",
     "camel",
     "pascal",
     "kebab",

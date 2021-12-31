@@ -51,6 +51,19 @@ export function snakeCase(string: string): string {
 }
 
 /**
+ * converts strings to Ada-Case
+ *
+ * @export
+ * @param {string} string
+ * @returns {string} in Ada-Case
+ */
+export function adaCase(string) {
+  return getParts(string, noSpecialChars)
+    .map(part => capitaliseWord(part))
+    .join('_')
+}
+
+/**
  * converts strings to CONSTANT_CASE
  *
  * @export

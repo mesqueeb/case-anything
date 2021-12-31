@@ -3,6 +3,7 @@ export {
   pascalCase,
   kebabCase,
   snakeCase,
+  adaCase,
   constantCase,
   cobolCase,
   pathCase,

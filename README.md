@@ -67,6 +67,18 @@ These cases _**do not change the casing**_ of the words:
 - pathCase
 - spaceCase
 
+You can control wether or not to keep or strip away special characters like so:
+
+```js
+camelCase('$catDog') === 'catDog'
+// force keeping special characters:
+camelCase('$catDog', { keepSpecialCharacters: true }) === '$catDog'
+
+pathCase('$catDog') === '$cat/Dog'
+// force removing special characters:
+pathCase('$catDog', { keepSpecialCharacters: false }) === 'cat/Dog'
+```
+
 ### Strings with spaces
 
 As soon as there is a space in the target string, it will regard the input as a _sentence_ and only split each part at the spaces.

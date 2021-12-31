@@ -45,8 +45,8 @@ case-anything supports tree-shaking and is side-effect free!
 
 <table>
   <tr>
-    <th>functions that <strong>strip away special characters</strong></th>
-    <th>functions that <strong>keep special characters</strong></th>
+    <th>functions that <strong>strip away special characters*</strong></th>
+    <th>functions that <strong>keep special characters*</strong></th>
   </tr>
   <tr>
     <td>
@@ -70,7 +70,7 @@ case-anything supports tree-shaking and is side-effect free!
   </tr>
 </table>
 
-You can control wether or not to _keep or remove_ special characters like so:
+\*You can control wether or not to _keep or remove_ special characters like so:
 
 ```js
 camelCase('$catDog') === 'catDog'

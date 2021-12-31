@@ -143,3 +143,16 @@ export function lowerCase(string: string): string {
 export function upperCase(string: string): string {
   return getParts(string).join(' ').toUpperCase()
 }
+
+/**
+ * converts strings to Train-Case
+ *
+ * @export
+ * @param {string} string
+ * @returns {string} in Train-Case
+ */
+export function trainCase(string) {
+  return getParts(string, noSpecialChars)
+    .map(part => capitaliseWord(part))
+    .join('-')
+}

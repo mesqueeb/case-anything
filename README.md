@@ -41,10 +41,12 @@ case-anything supports tree-shaking and is side-effect free!
 | 🔡 lower case                     | `lowerCase('$catDog')`                        | `$cat dog`     |
 | 🔠 UPPER CASE                     | `upperCase('$catDog')`                        | `$CAT DOG`     |
 
+#### Special Characters
+
 <table>
   <tr>
-    <th>These cases <strong>strip away special characters</strong> by default:</th>
-    <th>These cases <strong>keep special characters</strong> by default:</th>
+    <th>functions that <strong>strip away special characters</strong></th>
+    <th>functions that <strong>keep special characters</strong></th>
   </tr>
   <tr>
     <td>
@@ -68,13 +70,7 @@ case-anything supports tree-shaking and is side-effect free!
   </tr>
 </table>
 
-These cases _**do not change the casing**_ of the words:
-
-- dotNotation
-- pathCase
-- spaceCase
-
-You can control wether or not to keep or strip away special characters like so:
+You can control wether or not to _keep or remove_ special characters like so:
 
 ```js
 camelCase('$catDog') === 'catDog'
@@ -84,6 +80,20 @@ camelCase('$catDog', { keepSpecialCharacters: true }) === '$catDog'
 pathCase('$catDog') === '$cat/Dog'
 // force removing special characters:
 pathCase('$catDog', { keepSpecialCharacters: false }) === 'cat/Dog'
+```
+
+#### Case Changing
+
+These cases _**do not change the casing**_ of the words:
+
+- dotNotation
+- pathCase
+- spaceCase
+
+```js
+dotNotation('$catDog') === 'cat.Dog'
+// force lower case:
+dotNotation('$catDog').toLowerCase() === 'cat.dog'
 ```
 
 ### Strings with spaces

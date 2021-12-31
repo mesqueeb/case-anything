@@ -176,7 +176,7 @@ export function cobolCase(
 }
 
 /**
- * # 📍 dot.notation
+ * # 📍 Dot.notation
  * converts a string to dot.notation
  * - adds dots, does not change casing
  * - *strips away* special characters by default
@@ -194,7 +194,7 @@ export function dotNotation(
 }
 
 /**
- * # 📂 path/case
+ * # 📂 Path/case
  * converts a string to path/case
  * - adds slashes, does not change casing
  * - *keeps* special characters by default
@@ -215,7 +215,7 @@ export function pathCase(
 }
 
 /**
- * # 🛰 space case
+ * # 🛰 Space case
  * converts a string to space case
  * - adds spaces, does not change casing
  * - *keeps* special characters by default

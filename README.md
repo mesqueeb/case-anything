@@ -18,86 +18,75 @@ I wanted to try my hand at the smallest iteration possible. (and it's [12+ times
 
 There's also a Better Touch Tool preset with [keyboard shortcuts](#keyboard-shortcuts) to convert selected text system wide!
 
-## Meet the family
-
-- [merge-anything 🥡](https://github.com/mesqueeb/merge-anything)
-- [filter-anything ⚔️](https://github.com/mesqueeb/filter-anything)
-- [find-and-replace-anything 🎣](https://github.com/mesqueeb/find-and-replace-anything)
-- [compare-anything 🛰](https://github.com/mesqueeb/compare-anything)
-- [copy-anything 🎭](https://github.com/mesqueeb/copy-anything)
-- [flatten-anything 🏏](https://github.com/mesqueeb/flatten-anything)
-- [is-what 🙉](https://github.com/mesqueeb/is-what)
-
 ## Usage
 
 case-anything supports tree-shaking and is side-effect free!
 
-```js
-import { camelCase, pascalCase, kebabCase, snakeCase, constantCase } from 'case-anything'
+### Strings without spaces
 
-const str = 'PonytaVaporeon_poliwrath-BUTTERFREE'
-// or any variant on this
+| Name                              | Input example                                 | Output example |
+| --------------------------------- | --------------------------------------------- | -------------- |
+| 🐪 camelCase                      | `camelCase('$catDog')`                        | `catDog`       |
+| 🐫 PascalCase<br />UpperCamelCase | `pascalCase('$catDog')`<br />`upperCamelCase` | `CatDog`       |
+| 🥙 kebab-case                     | `kebabCase('$catDog')`                        | `cat-dog`      |
+| 🐍 snake_case                     | `snakeCase('$catDog')`                        | `cat_dog`      |
+| 📣 CONSTANT_CASE                  | `constantCase('$catDog')`                     | `CAT_DOG`      |
+| 🚂 Train-Case                     | `trainCase('$catDog')`                        | `Cat-Dog`      |
+| 🕊 Ada_Case                        | `adaCase('$catDog')`                          | `Cat_Dog`      |
+| 👔 COBOL-CASE                     | `cobolCase('$catDog')`                        | `CAT-DOG`      |
+| 📍 Dot.notation                   | `dotNotation('$catDog')`                      | `cat.Dog`      |
+| 📂 Path/case                      | `pathCase('$catDog')`                         | `$cat/Dog`     |
+| 🛰 Space case                      | `spaceCase('$catDog')`                        | `$cat Dog`     |
+| 🏛 Capital Case                    | `capitalCase('$catDog')`                      | `$Cat Dog`     |
+| 🔡 lower case                     | `lowerCase('$catDog')`                        | `$cat dog`     |
+| 🔠 UPPER CASE                     | `upperCase('$catDog')`                        | `$CAT DOG`     |
 
-camelCase(str) === 'ponytaVaporeonPoliwrathButterfree'
+These cases _**strip away special characters**_ by default:
 
-pascalCase(str) === 'PonytaVaporeonPoliwrathButterfree'
+- camelCase
+- pascalCase
+- kebabCase
+- snakeCase
+- constantCase
+- trainCase
+- adaCase
+- cobolCase
+- dotNotation
 
-kebabCase(str) === 'ponyta-vaporeon-poliwrath-butterfree'
+These cases _**keep special characters**_ by default:
 
-snakeCase(str) === 'ponyta_vaporeon_poliwrath_butterfree'
+- pathCase
+- spaceCase
+- capitalCase
+- lowerCase
+- upperCase
 
-constantCase(str) === 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE'
-```
+These cases _**do not change the casing**_ of the words:
 
-There is also `spaceCase` and `pathCase`, which does **not convert the casing**:
+- dotNotation
+- pathCase
+- spaceCase
 
-```js
-import { spaceCase, pathCase } from 'case-anything'
-
-const str = 'PonytaVaporeon_poliwrath-BUTTERFREE'
-
-spaceCase(str) === 'Ponyta Vaporeon poliwrath BUTTERFREE'
-
-pathCase(str) === 'Ponyta/Vaporeon/poliwrath/BUTTERFREE'
-```
-
-There is also upper, lower and capital case. These will all convert the casing & also add spaces in between:
-
-```js
-import { upperCase, lowerCase, capitalCase } from 'case-anything'
-
-const str = 'PonytaVaporeon_poliwrath-BUTTERFREE'
-
-upperCase(str) === 'PONYTA VAPOREON POLIWRATH BUTTERFREE'
-lowerCase(str) === 'ponyta vaporeon poliwrath butterfree'
-capitalCase(str) === 'Ponyta Vaporeon Poliwrath Butterfree'
-```
-
-### When spaces are involved
+### Strings with spaces
 
 As soon as there is a space in the target string, it will regard the input as a _sentence_ and only split each part at the spaces.
 
-See this example to understand each case:
-
-<!-- prettier-ignore-start -->
-```js
-const str = `listen I'm O.K.!`
-
-// splits on spaces & removes special characters
-camelCase(str) ===    'listenImOk'
-pascalCase(str) ===   'ListenImOk'
-kebabCase(str) ===    'listen-im-ok'
-snakeCase(str) ===    'listen_im_ok'
-constantCase(str) === 'LISTEN_IM_OK'
-
-// splits on spaces & keeps special characters
-spaceCase(str) ===    `listen I'm O.K.!`
-pathCase(str) ===     `listen/I'm/O.K.!`
-lowerCase(str) ===    `listen i'm o.k.!`
-upperCase(str) ===    `LISTEN I'M O.K.!`
-capitalCase(str) ===  `Listen I'm O.k.!`
-```
-<!-- prettier-ignore-end -->
+| Name                              | Input example                                   | Output example |
+| --------------------------------- | ----------------------------------------------- | -------------- |
+| 🐪 camelCase                      | `camelCase("I'm O.K.!")`                        | `imOk`         |
+| 🐫 PascalCase<br />UpperCamelCase | `pascalCase("I'm O.K.!")`<br />`upperCamelCase` | `ImOk`         |
+| 🥙 kebab-case                     | `kebabCase("I'm O.K.!")`                        | `im-ok`        |
+| 🐍 snake_case                     | `snakeCase("I'm O.K.!")`                        | `im_ok`        |
+| 📣 CONSTANT_CASE                  | `constantCase("I'm O.K.!")`                     | `IM_OK`        |
+| 🚂 Train-Case                     | `trainCase("I'm O.K.!")`                        | `Im-Ok`        |
+| 🕊 Ada_Case                        | `adaCase("I'm O.K.!")`                          | `Im_Ok`        |
+| 👔 COBOL-CASE                     | `cobolCase("I'm O.K.!")`                        | `IM-OK`        |
+| 📍 Dot.notation                   | `dotNotation("I'm O.K.!")`                      | `Im.OK`        |
+| 📂 Path/case                      | `pathCase("I'm O.K.!")`                         | `I\'m/O.K.!`   |
+| 🛰 Space case                      | `spaceCase("I'm O.K.!")`                        | `I\'m O.K.!`   |
+| 🏛 Capital Case                    | `capitalCase("I'm O.K.!")`                      | `I\'m O.k.!`   |
+| 🔡 lower case                     | `lowerCase("I'm O.K.!")`                        | `i\'m o.k.!`   |
+| 🔠 UPPER CASE                     | `upperCase("I'm O.K.!")`                        | `I\'M O.K.!`   |
 
 Also note, that multiple sequential spaces are treated as one space.
 
@@ -109,21 +98,23 @@ The coolest thing about this library is that it will **"convert" special charact
 
 <!-- prettier-ignore-start -->
 ```js
-const str = 'Çâfé Ågård'
-
 // CONVERTS special characters:
-camelCase(str) ===    'cafeAgard'
-pascalCase(str) ===   'CafeAgard'
-kebabCase(str) ===    'cafe-agard'
-snakeCase(str) ===    'cafe_agard'
-constantCase(str) === 'CAFE_AGARD'
+camelCase('Çâfé Ågård')    === 'cafeAgard'
+pascalCase('Çâfé Ågård')   === 'CafeAgard'
+kebabCase('Çâfé Ågård')    === 'cafe-agard'
+snakeCase('Çâfé Ågård')    === 'cafe_agard'
+constantCase('Çâfé Ågård') === 'CAFE_AGARD'
+trainCase('Çâfé Ågård')    === 'Cafe-Agard'
+adaCase('Çâfé Ågård')      === 'Cafe_Agard'
+cobolCase('Çâfé Ågård')    === 'CAFE-AGARD'
+dotNotation('Çâfé Ågård')  === 'Cafe.Agard'
 
 // DOES NOT convert special characters:
-spaceCase(str) ===    'Çâfé Ågård'
-pathCase(str) ===     'Çâfé/Ågård'
-lowerCase(str) ===    'çâfé ågård'
-upperCase(str) ===    'ÇÂFÉ ÅGÅRD'
-capitalCase(str) ===  'Çâfé Ågård'
+spaceCase('Çâfé Ågård')    === 'Çâfé Ågård'
+pathCase('Çâfé Ågård')     === 'Çâfé/Ågård'
+lowerCase('Çâfé Ågård')    === 'çâfé ågård'
+upperCase('Çâfé Ågård')    === 'ÇÂFÉ ÅGÅRD'
+capitalCase('Çâfé Ågård')  === 'Çâfé Ågård'
 ```
 <!-- prettier-ignore-end -->
 
@@ -152,10 +143,23 @@ We'll compare this package with [blakeembrey/change-case](https://github.com/bla
 
 ## Source code
 
-What keeps my package small, is that it's literally just a regex:
+What keeps my package small, is that literally just uses a regex to separate "words".
 
 ```js
-export function splitOnSpecialChars (string: string): any[] {
+// the source code is similar to:
+export function splitOnSpecialChars(string: string): any[] {
   return string.match(/^[a-z]+|[A-Z][a-z]+|[a-z]+|[0-9]+|[A-Z]+(?![a-z])/g)
 }
 ```
+
+The actual regex used is a little bit more comprehensive and can be found [here](https://github.com/mesqueeb/case-anything/blob/production/src/utils.ts#L7).
+
+## Meet the family (other utils)
+
+- [merge-anything 🥡](https://github.com/mesqueeb/merge-anything)
+- [filter-anything ⚔️](https://github.com/mesqueeb/filter-anything)
+- [find-and-replace-anything 🎣](https://github.com/mesqueeb/find-and-replace-anything)
+- [compare-anything 🛰](https://github.com/mesqueeb/compare-anything)
+- [copy-anything 🎭](https://github.com/mesqueeb/copy-anything)
+- [flatten-anything 🏏](https://github.com/mesqueeb/flatten-anything)
+- [is-what 🙉](https://github.com/mesqueeb/is-what)

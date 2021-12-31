@@ -42,30 +42,30 @@ case-anything supports tree-shaking and is side-effect free!
 | 🔠 UPPER CASE                     | `upperCase('$catDog')`                        | `$CAT DOG`     |
 
 <table>
-<tr>
-<td>
-These cases _**strip away special characters**_ by default:
-
-- camelCase
-- pascalCase
-- kebabCase
-- snakeCase
-- constantCase
-- trainCase
-- adaCase
-- cobolCase
-- dotNotation
-</td>
-<td>
-These cases _**keep special characters**_ by default:
-
-- pathCase
-- spaceCase
-- capitalCase
-- lowerCase
-- upperCase
-</td>
-</tr>
+  <tr>
+    <th>These cases <strong>strip away special characters</strong> by default:</th>
+    <th>These cases <strong>keep special characters</strong> by default:</th>
+  </tr>
+  <tr>
+    <td>
+      - camelCase
+      - pascalCase
+      - kebabCase
+      - snakeCase
+      - constantCase
+      - trainCase
+      - adaCase
+      - cobolCase
+      - dotNotation
+    </td>
+    <td>
+      - pathCase
+      - spaceCase
+      - capitalCase
+      - lowerCase
+      - upperCase
+    </td>
+  </tr>
 </table>
 
 These cases _**do not change the casing**_ of the words:

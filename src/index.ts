@@ -4,6 +4,7 @@ export {
   kebabCase,
   snakeCase,
   constantCase,
+  cobolCase,
   pathCase,
   spaceCase,
   capitalCase,

@@ -62,6 +62,17 @@ export function constantCase(string: string): string {
 }
 
 /**
+ * converts strings to COBOL-CASE
+ *
+ * @export
+ * @param {string} string
+ * @returns {string} in COBOL-CASE
+ */
+export function cobolCase(string: string): string {
+  return getParts(string, noSpecialChars).join('-').toUpperCase()
+}
+
+/**
  * converts strings to path/case
  *
  * @export

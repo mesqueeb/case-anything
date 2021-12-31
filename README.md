@@ -1,5 +1,8 @@
 # Case anything 🐫
 
+<a href="https://www.npmjs.com/package/case-anything"><img src="https://img.shields.io/npm/v/case-anything.svg" alt="Total Downloads"></a>
+<a href="https://www.npmjs.com/package/case-anything"><img src="https://img.shields.io/npm/dw/case-anything.svg" alt="Latest Stable Version"></a>
+
 ```
 npm i case-anything
 ```

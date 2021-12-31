@@ -33,6 +33,14 @@ export function pascalCase(
 export const upperCamelCase = pascalCase
 
 /**
+ * # 📍 dot.notation
+ * converts a string to dot.notation
+ */
+export function dotNotation(string: string): string {
+  return getParts(string, noSpecialChars).join('.').toLowerCase()
+}
+
+/**
  * # 🥙 kebab-case
  * converts a string to kebab-case
  */
@@ -69,6 +77,37 @@ export function constantCase(
   return splitAndPrefix(string, { ...options, prefix: '_' })
     .join('')
     .toUpperCase()
+}
+
+/**
+ * converts strings to Train-Case
+ *
+ * @export
+ * @param {string} string
+ * @returns {string} in Train-Case
+ */
+export function trainCase(string) {
+  return getParts(string, noSpecialChars)
+    .map((part) => capitaliseWord(part))
+    .join('-')
+}
+
+/**
+ * # 📣 Ada-Case
+ * converts a string to Ada_Case
+ */
+export function adaCase(string) {
+  return getParts(string, noSpecialChars)
+    .map((part) => capitaliseWord(part))
+    .join('_')
+}
+
+/**
+ * # 📂 COBOL-CASE
+ * converts a string to COBOL-CASE
+ */
+export function cobolCase(string: string): string {
+  return getParts(string, noSpecialChars).join('-').toUpperCase()
 }
 
 /**

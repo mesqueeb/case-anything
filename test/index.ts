@@ -3,13 +3,17 @@ import {
   spaceCase,
   camelCase,
   pascalCase,
+  dotCase,
   kebabCase,
   snakeCase,
+  adaCase,
   constantCase,
+  cobolCase,
   pathCase,
   capitalCase,
   upperCase,
   lowerCase,
+  trainCase,
 } from '../src/index'
 
 // a bunch of different combinations
@@ -58,6 +62,18 @@ test('constantCase', (t) => {
   t.is(constantCase('ponyta_vaporeon_POLIWRATH_ButterfreeA'), 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A') // prettier-ignore
   t.is(constantCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA'), 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A') // prettier-ignore
   t.is(constantCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA'), 'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A') // prettier-ignore
+})
+test('dotCase', (t) => {
+  tests.forEach(w => { t.is(dotCase(w), 'ponyta.vaporeon.poliwrath.butterfree.a') }) // prettier-ignore
+})
+test('adaCase', (t) => {
+  tests.forEach(w => { t.is(adaCase(w), 'Ponyta_Vaporeon_Poliwrath_Butterfree_A') }) // prettier-ignore
+})
+test('cobolCase', (t) => {
+  tests.forEach(w => { t.is(cobolCase(w), 'PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A') }) // prettier-ignore
+})
+test('trainCase', (t) => {
+  tests.forEach(w => { t.is(trainCase(w), 'Ponyta-Vaporeon-Poliwrath-Butterfree-A') }) // prettier-ignore
 })
 test('lowerCase', (t) => {
   t.is(lowerCase('ponytaVaporeonPOLIWRATH_ButterfreeA'), 'ponyta vaporeon poliwrath_butterfree a') // prettier-ignore
@@ -178,30 +194,42 @@ test('pascalCase - QTableA', (t) => { t.is(pascalCase('QTableA'), 'QTableA') }) 
 test('kebabCase - QTableA', (t) => { t.is(kebabCase('QTableA'), 'q-table-a') }) // prettier-ignore
 test('snakeCase - QTableA', (t) => { t.is(snakeCase('QTableA'), 'q_table_a') }) // prettier-ignore
 test('constantCase - QTableA', (t) => { t.is(constantCase('QTableA'), 'Q_TABLE_A') }) // prettier-ignore
+test('dotCase - QTableA', t => { t.is(dotCase('QTableA'), 'q.table.a') }) // prettier-ignore
+test('adaCase - QTableA', t => { t.is(adaCase('QTableA'), 'Q_Table_A') }) // prettier-ignore
+test('cobolCase - QTableA', t => { t.is(cobolCase('QTableA'), 'Q-TABLE-A') }) // prettier-ignore
+test('trainCase - QTableA', t => { t.is(trainCase('QTableA'), 'Q-Table-A') }) // prettier-ignore
 test('spaceCase - QTableA', (t) => { t.is(spaceCase('QTableA'), 'Q Table A') }) // prettier-ignore
 test('pathCase - QTableA', (t) => { t.is(pathCase('QTableA'), 'Q/Table/A') }) // prettier-ignore
 test('lowerCase - QTableA', (t) => { t.is(lowerCase('QTableA'), 'q table a') }) // prettier-ignore
 test('upperCase - QTableA', (t) => { t.is(upperCase('QTableA'), 'Q TABLE A') }) // prettier-ignore
 test('capitalCase - QTableA', (t) => { t.is(capitalCase('QTableA'), 'Q Table A') }) // prettier-ignore
 
-// spaces & non alphabet characters
+// spaces & special characters
 test("camelCase I'm a M.I.B. 101 OK?", (t) => { t.is(camelCase(`I'm a M.I.B. 101 OK?`),       'imAMib101Ok') }) // prettier-ignore
 test("pascalCase I'm a M.I.B. 101 OK?", (t) => { t.is(pascalCase(`I'm a M.I.B. 101 OK?`),     'ImAMib101Ok') }) // prettier-ignore
 test("kebabCase I'm a M.I.B. 101 OK?", (t) => { t.is(kebabCase(`I'm a M.I.B. 101 OK?`),       'im-a-mib-101-ok') }) // prettier-ignore
 test("snakeCase I'm a M.I.B. 101 OK?", (t) => { t.is(snakeCase(`I'm a M.I.B. 101 OK?`),       'im_a_mib_101_ok') }) // prettier-ignore
 test("constantCase I'm a M.I.B. 101 OK?", (t) => { t.is(constantCase(`I'm a M.I.B. 101 OK?`), 'IM_A_MIB_101_OK') }) // prettier-ignore
+test("dotCase I'm a M.I.B. 101 OK?", t => { t.is(dotCase(`I'm a M.I.B. 101 OK?`),             'im.a.mib.101.ok') }) // prettier-ignore
+test("adaCase I'm a M.I.B. 101 OK?", t => { t.is(adaCase(`I'm a M.I.B. 101 OK?`),             'Im_A_Mib_101_Ok') }) // prettier-ignore
+test("cobolCase I'm a M.I.B. 101 OK?", t => { t.is(cobolCase(`I'm a M.I.B. 101 OK?`),         'IM-A-MIB-101-OK') }) // prettier-ignore
+test("trainCase I'm a M.I.B. 101 OK?", t => { t.is(trainCase(`I'm a M.I.B. 101 OK?`),         'Im-A-Mib-101-Ok') }) // prettier-ignore
 test("spaceCase I'm a M.I.B. 101 OK?", (t) => { t.is(spaceCase(`I'm a M.I.B. 101 OK?`),       "I'm a M.I.B. 101 OK?") }) // prettier-ignore
 test("pathCase I'm a M.I.B. 101 OK?", (t) => { t.is(pathCase(`I'm a M.I.B. 101 OK?`),         "I'm/a/M.I.B./101/OK?") }) // prettier-ignore
 test("lowerCase I'm a M.I.B. 101 OK?", (t) => { t.is(lowerCase(`I'm a M.I.B. 101 OK?`),       "i'm a m.i.b. 101 ok?") }) // prettier-ignore
 test("upperCase I'm a M.I.B. 101 OK?", (t) => { t.is(upperCase(`I'm a M.I.B. 101 OK?`),       "I'M A M.I.B. 101 OK?") }) // prettier-ignore
 test("capitalCase I'm a M.I.B. 101 OK?", (t) => { t.is(capitalCase(`I'm a M.I.B. 101 OK?`),   "I'm A M.i.b. 101 Ok?") }) // prettier-ignore
 
-// spaces & non alphabet characters
+// spaces & special characters
 test("camelCase listen I'm O.K.!", (t) => { t.is(camelCase(`listen I'm O.K.!`),       'listenImOk') }) // prettier-ignore
 test("pascalCase listen I'm O.K.!", (t) => { t.is(pascalCase(`listen I'm O.K.!`),     'ListenImOk') }) // prettier-ignore
 test("kebabCase listen I'm O.K.!", (t) => { t.is(kebabCase(`listen I'm O.K.!`),       'listen-im-ok') }) // prettier-ignore
 test("snakeCase listen I'm O.K.!", (t) => { t.is(snakeCase(`listen I'm O.K.!`),       'listen_im_ok') }) // prettier-ignore
 test("constantCase listen I'm O.K.!", (t) => { t.is(constantCase(`listen I'm O.K.!`), 'LISTEN_IM_OK') }) // prettier-ignore
+test("dotCase listen I'm O.K.!", t => { t.is(dotCase(`listen I'm O.K.!`),             'listen.im.ok') }) // prettier-ignore
+test("adaCase listen I'm O.K.!", t => { t.is(adaCase(`listen I'm O.K.!`),             'Listen_Im_Ok') }) // prettier-ignore
+test("cobolCase listen I'm O.K.!", t => { t.is(cobolCase(`listen I'm O.K.!`),         'LISTEN-IM-OK') }) // prettier-ignore
+test("trainCase listen I'm O.K.!", t => { t.is(trainCase(`listen I'm O.K.!`),         'Listen-Im-Ok') }) // prettier-ignore
 test("spaceCase listen I'm O.K.!", (t) => { t.is(spaceCase(`listen I'm O.K.!`),       "listen I'm O.K.!") }) // prettier-ignore
 test("pathCase listen I'm O.K.!", (t) => { t.is(pathCase(`listen I'm O.K.!`),         "listen/I'm/O.K.!") }) // prettier-ignore
 test("lowerCase listen I'm O.K.!", (t) => { t.is(lowerCase(`listen I'm O.K.!`),       "listen i'm o.k.!") }) // prettier-ignore
@@ -214,6 +242,10 @@ test("pascalCase Double  Rainbow", (t) => { t.is(pascalCase('Double  Rainbow'), 
 test("kebabCase Double  Rainbow", (t) => { t.is(kebabCase('Double  Rainbow'),       'double-rainbow') }) // prettier-ignore
 test("snakeCase Double  Rainbow", (t) => { t.is(snakeCase('Double  Rainbow'),       'double_rainbow') }) // prettier-ignore
 test("constantCase Double  Rainbow", (t) => { t.is(constantCase('Double  Rainbow'), 'DOUBLE_RAINBOW') }) // prettier-ignore
+test("dotCase Double  Rainbow", t => { t.is(dotCase('Double  Rainbow'),             'double.rainbow') }) // prettier-ignore
+test("adaCase Double  Rainbow", t => { t.is(adaCase('Double  Rainbow'),             'Double_Rainbow') }) // prettier-ignore
+test("cobolCase Double  Rainbow", t => { t.is(cobolCase('Double  Rainbow'),         'DOUBLE-RAINBOW') }) // prettier-ignore
+test("trainCase Double  Rainbow", t => { t.is(trainCase('Double  Rainbow'),         'Double-Rainbow') }) // prettier-ignore
 test("spaceCase Double  Rainbow", (t) => { t.is(spaceCase('Double  Rainbow'),       "Double Rainbow") }) // prettier-ignore
 test("pathCase Double  Rainbow", (t) => { t.is(pathCase('Double  Rainbow'),         "Double/Rainbow") }) // prettier-ignore
 test("lowerCase Double  Rainbow", (t) => { t.is(lowerCase('Double  Rainbow'),       "double rainbow") }) // prettier-ignore
@@ -230,6 +262,10 @@ test("pascalCase specialChars NFC", (t) => { t.is(n(pascalCase(specialCharsNFC))
 test("kebabCase specialChars NFC", (t) => { t.is(n(kebabCase(specialCharsNFC)),       n(`agard-i-garcons-cafe-chateau-voila-noel-ete-laieul-agard-aoøß-aoøy`)) }) // prettier-ignore
 test("snakeCase specialChars NFC", (t) => { t.is(n(snakeCase(specialCharsNFC)),       n(`agard_i_garcons_cafe_chateau_voila_noel_ete_laieul_agard_aoøß_aoøy`)) }) // prettier-ignore
 test("constantCase specialChars NFC", (t) => { t.is(n(constantCase(specialCharsNFC)), n(`AGARD_I_GARCONS_CAFE_CHATEAU_VOILA_NOEL_ETE_LAIEUL_AGARD_AOØSS_AOØY`)) }) // prettier-ignore
+test("dotCase specialChars NFC", t => { t.is(n(dotCase(specialCharsNFC)),             n(`agard.i.garcons.cafe.chateau.voila.noel.ete.laieul.agard.aoøß.aoøy`)) }) // prettier-ignore
+test("adaCase specialChars NFC", t => { t.is(n(adaCase(specialCharsNFC)),             n(`Agard_I_Garcons_Cafe_Chateau_Voila_Noel_Ete_Laieul_Agard_Aoøß_Aoøy`)) }) // prettier-ignore
+test("cobolCase specialChars NFC", t => { t.is(n(cobolCase(specialCharsNFC)),         n(`AGARD-I-GARCONS-CAFE-CHATEAU-VOILA-NOEL-ETE-LAIEUL-AGARD-AOØSS-AOØY`)) }) // prettier-ignore
+test("trainCase specialChars NFC", t => { t.is(n(trainCase(specialCharsNFC)),         n(`Agard-I-Garcons-Cafe-Chateau-Voila-Noel-Ete-Laieul-Agard-Aoøß-Aoøy`)) }) // prettier-ignore
 test("spaceCase specialChars NFC", (t) => { t.is(n(spaceCase(specialCharsNFC)),       n(`Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`)) }) // prettier-ignore
 test("pathCase specialChars NFC", (t) => { t.is(n(pathCase(specialCharsNFC)),         n(`Ågård/î/garçons/Çafé/château/voilà/ñoël/été/l'aïeul/Ågård/ÀÖØß/àöøÿ`)) }) // prettier-ignore
 test("lowerCase specialChars NFC", (t) => { t.is(n(lowerCase(specialCharsNFC)),       n(`ågård î garçons çafé château voilà ñoël été l'aïeul ågård àöøß àöøÿ`)) }) // prettier-ignore
@@ -244,6 +280,10 @@ test("pascalCase specialChars NFD", (t) => { t.is(n(pascalCase(specialCharsNFD))
 test("kebabCase specialChars NFD", (t) => { t.is(n(kebabCase(specialCharsNFD)),       n(`agard-i-garcons-cafe-chateau-voila-noel-ete-laieul-agard-aoøß-aoøy`)) }) // prettier-ignore
 test("snakeCase specialChars NFD", (t) => { t.is(n(snakeCase(specialCharsNFD)),       n(`agard_i_garcons_cafe_chateau_voila_noel_ete_laieul_agard_aoøß_aoøy`)) }) // prettier-ignore
 test("constantCase specialChars NFD", (t) => { t.is(n(constantCase(specialCharsNFD)), n(`AGARD_I_GARCONS_CAFE_CHATEAU_VOILA_NOEL_ETE_LAIEUL_AGARD_AOØSS_AOØY`)) }) // prettier-ignore
+test("dotCase specialChars NFD", t => { t.is(n(dotCase(specialCharsNFD)),             n(`agard.i.garcons.cafe.chateau.voila.noel.ete.laieul.agard.aoøß.aoøy`)) }) // prettier-ignore
+test("adaCase specialChars NFD", t => { t.is(n(adaCase(specialCharsNFD)),             n(`Agard_I_Garcons_Cafe_Chateau_Voila_Noel_Ete_Laieul_Agard_Aoøß_Aoøy`)) }) // prettier-ignore
+test("cobolCase specialChars NFD", t => { t.is(n(cobolCase(specialCharsNFD)),         n(`AGARD-I-GARCONS-CAFE-CHATEAU-VOILA-NOEL-ETE-LAIEUL-AGARD-AOØSS-AOØY`)) }) // prettier-ignore
+test("trainCase specialChars NFD", t => { t.is(n(trainCase(specialCharsNFD)),         n(`Agard-I-Garcons-Cafe-Chateau-Voila-Noel-Ete-Laieul-Agard-Aoøß-Aoøy`)) }) // prettier-ignore
 test("spaceCase specialChars NFD", (t) => { t.is(n(spaceCase(specialCharsNFD)),       n(`Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`)) }) // prettier-ignore
 test("pathCase specialChars NFD", (t) => { t.is(n(pathCase(specialCharsNFD)),         n(`Ågård/î/garçons/Çafé/château/voilà/ñoël/été/l'aïeul/Ågård/ÀÖØß/àöøÿ`)) }) // prettier-ignore
 test("lowerCase specialChars NFD", (t) => { t.is(n(lowerCase(specialCharsNFD)),       n(`ågård î garçons çafé château voilà ñoël été l'aïeul ågård àöøß àöøÿ`)) }) // prettier-ignore
@@ -258,6 +298,10 @@ test("pascalCase specialChars NFC - no spaces", (t) => { t.is(n(pascalCase(speci
 test("kebabCase specialChars NFC - no spaces", (t) => { t.is(n(kebabCase(specialCharsNFCnoSpace)),       n(`agard-i-garcons-cafe-chateau-voila-noel-ete-laieul-agard-aoøß-aoøy`)) }) // prettier-ignore
 test("snakeCase specialChars NFC - no spaces", (t) => { t.is(n(snakeCase(specialCharsNFCnoSpace)),       n(`agard_i_garcons_cafe_chateau_voila_noel_ete_laieul_agard_aoøß_aoøy`)) }) // prettier-ignore
 test("constantCase specialChars NFC - no spaces", (t) => { t.is(n(constantCase(specialCharsNFCnoSpace)), n(`AGARD_I_GARCONS_CAFE_CHATEAU_VOILA_NOEL_ETE_LAIEUL_AGARD_AOØSS_AOØY`)) }) // prettier-ignore
+test("dotCase specialChars NFC . no spaces", t => { t.is(n(dotCase(specialCharsNFCnoSpace)),             n(`agard.i.garcons.cafe.chateau.voila.noel.ete.laieul.agard.aoøß.aoøy`)) }) // prettier-ignore
+test("adaCase specialChars NFC - no spaces", t => { t.is(n(adaCase(specialCharsNFCnoSpace)),             n(`Agard_I_Garcons_Cafe_Chateau_Voila_Noel_Ete_Laieul_Agard_Aoøß_Aoøy`)) }) // prettier-ignore
+test("cobolCase specialChars NFC - no spaces", t => { t.is(n(cobolCase(specialCharsNFCnoSpace)),         n(`AGARD-I-GARCONS-CAFE-CHATEAU-VOILA-NOEL-ETE-LAIEUL-AGARD-AOØSS-AOØY`)) }) // prettier-ignore
+test("trainCase specialChars NFC - no spaces", t => { t.is(n(trainCase(specialCharsNFCnoSpace)),         n(`Agard-I-Garcons-Cafe-Chateau-Voila-Noel-Ete-Laieul-Agard-Aoøß-Aoøy`)) }) // prettier-ignore
 test("spaceCase specialChars NFC - no spaces", (t) => { t.is(n(spaceCase(specialCharsNFCnoSpace)),       n(`Ågård_î_garçons_Çafé_château_voilà_ñoël_été_laïeul_Ågård_ÀÖØß_àöøÿ`)) }) // prettier-ignore
 test("pathCase specialChars NFC - no spaces", (t) => { t.is(n(pathCase(specialCharsNFCnoSpace)),         n(`Ågård/_î/_garçons/_Çafé/_château/_voilà/_ñoël/_été/_laïeul/_Ågård/_ÀÖØß/_àöøÿ`)) }) // prettier-ignore
 test("lowerCase specialChars NFC - no spaces", (t) => { t.is(n(lowerCase(specialCharsNFCnoSpace)),       n(`ågård_î_garçons_çafé_château_voilà_ñoël_été_laïeul_ågård_àöøß_àöøÿ`)) }) // prettier-ignore
@@ -272,6 +316,10 @@ test("pascalCase specialChars NFD - no spaces", (t) => { t.is(n(pascalCase(speci
 test("kebabCase specialChars NFD - no spaces", (t) => { t.is(n(kebabCase(specialCharsNFDnoSpace)),       n(`agard-i-garcons-cafe-chateau-voila-noel-ete-laieul-agard-aoøß-aoøy`)) }) // prettier-ignore
 test("snakeCase specialChars NFD - no spaces", (t) => { t.is(n(snakeCase(specialCharsNFDnoSpace)),       n(`agard_i_garcons_cafe_chateau_voila_noel_ete_laieul_agard_aoøß_aoøy`)) }) // prettier-ignore
 test("constantCase specialChars NFD - no spaces", (t) => { t.is(n(constantCase(specialCharsNFDnoSpace)), n(`AGARD_I_GARCONS_CAFE_CHATEAU_VOILA_NOEL_ETE_LAIEUL_AGARD_AOØSS_AOØY`)) }) // prettier-ignore
+test("dotCase specialChars NFD . no spaces", t => { t.is(n(dotCase(specialCharsNFDnoSpace)),             n(`agard.i.garcons.cafe.chateau.voila.noel.ete.laieul.agard.aoøß.aoøy`)) }) // prettier-ignore
+test("adaCase specialChars NFD - no spaces", t => { t.is(n(adaCase(specialCharsNFDnoSpace)),             n(`Agard_I_Garcons_Cafe_Chateau_Voila_Noel_Ete_Laieul_Agard_Aoøß_Aoøy`)) }) // prettier-ignore
+test("cobolCase specialChars NFD - no spaces", t => { t.is(n(cobolCase(specialCharsNFDnoSpace)),         n(`AGARD-I-GARCONS-CAFE-CHATEAU-VOILA-NOEL-ETE-LAIEUL-AGARD-AOØSS-AOØY`)) }) // prettier-ignore
+test("trainCase specialChars NFD - no spaces", t => { t.is(n(trainCase(specialCharsNFDnoSpace)),         n(`Agard-I-Garcons-Cafe-Chateau-Voila-Noel-Ete-Laieul-Agard-Aoøß-Aoøy`)) }) // prettier-ignore
 test("spaceCase specialChars NFD - no spaces", (t) => { t.is(n(spaceCase(specialCharsNFDnoSpace)),       n(`Ågård_î_garçons_Çafé_château_voilà_ñoël_été_laïeul_Ågård_ÀÖØß_àöøÿ`)) }) // prettier-ignore
 test("pathCase specialChars NFD - no spaces", (t) => { t.is(n(pathCase(specialCharsNFDnoSpace)),         n(`Ågård/_î/_garçons/_Çafé/_château/_voilà/_ñoël/_été/_laïeul/_Ågård/_ÀÖØß/_àöøÿ`)) }) // prettier-ignore
 test("lowerCase specialChars NFD - no spaces", (t) => { t.is(n(lowerCase(specialCharsNFDnoSpace)),       n(`ågård_î_garçons_çafé_château_voilà_ñoël_été_laïeul_ågård_àöøß_àöøÿ`)) }) // prettier-ignore
@@ -284,6 +332,10 @@ test("pascalCase specialChars NFC - no spaces s", (t) => { t.is(n(pascalCase(`Ç
 test("kebabCase specialChars NFC - no spaces s", (t) => { t.is(n(kebabCase(`ÇaféÅgård`.normalize('NFC'))),       n(`cafe-agard`)) }) // prettier-ignore
 test("snakeCase specialChars NFC - no spaces s", (t) => { t.is(n(snakeCase(`ÇaféÅgård`.normalize('NFC'))),       n(`cafe_agard`)) }) // prettier-ignore
 test("constantCase specialChars NFC - no spaces s", (t) => { t.is(n(constantCase(`ÇaféÅgård`.normalize('NFC'))), n(`CAFE_AGARD`)) }) // prettier-ignore
+test("dotCase specialChars NFC - no spaces s", t => { t.is(n(dotCase(`ÇaféÅgård`.normalize('NFC'))),             n(`cafe.agard`)) }) // prettier-ignore
+test("adaCase specialChars NFC - no spaces s", t => { t.is(n(adaCase(`ÇaféÅgård`.normalize('NFC'))),             n(`Cafe_Agard`)) }) // prettier-ignore
+test("cobolCase specialChars NFC - no spaces s", t => { t.is(n(cobolCase(`ÇaféÅgård`.normalize('NFC'))),         n(`CAFE-AGARD`)) }) // prettier-ignore
+test("trainCase specialChars NFC - no spaces s", t => { t.is(n(trainCase(`ÇaféÅgård`.normalize('NFC'))),         n(`Cafe-Agard`)) }) // prettier-ignore
 test("spaceCase specialChars NFC - no spaces s", (t) => { t.is(n(spaceCase(`ÇaféÅgård`.normalize('NFC'))),       n(`Çafé Ågård`)) }) // prettier-ignore
 test("pathCase specialChars NFC - no spaces s", (t) => { t.is(n(pathCase(`ÇaféÅgård`.normalize('NFC'))),         n(`Çafé/Ågård`)) }) // prettier-ignore
 test("lowerCase specialChars NFC - no spaces s", (t) => { t.is(n(lowerCase(`ÇaféÅgård`.normalize('NFC'))),       n(`çafé ågård`)) }) // prettier-ignore
@@ -296,6 +348,10 @@ test("pascalCase specialChars NFD - no spaces s", (t) => { t.is(n(pascalCase(`C�
 test("kebabCase specialChars NFD - no spaces s", (t) => { t.is(n(kebabCase(`ÇaféÅgård`.normalize('NFD'))),       n(`cafe-agard`)) }) // prettier-ignore
 test("snakeCase specialChars NFD - no spaces s", (t) => { t.is(n(snakeCase(`ÇaféÅgård`.normalize('NFD'))),       n(`cafe_agard`)) }) // prettier-ignore
 test("constantCase specialChars NFD - no spaces s", (t) => { t.is(n(constantCase(`ÇaféÅgård`.normalize('NFD'))), n(`CAFE_AGARD`)) }) // prettier-ignore
+test("dotCase specialChars NFD - no spaces s", t => { t.is(n(dotCase(`ÇaféÅgård`.normalize('NFD'))),             n(`cafe.agard`)) }) // prettier-ignore
+test("adaCase specialChars NFD - no spaces s", t => { t.is(n(adaCase(`ÇaféÅgård`.normalize('NFD'))),             n(`Cafe_Agard`)) }) // prettier-ignore
+test("cobolCase specialChars NFD - no spaces s", t => { t.is(n(cobolCase(`ÇaféÅgård`.normalize('NFD'))),         n(`CAFE-AGARD`)) }) // prettier-ignore
+test("trainCase specialChars NFD - no spaces s", t => { t.is(n(trainCase(`ÇaféÅgård`.normalize('NFD'))),         n(`Cafe-Agard`)) }) // prettier-ignore
 test("spaceCase specialChars NFD - no spaces s", (t) => { t.is(n(spaceCase(`ÇaféÅgård`.normalize('NFD'))),       n(`Çafé Ågård`)) }) // prettier-ignore
 test("pathCase specialChars NFD - no spaces s", (t) => { t.is(n(pathCase(`ÇaféÅgård`.normalize('NFD'))),         n(`Çafé/Ågård`)) }) // prettier-ignore
 test("lowerCase specialChars NFD - no spaces s", (t) => { t.is(n(lowerCase(`ÇaféÅgård`.normalize('NFD'))),       n(`çafé ågård`)) }) // prettier-ignore

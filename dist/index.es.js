@@ -81,7 +81,9 @@ function capitaliseWord(string) {
  */
 function camelCase(string, options = { keepSpecialCharacters: false }) {
     return splitAndPrefix(string, options).reduce((result, word, index) => {
-        return index === 0 || !word[0].match(magicSplit) ? result + word.toLowerCase() : result + capitaliseWord(word);
+        return index === 0 || !(word[0] || '').match(magicSplit)
+            ? result + word.toLowerCase()
+            : result + capitaliseWord(word);
     }, '');
 }
 /**
@@ -209,7 +211,7 @@ function cobolCase(string, options = { keepSpecialCharacters: false }) {
         .toUpperCase();
 }
 /**
- * # 📍 dot.notation
+ * # 📍 Dot.notation
  * converts a string to dot.notation
  * - adds dots, does not change casing
  * - *strips away* special characters by default
@@ -223,7 +225,7 @@ function dotNotation(string, options = { keepSpecialCharacters: false }) {
     return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '.' })).join('');
 }
 /**
- * # 📂 path/case
+ * # 📂 Path/case
  * converts a string to path/case
  * - adds slashes, does not change casing
  * - *keeps* special characters by default
@@ -240,7 +242,7 @@ function pathCase(string, options = { keepSpecialCharacters: true }) {
     }, '');
 }
 /**
- * # 🛰 space case
+ * # 🛰 Space case
  * converts a string to space case
  * - adds spaces, does not change casing
  * - *keeps* special characters by default

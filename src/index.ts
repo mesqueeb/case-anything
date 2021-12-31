@@ -1,7 +1,8 @@
 export {
   camelCase,
+  upperCamelCase,
   pascalCase,
-  dotCase,
+  dotNotation,
   kebabCase,
   snakeCase,
   adaCase,
@@ -12,5 +13,5 @@ export {
   capitalCase,
   lowerCase,
   upperCase,
-  trainCase
+  trainCase,
 } from './core'

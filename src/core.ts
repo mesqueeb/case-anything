@@ -16,7 +16,9 @@ export function camelCase(
   options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
 ): string {
   return splitAndPrefix(string, options).reduce((result, word, index) => {
-    return index === 0 || !word[0].match(magicSplit) ? result + word.toLowerCase() : result + capitaliseWord(word)
+    return index === 0 || !(word[0] || '').match(magicSplit)
+      ? result + word.toLowerCase()
+      : result + capitaliseWord(word)
   }, '')
 }
 

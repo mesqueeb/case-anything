@@ -1,19 +1,19 @@
 import test from 'ava'
 import {
-  spaceCase,
+  adaCase,
   camelCase,
-  pascalCase,
+  capitalCase,
+  cobolCase,
+  constantCase,
   dotNotation,
   kebabCase,
-  snakeCase,
-  adaCase,
-  constantCase,
-  cobolCase,
-  pathCase,
-  capitalCase,
-  upperCase,
   lowerCase,
+  pascalCase,
+  pathCase,
+  snakeCase,
+  spaceCase,
   trainCase,
+  upperCase,
 } from '../src/index'
 
 // a bunch of different combinations

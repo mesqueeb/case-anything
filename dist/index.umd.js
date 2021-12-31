@@ -10,161 +10,324 @@
   // lower case ranges
   // [à-öø-ÿ]
   const magicSplit = /^[a-zà-öø-ÿ]+|[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ]+|[a-zà-öø-ÿ]+|[0-9]+|[A-ZÀ-ÖØ-ß]+(?![a-zà-öø-ÿ])/g;
-  /**
-   * A string.match function that will return an array of "string parts"
-   */
-  function splitOnSpecialChars(string) {
-      return string.match(magicSplit);
-  }
+  const spaceSplit = /\S+/g;
   /**
    * A string.matchAll function that will return an array of "string parts" and the indexes at which it split each part
    */
-  function getPartsAndIndexes(string) {
-      const result = { parts: [], indexes: [] };
-      const matches = string.matchAll(magicSplit);
+  function getPartsAndIndexes(string, splitRegex) {
+      const result = { parts: [], prefixes: [] };
+      const matches = string.matchAll(splitRegex);
+      let lastWordEndIndex = 0;
       for (const match of matches) {
           result.parts.push(match[0]);
-          result.indexes.push(match.index);
+          const prefix = string.slice(lastWordEndIndex, match.index).trim();
+          result.prefixes.push(prefix);
+          lastWordEndIndex = match.index + match[0].length;
       }
       return result;
   }
   /**
-   * A string.match function that will return an array of "string parts"
+   * A function that splits a string on words and returns an array of words.
+   * - It can prefix each word with a given character
+   * - It can strip or keep special characters, this affects the logic for adding a prefix as well
    */
-  function getParts(string, stripSpecialCharacters = false) {
-      const target = string.trim().normalize('NFC');
-      const parts = target.includes(' ') ? target.split(' ').filter(Boolean) : splitOnSpecialChars(target);
-      return stripSpecialCharacters ? parts.map((part) => part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '')) : parts;
+  function splitAndPrefix(string, options) {
+      const { keepSpecialCharacters = true, prefix = '' } = options;
+      const normalString = string.trim().normalize('NFC');
+      const hasSpaces = normalString.includes(' ');
+      const split = hasSpaces ? spaceSplit : magicSplit;
+      const partsAndIndexes = getPartsAndIndexes(normalString, split);
+      return keepSpecialCharacters
+          ? partsAndIndexes.parts.map((part, i) => {
+              const _prefix = partsAndIndexes.prefixes[i];
+              // the first word doesn't need a prefix, so only return the original prefix
+              if (i === 0) {
+                  return _prefix + part;
+              }
+              // space based sentence was split on spaces, so only return original prefixes
+              if (hasSpaces) {
+                  if (!_prefix && prefix.match(/\s/)) {
+                      // in this case we have no more original _prefix, it was trimmed, but we're looking to add a space
+                      // so let's return that space
+                      return prefix + part;
+                  }
+                  return _prefix + part;
+              }
+              // return the original prefix OR fall back to a given prefix
+              return (_prefix || prefix) + part;
+          })
+          : partsAndIndexes.parts.map((part, i) => {
+              const _part = part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '');
+              if (i === 0) {
+                  return _part;
+              }
+              return prefix + _part;
+          });
   }
   /**
    * Capitalises a single word
    * @returns the word with the first character in uppercase and the rest in lowercase
    */
   function capitaliseWord(string) {
-      return string[0].toUpperCase() + string.slice(1).toLowerCase();
+      var _a;
+      const firstLetterIndex = ((_a = string.matchAll(magicSplit).next().value) === null || _a === void 0 ? void 0 : _a.index) || 0;
+      return string.slice(0, firstLetterIndex + 1).toUpperCase() + string.slice(firstLetterIndex + 1).toLowerCase();
   }
 
-  // const stripSpecialCharacters = true
   /**
-   * converts strings to camelCase
+   * # 🐪 camelCase
+   * converts a string to camelCase
+   * - first lowercase then all capitalised
+   * - *strips away* special characters by default
    *
-   * @export
-   * @param {string} string
-   * @returns {string} in camelCase
+   * @example
+   *   camelCase('$catDog') === 'catDog'
+   * @example
+   *   camelCase('$catDog', { keepSpecialCharacters: true }) === '$catDog'
    */
-  function camelCase(string, stripSpecialCharacters = true) {
-      console.log(`getParts(string, stripSpecialCharacters) → `, getParts(string, stripSpecialCharacters));
-      return getParts(string, stripSpecialCharacters).reduce((result, match, index) => {
-          return index === 0 ? match.toLowerCase() : result + capitaliseWord(match);
+  function camelCase(string, options = { keepSpecialCharacters: false }) {
+      return splitAndPrefix(string, options).reduce((result, word, index) => {
+          return index === 0 || !word[0].match(magicSplit) ? result + word.toLowerCase() : result + capitaliseWord(word);
       }, '');
   }
   /**
-   * converts strings to PascalCase
+   * # 🐫 PascalCase
+   * converts a string to PascalCase (also called UpperCamelCase)
+   * - all capitalised
+   * - *strips away* special characters by default
    *
-   * @export
-   * @param {string} string
-   * @returns {string} in PascalCase
+   * @example
+   *   pascalCase('$catDog') === 'CatDog'
+   * @example
+   *   pascalCase('$catDog', { keepSpecialCharacters: true }) === '$CatDog'
    */
-  function pascalCase(string, stripSpecialCharacters = true) {
-      return getParts(string, stripSpecialCharacters).reduce((result, match) => {
-          return result + capitaliseWord(match);
+  function pascalCase(string, options = { keepSpecialCharacters: false }) {
+      return splitAndPrefix(string, options).reduce((result, word) => {
+          return result + capitaliseWord(word);
       }, '');
   }
   /**
-   * converts strings to kebab-case
+   * # 🐫 UpperCamelCase
+   * converts a string to UpperCamelCase (also called PascalCase)
+   * - all capitalised
+   * - *strips away* special characters by default
    *
-   * @export
-   * @param {string} string
-   * @returns {string} in kebab-case
+   * @example
+   *   upperCamelCase('$catDog') === 'CatDog'
+   * @example
+   *   upperCamelCase('$catDog', { keepSpecialCharacters: true }) === '$CatDog'
    */
-  function kebabCase(string, stripSpecialCharacters = true) {
-      return getParts(string, stripSpecialCharacters).join('-').toLowerCase();
+  const upperCamelCase = pascalCase;
+  /**
+   * # 🥙 kebab-case
+   * converts a string to kebab-case
+   * - hyphenated lowercase
+   * - *strips away* special characters by default
+   *
+   * @example
+   *   kebabCase('$catDog') === 'cat-dog'
+   * @example
+   *   kebabCase('$catDog', { keepSpecialCharacters: true }) === '$cat-dog'
+   */
+  function kebabCase(string, options = { keepSpecialCharacters: false }) {
+      return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '-' }))
+          .join('')
+          .toLowerCase();
   }
   /**
-   * converts strings to snake_case
+   * # 🐍 snake_case
+   * converts a string to snake_case
+   * - underscored lowercase
+   * - *strips away* special characters by default
    *
-   * @export
-   * @param {string} string
-   * @returns {string} in snake_case
+   * @example
+   *   snakeCase('$catDog') === 'cat_dog'
+   * @example
+   *   snakeCase('$catDog', { keepSpecialCharacters: true }) === '$cat_dog'
    */
-  function snakeCase(string, stripSpecialCharacters = true) {
-      return getParts(string, stripSpecialCharacters).join('_').toLowerCase();
+  function snakeCase(string, options = { keepSpecialCharacters: false }) {
+      return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '_' }))
+          .join('')
+          .toLowerCase();
   }
   /**
-   * converts strings to CONSTANT_CASE
+   * # 📣 CONSTANT_CASE
+   * converts a string to CONSTANT_CASE
+   * - underscored uppercase
+   * - *strips away* special characters by default
    *
-   * @export
-   * @param {string} string
-   * @returns {string} in CONSTANT_CASE
+   * @example
+   *   constantCase('$catDog') === 'CAT_DOG'
+   * @example
+   *   constantCase('$catDog', { keepSpecialCharacters: true }) === '$CAT_DOG'
    */
-  function constantCase(string, stripSpecialCharacters = true) {
-      return getParts(string, stripSpecialCharacters).join('_').toUpperCase();
+  function constantCase(string, options = { keepSpecialCharacters: false }) {
+      return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '_' }))
+          .join('')
+          .toUpperCase();
   }
   /**
-   * converts strings to path/case
+   * # 🚂 Train-Case
+   * converts strings to Train-Case
+   * - hyphenated & capitalised
+   * - *strips away* special characters by default
    *
-   * @export
-   * @param {string} string
-   * @returns {string} in path/case
+   * @example
+   *   trainCase('$catDog') === 'Cat-Dog'
+   * @example
+   *   trainCase('$catDog', { keepSpecialCharacters: true }) === '$Cat-Dog'
    */
-  function pathCase(string) {
-      return getParts(string).join('/');
+  function trainCase(string, options = { keepSpecialCharacters: false }) {
+      return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '-' }))
+          .map((word) => capitaliseWord(word))
+          .join('');
   }
   /**
-   * converts strings to space case (will add spaces but not change casing)
+   * # 🕊 Ada_Case
+   * converts a string to Ada_Case
+   * - underscored & capitalised
+   * - *strips away* special characters by default
    *
-   * @export
-   * @param {string} string
-   * @returns {string} in path case
+   * @example
+   *   adaCase('$catDog') === 'Cat_Dog'
+   * @example
+   *   adaCase('$catDog', { keepSpecialCharacters: true }) === '$Cat_Dog'
    */
-  function spaceCase(string) {
-      return getParts(string).join(' ');
+  function adaCase(string, options = { keepSpecialCharacters: false }) {
+      return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '_' }))
+          .map((part) => capitaliseWord(part))
+          .join('');
   }
   /**
-   * converts strings to Capital Case (with spaces)
+   * # 👔 COBOL-CASE
+   * converts a string to COBOL-CASE
+   * - hyphenated uppercase
+   * - *strips away* special characters by default
    *
-   * @export
-   * @param {string} string
-   * @returns {string} in Capital Case (with spaces)
+   * @example
+   *   cobolCase('$catDog') === 'CAT-DOG'
+   * @example
+   *   cobolCase('$catDog', { keepSpecialCharacters: true }) === '$CAT-DOG'
    */
-  function capitalCase(string) {
-      return getParts(string)
-          .reduce((result, match) => {
-          return `${result} ${capitaliseWord(match)}`;
-      }, '')
-          .trim();
+  function cobolCase(string, options = { keepSpecialCharacters: false }) {
+      return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '-' }))
+          .join('')
+          .toUpperCase();
   }
   /**
-   * converts strings to lower case (with spaces)
+   * # 📍 dot.notation
+   * converts a string to dot.notation
+   * - adds dots, does not change casing
+   * - *strips away* special characters by default
    *
-   * @export
-   * @param {string} string
-   * @returns {string} in lower case (with spaces)
+   * @example
+   *   dotNotation('$catDog') === 'cat.Dog'
+   * @example
+   *   dotNotation('$catDog', { keepSpecialCharacters: true }) === '$cat.Dog'
    */
-  function lowerCase(string) {
-      return getParts(string).join(' ').toLowerCase();
+  function dotNotation(string, options = { keepSpecialCharacters: false }) {
+      return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '.' })).join('');
   }
   /**
-   * converts strings to UPPER CASE (with spaces)
+   * # 📂 path/case
+   * converts a string to path/case
+   * - adds slashes, does not change casing
+   * - *keeps* special characters by default
    *
-   * @export
-   * @param {string} string
-   * @returns {string} in UPPER CASE (with spaces)
+   * @example
+   *   pathCase('$catDog') === '$cat/Dog'
+   * @example
+   *   pathCase('$catDog', { keepSpecialCharacters: false }) === 'cat/Dog'
    */
-  function upperCase(string) {
-      return getParts(string).join(' ').toUpperCase();
+  function pathCase(string, options = { keepSpecialCharacters: true }) {
+      return splitAndPrefix(string, options).reduce((result, word, i) => {
+          const prefix = i === 0 || word[0] === '/' ? '' : '/';
+          return result + prefix + word;
+      }, '');
+  }
+  /**
+   * # 🛰 space case
+   * converts a string to space case
+   * - adds spaces, does not change casing
+   * - *keeps* special characters by default
+   *
+   * @example
+   *   spaceCase('$catDog') === '$cat Dog'
+   * @example
+   *   spaceCase('$catDog', { keepSpecialCharacters: false }) === 'cat Dog'
+   */
+  function spaceCase(string, options = { keepSpecialCharacters: true }) {
+      return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: ' ' })).join('');
+  }
+  /**
+   * # 🏛 Capital Case
+   * converts a string to Capital Case
+   * - capitalizes words and adds spaces
+   * - *keeps* special characters by default
+   *
+   * @example
+   *   capitalCase('$catDog') === '$Cat Dog'
+   * @example
+   *   capitalCase('$catDog', { keepSpecialCharacters: false }) === 'Cat Dog'
+   *
+   * ⟪ if you do not want to add spaces, use `pascalCase()` ⟫
+   */
+  function capitalCase(string, options = { keepSpecialCharacters: true }) {
+      return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: ' ' })).reduce((result, word) => {
+          return result + capitaliseWord(word);
+      }, '');
+  }
+  /**
+   * # 🔡 lower case
+   * converts a string to lower case
+   * - makes words lowercase and adds spaces
+   * - *keeps* special characters by default
+   *
+   * @example
+   *   lowerCase('$catDog') === '$cat dog'
+   * @example
+   *   lowerCase('$catDog', { keepSpecialCharacters: false }) === 'cat dog'
+   *
+   * ⟪ if you do not want to add spaces, use the native JS `toLowerCase()` ⟫
+   */
+  function lowerCase(string, options = { keepSpecialCharacters: true }) {
+      return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: ' ' }))
+          .join('')
+          .toLowerCase();
+  }
+  /**
+   * # 🔠 UPPER CASE
+   * converts a string to UPPER CASE
+   * - makes words upper case and adds spaces
+   * - *keeps* special characters by default
+   *
+   * @example
+   *   upperCase('$catDog') === '$CAT DOG'
+   * @example
+   *   upperCase('$catDog', { keepSpecialCharacters: false }) === 'CAT DOG'
+   *
+   * ⟪ if you do not want to add spaces, use the native JS `toUpperCase()` ⟫
+   */
+  function upperCase(string, options = { keepSpecialCharacters: true }) {
+      return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: ' ' }))
+          .join('')
+          .toUpperCase();
   }
 
+  exports.adaCase = adaCase;
   exports.camelCase = camelCase;
   exports.capitalCase = capitalCase;
+  exports.cobolCase = cobolCase;
   exports.constantCase = constantCase;
-  exports.getPartsAndIndexes = getPartsAndIndexes;
+  exports.dotNotation = dotNotation;
   exports.kebabCase = kebabCase;
   exports.lowerCase = lowerCase;
   exports.pascalCase = pascalCase;
   exports.pathCase = pathCase;
   exports.snakeCase = snakeCase;
   exports.spaceCase = spaceCase;
+  exports.trainCase = trainCase;
+  exports.upperCamelCase = upperCamelCase;
   exports.upperCase = upperCase;
 
   Object.defineProperty(exports, '__esModule', { value: true });

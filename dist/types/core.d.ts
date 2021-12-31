@@ -1,80 +1,214 @@
 /**
- * converts strings to camelCase
+ * # 🐪 camelCase
+ * converts a string to camelCase
+ * - first lowercase then all capitalised
+ * - *strips away* special characters by default
  *
- * @export
- * @param {string} string
- * @returns {string} in camelCase
+ * @example
+ *   camelCase('$catDog') === 'catDog'
+ * @example
+ *   camelCase('$catDog', { keepSpecialCharacters: true }) === '$catDog'
  */
-export declare function camelCase(string: string, stripSpecialCharacters?: boolean): string;
+export declare function camelCase(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;
 /**
- * converts strings to PascalCase
+ * # 🐫 PascalCase
+ * converts a string to PascalCase (also called UpperCamelCase)
+ * - all capitalised
+ * - *strips away* special characters by default
  *
- * @export
- * @param {string} string
- * @returns {string} in PascalCase
+ * @example
+ *   pascalCase('$catDog') === 'CatDog'
+ * @example
+ *   pascalCase('$catDog', { keepSpecialCharacters: true }) === '$CatDog'
  */
-export declare function pascalCase(string: string, stripSpecialCharacters?: boolean): string;
+export declare function pascalCase(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;
 /**
- * converts strings to kebab-case
+ * # 🐫 UpperCamelCase
+ * converts a string to UpperCamelCase (also called PascalCase)
+ * - all capitalised
+ * - *strips away* special characters by default
  *
- * @export
- * @param {string} string
- * @returns {string} in kebab-case
+ * @example
+ *   upperCamelCase('$catDog') === 'CatDog'
+ * @example
+ *   upperCamelCase('$catDog', { keepSpecialCharacters: true }) === '$CatDog'
  */
-export declare function kebabCase(string: string, stripSpecialCharacters?: boolean): string;
+export declare const upperCamelCase: typeof pascalCase;
 /**
- * converts strings to snake_case
+ * # 🥙 kebab-case
+ * converts a string to kebab-case
+ * - hyphenated lowercase
+ * - *strips away* special characters by default
  *
- * @export
- * @param {string} string
- * @returns {string} in snake_case
+ * @example
+ *   kebabCase('$catDog') === 'cat-dog'
+ * @example
+ *   kebabCase('$catDog', { keepSpecialCharacters: true }) === '$cat-dog'
  */
-export declare function snakeCase(string: string, stripSpecialCharacters?: boolean): string;
+export declare function kebabCase(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;
 /**
- * converts strings to CONSTANT_CASE
+ * # 🐍 snake_case
+ * converts a string to snake_case
+ * - underscored lowercase
+ * - *strips away* special characters by default
  *
- * @export
- * @param {string} string
- * @returns {string} in CONSTANT_CASE
+ * @example
+ *   snakeCase('$catDog') === 'cat_dog'
+ * @example
+ *   snakeCase('$catDog', { keepSpecialCharacters: true }) === '$cat_dog'
  */
-export declare function constantCase(string: string, stripSpecialCharacters?: boolean): string;
+export declare function snakeCase(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;
 /**
- * converts strings to path/case
+ * # 📣 CONSTANT_CASE
+ * converts a string to CONSTANT_CASE
+ * - underscored uppercase
+ * - *strips away* special characters by default
  *
- * @export
- * @param {string} string
- * @returns {string} in path/case
+ * @example
+ *   constantCase('$catDog') === 'CAT_DOG'
+ * @example
+ *   constantCase('$catDog', { keepSpecialCharacters: true }) === '$CAT_DOG'
  */
-export declare function pathCase(string: string): string;
+export declare function constantCase(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;
 /**
- * converts strings to space case (will add spaces but not change casing)
+ * # 🚂 Train-Case
+ * converts strings to Train-Case
+ * - hyphenated & capitalised
+ * - *strips away* special characters by default
  *
- * @export
- * @param {string} string
- * @returns {string} in path case
+ * @example
+ *   trainCase('$catDog') === 'Cat-Dog'
+ * @example
+ *   trainCase('$catDog', { keepSpecialCharacters: true }) === '$Cat-Dog'
  */
-export declare function spaceCase(string: string): string;
+export declare function trainCase(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;
 /**
- * converts strings to Capital Case (with spaces)
+ * # 🕊 Ada_Case
+ * converts a string to Ada_Case
+ * - underscored & capitalised
+ * - *strips away* special characters by default
  *
- * @export
- * @param {string} string
- * @returns {string} in Capital Case (with spaces)
+ * @example
+ *   adaCase('$catDog') === 'Cat_Dog'
+ * @example
+ *   adaCase('$catDog', { keepSpecialCharacters: true }) === '$Cat_Dog'
  */
-export declare function capitalCase(string: string): string;
+export declare function adaCase(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;
 /**
- * converts strings to lower case (with spaces)
+ * # 👔 COBOL-CASE
+ * converts a string to COBOL-CASE
+ * - hyphenated uppercase
+ * - *strips away* special characters by default
  *
- * @export
- * @param {string} string
- * @returns {string} in lower case (with spaces)
+ * @example
+ *   cobolCase('$catDog') === 'CAT-DOG'
+ * @example
+ *   cobolCase('$catDog', { keepSpecialCharacters: true }) === '$CAT-DOG'
  */
-export declare function lowerCase(string: string): string;
+export declare function cobolCase(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;
 /**
- * converts strings to UPPER CASE (with spaces)
+ * # 📍 dot.notation
+ * converts a string to dot.notation
+ * - adds dots, does not change casing
+ * - *strips away* special characters by default
  *
- * @export
- * @param {string} string
- * @returns {string} in UPPER CASE (with spaces)
+ * @example
+ *   dotNotation('$catDog') === 'cat.Dog'
+ * @example
+ *   dotNotation('$catDog', { keepSpecialCharacters: true }) === '$cat.Dog'
  */
-export declare function upperCase(string: string): string;
+export declare function dotNotation(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;
+/**
+ * # 📂 path/case
+ * converts a string to path/case
+ * - adds slashes, does not change casing
+ * - *keeps* special characters by default
+ *
+ * @example
+ *   pathCase('$catDog') === '$cat/Dog'
+ * @example
+ *   pathCase('$catDog', { keepSpecialCharacters: false }) === 'cat/Dog'
+ */
+export declare function pathCase(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;
+/**
+ * # 🛰 space case
+ * converts a string to space case
+ * - adds spaces, does not change casing
+ * - *keeps* special characters by default
+ *
+ * @example
+ *   spaceCase('$catDog') === '$cat Dog'
+ * @example
+ *   spaceCase('$catDog', { keepSpecialCharacters: false }) === 'cat Dog'
+ */
+export declare function spaceCase(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;
+/**
+ * # 🏛 Capital Case
+ * converts a string to Capital Case
+ * - capitalizes words and adds spaces
+ * - *keeps* special characters by default
+ *
+ * @example
+ *   capitalCase('$catDog') === '$Cat Dog'
+ * @example
+ *   capitalCase('$catDog', { keepSpecialCharacters: false }) === 'Cat Dog'
+ *
+ * ⟪ if you do not want to add spaces, use `pascalCase()` ⟫
+ */
+export declare function capitalCase(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;
+/**
+ * # 🔡 lower case
+ * converts a string to lower case
+ * - makes words lowercase and adds spaces
+ * - *keeps* special characters by default
+ *
+ * @example
+ *   lowerCase('$catDog') === '$cat dog'
+ * @example
+ *   lowerCase('$catDog', { keepSpecialCharacters: false }) === 'cat dog'
+ *
+ * ⟪ if you do not want to add spaces, use the native JS `toLowerCase()` ⟫
+ */
+export declare function lowerCase(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;
+/**
+ * # 🔠 UPPER CASE
+ * converts a string to UPPER CASE
+ * - makes words upper case and adds spaces
+ * - *keeps* special characters by default
+ *
+ * @example
+ *   upperCase('$catDog') === '$CAT DOG'
+ * @example
+ *   upperCase('$catDog', { keepSpecialCharacters: false }) === 'CAT DOG'
+ *
+ * ⟪ if you do not want to add spaces, use the native JS `toUpperCase()` ⟫
+ */
+export declare function upperCase(string: string, options?: {
+    keepSpecialCharacters: boolean;
+}): string;

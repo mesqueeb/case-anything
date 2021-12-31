@@ -50,22 +50,22 @@ case-anything supports tree-shaking and is side-effect free!
   </tr>
   <tr>
     <td>
-      - camelCase
-      - pascalCase
-      - kebabCase
-      - snakeCase
-      - constantCase
-      - trainCase
-      - adaCase
-      - cobolCase
-      - dotNotation
+- camelCase
+- pascalCase
+- kebabCase
+- snakeCase
+- constantCase
+- trainCase
+- adaCase
+- cobolCase
+- dotNotation
     </td>
     <td>
-      - pathCase
-      - spaceCase
-      - capitalCase
-      - lowerCase
-      - upperCase
+- pathCase
+- spaceCase
+- capitalCase
+- lowerCase
+- upperCase
     </td>
   </tr>
 </table>

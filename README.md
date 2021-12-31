@@ -41,6 +41,8 @@ case-anything supports tree-shaking and is side-effect free!
 | 🔡 lower case                     | `lowerCase('$catDog')`                        | `$cat dog`     |
 | 🔠 UPPER CASE                     | `upperCase('$catDog')`                        | `$CAT DOG`     |
 
+<div style="display: flex">
+<div>
 These cases _**strip away special characters**_ by default:
 
 - camelCase
@@ -52,7 +54,8 @@ These cases _**strip away special characters**_ by default:
 - adaCase
 - cobolCase
 - dotNotation
-
+</div>
+<div>
 These cases _**keep special characters**_ by default:
 
 - pathCase
@@ -60,6 +63,8 @@ These cases _**keep special characters**_ by default:
 - capitalCase
 - lowerCase
 - upperCase
+</div>
+</div>
 
 These cases _**do not change the casing**_ of the words:
 

@@ -7,46 +7,65 @@
 npm i case-anything
 ```
 
-10 case changing functions: camelCase, kebab-case, PascalCase **and more**...<br />
+14 case changing functions: camelCase, kebab-case, PascalCase **and more**...<br />
 A simple integration with nano package size. (SMALL footprint!)
+
+> Used by famous Mac app [Popclip](https://pilotmoon.com/popclip).
 
 ## Motivation
 
 I created this package because most other packages that do simple case changing are so big...
 
-I wanted to try my hand at the smallest iteration possible. (and it's [12+ times smaller](#package-size) than the next popular case changing package!!)
+Some features I focused on:
 
-There's also a Better Touch Tool preset with [keyboard shortcuts](#keyboard-shortcuts) to convert selected text system wide!
+- small footprint (it's [12+ times smaller](#package-size) than the next popular case changing package!!)
+- tree-shakable — only import what you need
+- awesome JSDocs popup documentation on hover
+- fully typed with TypeScript
+- complete coverage with unit testing
+- 0 dependencies
 
 ## Usage
 
 case-anything supports tree-shaking and is side-effect free!
 
+```js
+// just import the functions you need like so:
+import { camelCase, kebabCase } from 'case-anything'
+```
+
+case-anything has different behaviour if the string you pass has spaces or not.
+
+- Without spaces it will split and format on every "part" it can detect
+- With spaces it will split and format on every "word" based on those spaces
+
 ### Strings without spaces
 
-| Name                              | Input example                                 | Output example |
-| --------------------------------- | --------------------------------------------- | -------------- |
-| 🐪 camelCase                      | `camelCase('$catDog')`                        | `catDog`       |
-| 🐫 PascalCase<br />UpperCamelCase | `pascalCase('$catDog')`<br />`upperCamelCase` | `CatDog`       |
-| 🥙 kebab-case                     | `kebabCase('$catDog')`                        | `cat-dog`      |
-| 🐍 snake_case                     | `snakeCase('$catDog')`                        | `cat_dog`      |
-| 📣 CONSTANT_CASE                  | `constantCase('$catDog')`                     | `CAT_DOG`      |
-| 🚂 Train-Case                     | `trainCase('$catDog')`                        | `Cat-Dog`      |
-| 🕊 Ada_Case                        | `adaCase('$catDog')`                          | `Cat_Dog`      |
-| 👔 COBOL-CASE                     | `cobolCase('$catDog')`                        | `CAT-DOG`      |
-| 📍 Dot.notation                   | `dotNotation('$catDog')`                      | `cat.Dog`      |
-| 📂 Path/case                      | `pathCase('$catDog')`                         | `$cat/Dog`     |
-| 🛰 Space case                      | `spaceCase('$catDog')`                        | `$cat Dog`     |
-| 🏛 Capital Case                    | `capitalCase('$catDog')`                      | `$Cat Dog`     |
-| 🔡 lower case                     | `lowerCase('$catDog')`                        | `$cat dog`     |
-| 🔠 UPPER CASE                     | `upperCase('$catDog')`                        | `$CAT DOG`     |
+| Name                              | Input example                                            | Output example |
+| --------------------------------- | -------------------------------------------------------- | -------------- |
+| 🐪 camelCase                      | `camelCase('$catDog')`                                   | `catDog`       |
+| 🐫 PascalCase<br />UpperCamelCase | `pascalCase('$catDog')`<br />`upperCamelCase('$catDog')` | `CatDog`       |
+| 🥙 kebab-case                     | `kebabCase('$catDog')`                                   | `cat-dog`      |
+| 🐍 snake_case                     | `snakeCase('$catDog')`                                   | `cat_dog`      |
+| 📣 CONSTANT_CASE                  | `constantCase('$catDog')`                                | `CAT_DOG`      |
+| 🚂 Train-Case                     | `trainCase('$catDog')`                                   | `Cat-Dog`      |
+| 🕊 Ada_Case                        | `adaCase('$catDog')`                                     | `Cat_Dog`      |
+| 👔 COBOL-CASE                     | `cobolCase('$catDog')`                                   | `CAT-DOG`      |
+| 📍 Dot.notation                   | `dotNotation('$catDog')`                                 | `cat.Dog`      |
+| 📂 Path/case                      | `pathCase('$catDog')`                                    | `$cat/Dog`     |
+| 🛰 Space case                      | `spaceCase('$catDog')`                                   | `$cat Dog`     |
+| 🏛 Capital Case                    | `capitalCase('$catDog')`                                 | `$Cat Dog`     |
+| 🔡 lower case                     | `lowerCase('$catDog')`                                   | `$cat dog`     |
+| 🔠 UPPER CASE                     | `upperCase('$catDog')`                                   | `$CAT DOG`     |
 
 #### Special Characters
 
+You can see that most functions by default remove special characters, and some functions keep special characters.
+
 <table>
   <tr>
-    <th>functions that <strong>strip away special characters*</strong></th>
-    <th>functions that <strong>keep special characters*</strong></th>
+    <th>functions that <i>remove</i> special characters*</th>
+    <th>functions that <i>keep</i> special characters*</th>
   </tr>
   <tr>
     <td>
@@ -73,10 +92,12 @@ case-anything supports tree-shaking and is side-effect free!
 \*You can control wether or not to _keep or remove_ special characters like so:
 
 ```js
+// default:
 camelCase('$catDog') === 'catDog'
 // force keeping special characters:
 camelCase('$catDog', { keepSpecialCharacters: true }) === '$catDog'
 
+// default:
 pathCase('$catDog') === '$cat/Dog'
 // force removing special characters:
 pathCase('$catDog', { keepSpecialCharacters: false }) === 'cat/Dog'
@@ -91,6 +112,7 @@ These cases _**do not change the casing**_ of the words:
 - spaceCase
 
 ```js
+// default:
 dotNotation('$catDog') === 'cat.Dog'
 // force lower case:
 dotNotation('$catDog').toLowerCase() === 'cat.dog'
@@ -100,26 +122,26 @@ dotNotation('$catDog').toLowerCase() === 'cat.dog'
 
 As soon as there is a space in the target string, it will regard the input as a _sentence_ and only split each part at the spaces.
 
-| Name                              | Input example                                   | Output example |
-| --------------------------------- | ----------------------------------------------- | -------------- |
-| 🐪 camelCase                      | `camelCase("I'm O.K.!")`                        | `imOk`         |
-| 🐫 PascalCase<br />UpperCamelCase | `pascalCase("I'm O.K.!")`<br />`upperCamelCase` | `ImOk`         |
-| 🥙 kebab-case                     | `kebabCase("I'm O.K.!")`                        | `im-ok`        |
-| 🐍 snake_case                     | `snakeCase("I'm O.K.!")`                        | `im_ok`        |
-| 📣 CONSTANT_CASE                  | `constantCase("I'm O.K.!")`                     | `IM_OK`        |
-| 🚂 Train-Case                     | `trainCase("I'm O.K.!")`                        | `Im-Ok`        |
-| 🕊 Ada_Case                        | `adaCase("I'm O.K.!")`                          | `Im_Ok`        |
-| 👔 COBOL-CASE                     | `cobolCase("I'm O.K.!")`                        | `IM-OK`        |
-| 📍 Dot.notation                   | `dotNotation("I'm O.K.!")`                      | `Im.OK`        |
-| 📂 Path/case                      | `pathCase("I'm O.K.!")`                         | `I\'m/O.K.!`   |
-| 🛰 Space case                      | `spaceCase("I'm O.K.!")`                        | `I\'m O.K.!`   |
-| 🏛 Capital Case                    | `capitalCase("I'm O.K.!")`                      | `I\'m O.k.!`   |
-| 🔡 lower case                     | `lowerCase("I'm O.K.!")`                        | `i\'m o.k.!`   |
-| 🔠 UPPER CASE                     | `upperCase("I'm O.K.!")`                        | `I\'M O.K.!`   |
+| Name                              | Input example                                                | Output example |
+| --------------------------------- | ------------------------------------------------------------ | -------------- |
+| 🐪 camelCase                      | `camelCase("I'm O.K.!")`                                     | `imOk`         |
+| 🐫 PascalCase<br />UpperCamelCase | `pascalCase("I'm O.K.!")`<br />`upperCamelCase("I'm O.K.!")` | `ImOk`         |
+| 🥙 kebab-case                     | `kebabCase("I'm O.K.!")`                                     | `im-ok`        |
+| 🐍 snake_case                     | `snakeCase("I'm O.K.!")`                                     | `im_ok`        |
+| 📣 CONSTANT_CASE                  | `constantCase("I'm O.K.!")`                                  | `IM_OK`        |
+| 🚂 Train-Case                     | `trainCase("I'm O.K.!")`                                     | `Im-Ok`        |
+| 🕊 Ada_Case                        | `adaCase("I'm O.K.!")`                                       | `Im_Ok`        |
+| 👔 COBOL-CASE                     | `cobolCase("I'm O.K.!")`                                     | `IM-OK`        |
+| 📍 Dot.notation                   | `dotNotation("I'm O.K.!")`                                   | `Im.OK`        |
+| 📂 Path/case                      | `pathCase("I'm O.K.!")`                                      | `I\'m/O.K.!`   |
+| 🛰 Space case                      | `spaceCase("I'm O.K.!")`                                     | `I\'m O.K.!`   |
+| 🏛 Capital Case                    | `capitalCase("I'm O.K.!")`                                   | `I\'m O.k.!`   |
+| 🔡 lower case                     | `lowerCase("I'm O.K.!")`                                     | `i\'m o.k.!`   |
+| 🔠 UPPER CASE                     | `upperCase("I'm O.K.!")`                                     | `I\'M O.K.!`   |
 
 Also note, that multiple sequential spaces are treated as one space.
 
-### When special characters are involved
+### Convert special characters into alphabet
 
 I have extended regular alphabet with the most common _Latin-1 Supplement_ special characters.
 
@@ -146,6 +168,12 @@ upperCase('Çâfé Ågård')    === 'ÇÂFÉ ÅGÅRD'
 capitalCase('Çâfé Ågård')  === 'Çâfé Ågård'
 ```
 <!-- prettier-ignore-end -->
+
+## JSDocs
+
+I have made sure there is great documentation available on hover!
+
+![jsdocs preview](.media/jsdocs.gif?raw=true)
 
 ## Keyboard shortcuts
 

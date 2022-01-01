@@ -133,11 +133,11 @@ As soon as there is a space in the target string, it will regard the input as a 
 | 🕊 Ada_Case                        | `adaCase("I'm O.K.!")`                                       | `Im_Ok`        |
 | 👔 COBOL-CASE                     | `cobolCase("I'm O.K.!")`                                     | `IM-OK`        |
 | 📍 Dot.notation                   | `dotNotation("I'm O.K.!")`                                   | `Im.OK`        |
-| 📂 Path/case                      | `pathCase("I'm O.K.!")`                                      | `I\'m/O.K.!`   |
-| 🛰 Space case                      | `spaceCase("I'm O.K.!")`                                     | `I\'m O.K.!`   |
-| 🏛 Capital Case                    | `capitalCase("I'm O.K.!")`                                   | `I\'m O.k.!`   |
-| 🔡 lower case                     | `lowerCase("I'm O.K.!")`                                     | `i\'m o.k.!`   |
-| 🔠 UPPER CASE                     | `upperCase("I'm O.K.!")`                                     | `I\'M O.K.!`   |
+| 📂 Path/case                      | `pathCase("I'm O.K.!")`                                      | `I'm/O.K.!`    |
+| 🛰 Space case                      | `spaceCase("I'm O.K.!")`                                     | `I'm O.K.!`    |
+| 🏛 Capital Case                    | `capitalCase("I'm O.K.!")`                                   | `I'm O.k.!`    |
+| 🔡 lower case                     | `lowerCase("I'm O.K.!")`                                     | `i'm o.k.!`    |
+| 🔠 UPPER CASE                     | `upperCase("I'm O.K.!")`                                     | `I'M O.K.!`    |
 
 Also note, that multiple sequential spaces are treated as one space.
 

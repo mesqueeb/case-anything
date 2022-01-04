@@ -152,13 +152,13 @@ In the example below we see:
 
 ```js
 pascalCase('$cat-dog', { keepSpecialCharacters: false })
-// CatDog → not what we want
+// CatDog   → not what we want
 
-pascalCase('$cat-dog', { keepSpecialCharacters: true }) // $Cat-Dog
+pascalCase('$cat-dog', { keepSpecialCharacters: true })
 // $Cat-Dog → not what we want
 
 pascalCase('$cat-dog', { keep: ['$'] })
-// $CatDog → desired output
+// $CatDog  → desired output
 ```
 
 ### Convert special characters into alphabet

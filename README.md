@@ -141,6 +141,26 @@ As soon as there is a space in the target string, it will regard the input as a 
 
 Also note, that multiple sequential spaces are treated as one space.
 
+### Keep only certain special characters
+
+Instead of removing all special characters, you can opt to keep some special characters.
+
+In the example below we see:
+
+- input: `$cat-dog`
+- desired output: `$CatDog`
+
+```js
+pascalCase('$cat-dog', { keepSpecialCharacters: false })
+// CatDog → not what we want
+
+pascalCase('$cat-dog', { keepSpecialCharacters: true }) // $Cat-Dog
+// $Cat-Dog → not what we want
+
+pascalCase('$cat-dog', { keep: ['$'] })
+// $CatDog → desired output
+```
+
 ### Convert special characters into alphabet
 
 I have extended regular alphabet with the most common _Latin-1 Supplement_ special characters.

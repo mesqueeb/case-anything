@@ -19,10 +19,11 @@
       const matches = string.matchAll(splitRegex);
       let lastWordEndIndex = 0;
       for (const match of matches) {
-          result.parts.push(match[0]);
+          const word = match[0];
+          result.parts.push(word);
           const prefix = string.slice(lastWordEndIndex, match.index).trim();
           result.prefixes.push(prefix);
-          lastWordEndIndex = match.index + match[0].length;
+          lastWordEndIndex = match.index + word.length;
       }
       return result;
   }
@@ -32,37 +33,43 @@
    * - It can strip or keep special characters, this affects the logic for adding a prefix as well
    */
   function splitAndPrefix(string, options) {
-      const { keepSpecialCharacters = true, prefix = '' } = options;
+      const { keepSpecialCharacters = false, keep, prefix = '' } = options || {};
       const normalString = string.trim().normalize('NFC');
       const hasSpaces = normalString.includes(' ');
       const split = hasSpaces ? spaceSplit : magicSplit;
       const partsAndIndexes = getPartsAndIndexes(normalString, split);
-      return keepSpecialCharacters
-          ? partsAndIndexes.parts.map((part, i) => {
-              const _prefix = partsAndIndexes.prefixes[i];
-              // the first word doesn't need a prefix, so only return the original prefix
-              if (i === 0) {
-                  return _prefix + part;
+      return partsAndIndexes.parts.map((_part, i) => {
+          let foundPrefix = partsAndIndexes.prefixes[i] || '';
+          let part = _part;
+          if (keepSpecialCharacters === false) {
+              if (keep) {
+                  part = part.normalize('NFD').replace(new RegExp(`[^a-zA-ZØßø0-9${keep.join('')}]`, 'g'), '');
               }
-              // space based sentence was split on spaces, so only return original prefixes
-              if (hasSpaces) {
-                  if (!_prefix && prefix.match(/\s/)) {
-                      // in this case we have no more original _prefix, it was trimmed, but we're looking to add a space
-                      // so let's return that space
-                      return prefix + part;
-                  }
-                  return _prefix + part;
+              if (!keep) {
+                  part = part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '');
+                  foundPrefix = '';
               }
-              // return the original prefix OR fall back to a given prefix
-              return (_prefix || prefix) + part;
-          })
-          : partsAndIndexes.parts.map((part, i) => {
-              const _part = part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '');
-              if (i === 0) {
-                  return _part;
-              }
-              return prefix + _part;
-          });
+          }
+          if (keep) {
+              foundPrefix = foundPrefix.replaceAll(new RegExp(`[^${keep.join('')}]`, 'g'), '');
+          }
+          // the first word doesn't need a prefix, so only return the found prefix
+          if (i === 0) {
+              // console.log(`foundPrefix → `, foundPrefix)
+              return foundPrefix + part;
+          }
+          if (!hasSpaces) {
+              // return the found prefix OR fall back to a given prefix
+              return (foundPrefix || prefix) + part;
+          }
+          // space based sentence was split on spaces, so only return found prefixes
+          if (!foundPrefix && prefix.match(/\s/)) {
+              // in this case we have no more found prefix, it was trimmed, but we're looking to add a space
+              // so let's return that space
+              return ' ' + part;
+          }
+          return (foundPrefix || prefix) + part;
+      });
   }
   /**
    * Capitalises a single word
@@ -85,7 +92,7 @@
    * @example
    *   camelCase('$catDog', { keepSpecialCharacters: true }) === '$catDog'
    */
-  function camelCase(string, options = { keepSpecialCharacters: false }) {
+  function camelCase(string, options) {
       return splitAndPrefix(string, options).reduce((result, word, index) => {
           return index === 0 || !(word[0] || '').match(magicSplit)
               ? result + word.toLowerCase()
@@ -103,7 +110,7 @@
    * @example
    *   pascalCase('$catDog', { keepSpecialCharacters: true }) === '$CatDog'
    */
-  function pascalCase(string, options = { keepSpecialCharacters: false }) {
+  function pascalCase(string, options) {
       return splitAndPrefix(string, options).reduce((result, word) => {
           return result + capitaliseWord(word);
       }, '');
@@ -131,7 +138,7 @@
    * @example
    *   kebabCase('$catDog', { keepSpecialCharacters: true }) === '$cat-dog'
    */
-  function kebabCase(string, options = { keepSpecialCharacters: false }) {
+  function kebabCase(string, options) {
       return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '-' }))
           .join('')
           .toLowerCase();
@@ -147,7 +154,7 @@
    * @example
    *   snakeCase('$catDog', { keepSpecialCharacters: true }) === '$cat_dog'
    */
-  function snakeCase(string, options = { keepSpecialCharacters: false }) {
+  function snakeCase(string, options) {
       return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '_' }))
           .join('')
           .toLowerCase();
@@ -163,7 +170,7 @@
    * @example
    *   constantCase('$catDog', { keepSpecialCharacters: true }) === '$CAT_DOG'
    */
-  function constantCase(string, options = { keepSpecialCharacters: false }) {
+  function constantCase(string, options) {
       return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '_' }))
           .join('')
           .toUpperCase();
@@ -179,7 +186,7 @@
    * @example
    *   trainCase('$catDog', { keepSpecialCharacters: true }) === '$Cat-Dog'
    */
-  function trainCase(string, options = { keepSpecialCharacters: false }) {
+  function trainCase(string, options) {
       return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '-' }))
           .map((word) => capitaliseWord(word))
           .join('');
@@ -195,7 +202,7 @@
    * @example
    *   adaCase('$catDog', { keepSpecialCharacters: true }) === '$Cat_Dog'
    */
-  function adaCase(string, options = { keepSpecialCharacters: false }) {
+  function adaCase(string, options) {
       return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '_' }))
           .map((part) => capitaliseWord(part))
           .join('');
@@ -211,7 +218,7 @@
    * @example
    *   cobolCase('$catDog', { keepSpecialCharacters: true }) === '$CAT-DOG'
    */
-  function cobolCase(string, options = { keepSpecialCharacters: false }) {
+  function cobolCase(string, options) {
       return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '-' }))
           .join('')
           .toUpperCase();
@@ -227,7 +234,7 @@
    * @example
    *   dotNotation('$catDog', { keepSpecialCharacters: true }) === '$cat.Dog'
    */
-  function dotNotation(string, options = { keepSpecialCharacters: false }) {
+  function dotNotation(string, options) {
       return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '.' })).join('');
   }
   /**

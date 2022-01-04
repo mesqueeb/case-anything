@@ -14,6 +14,7 @@ export declare function getPartsAndIndexes(string: string, splitRegex: RegExp): 
  */
 export declare function splitAndPrefix(string: string, options?: {
     keepSpecialCharacters?: boolean;
+    keep?: string[];
     prefix?: string;
 }): string[];
 /**

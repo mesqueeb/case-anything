@@ -10,7 +10,8 @@
  *   camelCase('$catDog', { keepSpecialCharacters: true }) === '$catDog'
  */
 export declare function camelCase(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;
 /**
  * # 🐫 PascalCase
@@ -24,7 +25,8 @@ export declare function camelCase(string: string, options?: {
  *   pascalCase('$catDog', { keepSpecialCharacters: true }) === '$CatDog'
  */
 export declare function pascalCase(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;
 /**
  * # 🐫 UpperCamelCase
@@ -50,7 +52,8 @@ export declare const upperCamelCase: typeof pascalCase;
  *   kebabCase('$catDog', { keepSpecialCharacters: true }) === '$cat-dog'
  */
 export declare function kebabCase(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;
 /**
  * # 🐍 snake_case
@@ -64,7 +67,8 @@ export declare function kebabCase(string: string, options?: {
  *   snakeCase('$catDog', { keepSpecialCharacters: true }) === '$cat_dog'
  */
 export declare function snakeCase(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;
 /**
  * # 📣 CONSTANT_CASE
@@ -78,7 +82,8 @@ export declare function snakeCase(string: string, options?: {
  *   constantCase('$catDog', { keepSpecialCharacters: true }) === '$CAT_DOG'
  */
 export declare function constantCase(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;
 /**
  * # 🚂 Train-Case
@@ -92,7 +97,8 @@ export declare function constantCase(string: string, options?: {
  *   trainCase('$catDog', { keepSpecialCharacters: true }) === '$Cat-Dog'
  */
 export declare function trainCase(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;
 /**
  * # 🕊 Ada_Case
@@ -106,7 +112,8 @@ export declare function trainCase(string: string, options?: {
  *   adaCase('$catDog', { keepSpecialCharacters: true }) === '$Cat_Dog'
  */
 export declare function adaCase(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;
 /**
  * # 👔 COBOL-CASE
@@ -120,7 +127,8 @@ export declare function adaCase(string: string, options?: {
  *   cobolCase('$catDog', { keepSpecialCharacters: true }) === '$CAT-DOG'
  */
 export declare function cobolCase(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;
 /**
  * # 📍 Dot.notation
@@ -134,7 +142,8 @@ export declare function cobolCase(string: string, options?: {
  *   dotNotation('$catDog', { keepSpecialCharacters: true }) === '$cat.Dog'
  */
 export declare function dotNotation(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;
 /**
  * # 📂 Path/case
@@ -148,7 +157,8 @@ export declare function dotNotation(string: string, options?: {
  *   pathCase('$catDog', { keepSpecialCharacters: false }) === 'cat/Dog'
  */
 export declare function pathCase(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;
 /**
  * # 🛰 Space case
@@ -162,7 +172,8 @@ export declare function pathCase(string: string, options?: {
  *   spaceCase('$catDog', { keepSpecialCharacters: false }) === 'cat Dog'
  */
 export declare function spaceCase(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;
 /**
  * # 🏛 Capital Case
@@ -178,7 +189,8 @@ export declare function spaceCase(string: string, options?: {
  * ⟪ if you do not want to add spaces, use `pascalCase()` ⟫
  */
 export declare function capitalCase(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;
 /**
  * # 🔡 lower case
@@ -194,7 +206,8 @@ export declare function capitalCase(string: string, options?: {
  * ⟪ if you do not want to add spaces, use the native JS `toLowerCase()` ⟫
  */
 export declare function lowerCase(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;
 /**
  * # 🔠 UPPER CASE
@@ -210,5 +223,6 @@ export declare function lowerCase(string: string, options?: {
  * ⟪ if you do not want to add spaces, use the native JS `toUpperCase()` ⟫
  */
 export declare function upperCase(string: string, options?: {
-    keepSpecialCharacters: boolean;
+    keepSpecialCharacters?: boolean;
+    keep?: string[];
 }): string;

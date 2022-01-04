@@ -19,12 +19,16 @@ export function getPartsAndIndexes(
 } {
   const result = { parts: [], prefixes: [] }
   const matches = string.matchAll(splitRegex)
+
   let lastWordEndIndex = 0
   for (const match of matches) {
-    result.parts.push(match[0])
+    const word = match[0]
+    result.parts.push(word)
+
     const prefix = string.slice(lastWordEndIndex, match.index).trim()
     result.prefixes.push(prefix)
-    lastWordEndIndex = match.index + match[0].length
+
+    lastWordEndIndex = match.index + word.length
   }
   return result
 }
@@ -36,39 +40,51 @@ export function getPartsAndIndexes(
  */
 export function splitAndPrefix(
   string: string,
-  options?: { keepSpecialCharacters?: boolean; prefix?: string }
+  options?: { keepSpecialCharacters?: boolean; keep?: string[]; prefix?: string }
 ): string[] {
-  const { keepSpecialCharacters = true, prefix = '' } = options
+  const { keepSpecialCharacters = false, keep, prefix = '' } = options || {}
   const normalString = string.trim().normalize('NFC')
   const hasSpaces = normalString.includes(' ')
   const split = hasSpaces ? spaceSplit : magicSplit
   const partsAndIndexes = getPartsAndIndexes(normalString, split)
-  return keepSpecialCharacters
-    ? partsAndIndexes.parts.map((part, i) => {
-        const _prefix = partsAndIndexes.prefixes[i]
-        // the first word doesn't need a prefix, so only return the original prefix
-        if (i === 0) {
-          return _prefix + part
-        }
-        // space based sentence was split on spaces, so only return original prefixes
-        if (hasSpaces) {
-          if (!_prefix && prefix.match(/\s/)) {
-            // in this case we have no more original _prefix, it was trimmed, but we're looking to add a space
-            // so let's return that space
-            return prefix + part
-          }
-          return _prefix + part
-        }
-        // return the original prefix OR fall back to a given prefix
-        return (_prefix || prefix) + part
-      })
-    : partsAndIndexes.parts.map((part, i) => {
-        const _part = part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '')
-        if (i === 0) {
-          return _part
-        }
-        return prefix + _part
-      })
+
+  return partsAndIndexes.parts.map((_part, i) => {
+    let foundPrefix = partsAndIndexes.prefixes[i] || ''
+    let part = _part
+
+    if (keepSpecialCharacters === false) {
+      if (keep) {
+        part = part.normalize('NFD').replace(new RegExp(`[^a-zA-ZØßø0-9${keep.join('')}]`, 'g'), '')
+      }
+      if (!keep) {
+        part = part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '')
+        foundPrefix = ''
+      }
+    }
+
+    if (keep) {
+      foundPrefix = foundPrefix.replaceAll(new RegExp(`[^${keep.join('')}]`, 'g'), '')
+    }
+
+    // the first word doesn't need a prefix, so only return the found prefix
+    if (i === 0) {
+      // console.log(`foundPrefix → `, foundPrefix)
+      return foundPrefix + part
+    }
+
+    if (!hasSpaces) {
+      // return the found prefix OR fall back to a given prefix
+      return (foundPrefix || prefix) + part
+    }
+
+    // space based sentence was split on spaces, so only return found prefixes
+    if (!foundPrefix && prefix.match(/\s/)) {
+      // in this case we have no more found prefix, it was trimmed, but we're looking to add a space
+      // so let's return that space
+      return ' ' + part
+    }
+    return (foundPrefix || prefix) + part
+  })
 }
 
 /**

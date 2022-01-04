@@ -11,10 +11,7 @@ import { splitAndPrefix, capitaliseWord, magicSplit } from './utils'
  * @example
  *   camelCase('$catDog', { keepSpecialCharacters: true }) === '$catDog'
  */
-export function camelCase(
-  string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
-): string {
+export function camelCase(string: string, options?: { keepSpecialCharacters?: boolean; keep?: string[] }): string {
   return splitAndPrefix(string, options).reduce((result, word, index) => {
     return index === 0 || !(word[0] || '').match(magicSplit)
       ? result + word.toLowerCase()
@@ -33,10 +30,7 @@ export function camelCase(
  * @example
  *   pascalCase('$catDog', { keepSpecialCharacters: true }) === '$CatDog'
  */
-export function pascalCase(
-  string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
-): string {
+export function pascalCase(string: string, options?: { keepSpecialCharacters?: boolean; keep?: string[] }): string {
   return splitAndPrefix(string, options).reduce((result, word) => {
     return result + capitaliseWord(word)
   }, '')
@@ -66,10 +60,7 @@ export const upperCamelCase = pascalCase
  * @example
  *   kebabCase('$catDog', { keepSpecialCharacters: true }) === '$cat-dog'
  */
-export function kebabCase(
-  string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
-): string {
+export function kebabCase(string: string, options?: { keepSpecialCharacters?: boolean; keep?: string[] }): string {
   return splitAndPrefix(string, { ...options, prefix: '-' })
     .join('')
     .toLowerCase()
@@ -86,10 +77,7 @@ export function kebabCase(
  * @example
  *   snakeCase('$catDog', { keepSpecialCharacters: true }) === '$cat_dog'
  */
-export function snakeCase(
-  string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
-): string {
+export function snakeCase(string: string, options?: { keepSpecialCharacters?: boolean; keep?: string[] }): string {
   return splitAndPrefix(string, { ...options, prefix: '_' })
     .join('')
     .toLowerCase()
@@ -106,10 +94,7 @@ export function snakeCase(
  * @example
  *   constantCase('$catDog', { keepSpecialCharacters: true }) === '$CAT_DOG'
  */
-export function constantCase(
-  string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
-): string {
+export function constantCase(string: string, options?: { keepSpecialCharacters?: boolean; keep?: string[] }): string {
   return splitAndPrefix(string, { ...options, prefix: '_' })
     .join('')
     .toUpperCase()
@@ -126,10 +111,7 @@ export function constantCase(
  * @example
  *   trainCase('$catDog', { keepSpecialCharacters: true }) === '$Cat-Dog'
  */
-export function trainCase(
-  string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
-) {
+export function trainCase(string: string, options?: { keepSpecialCharacters?: boolean; keep?: string[] }) {
   return splitAndPrefix(string, { ...options, prefix: '-' })
     .map((word) => capitaliseWord(word))
     .join('')
@@ -146,10 +128,7 @@ export function trainCase(
  * @example
  *   adaCase('$catDog', { keepSpecialCharacters: true }) === '$Cat_Dog'
  */
-export function adaCase(
-  string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
-) {
+export function adaCase(string: string, options?: { keepSpecialCharacters?: boolean; keep?: string[] }) {
   return splitAndPrefix(string, { ...options, prefix: '_' })
     .map((part) => capitaliseWord(part))
     .join('')
@@ -166,10 +145,7 @@ export function adaCase(
  * @example
  *   cobolCase('$catDog', { keepSpecialCharacters: true }) === '$CAT-DOG'
  */
-export function cobolCase(
-  string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
-): string {
+export function cobolCase(string: string, options?: { keepSpecialCharacters?: boolean; keep?: string[] }): string {
   return splitAndPrefix(string, { ...options, prefix: '-' })
     .join('')
     .toUpperCase()
@@ -186,10 +162,7 @@ export function cobolCase(
  * @example
  *   dotNotation('$catDog', { keepSpecialCharacters: true }) === '$cat.Dog'
  */
-export function dotNotation(
-  string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: false }
-): string {
+export function dotNotation(string: string, options?: { keepSpecialCharacters?: boolean; keep?: string[] }): string {
   return splitAndPrefix(string, { ...options, prefix: '.' }).join('')
 }
 
@@ -206,7 +179,7 @@ export function dotNotation(
  */
 export function pathCase(
   string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: true }
+  options: { keepSpecialCharacters?: boolean; keep?: string[] } = { keepSpecialCharacters: true }
 ): string {
   return splitAndPrefix(string, options).reduce((result, word, i) => {
     const prefix = i === 0 || word[0] === '/' ? '' : '/'
@@ -227,7 +200,7 @@ export function pathCase(
  */
 export function spaceCase(
   string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: true }
+  options: { keepSpecialCharacters?: boolean; keep?: string[] } = { keepSpecialCharacters: true }
 ): string {
   return splitAndPrefix(string, { ...options, prefix: ' ' }).join('')
 }
@@ -247,7 +220,7 @@ export function spaceCase(
  */
 export function capitalCase(
   string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: true }
+  options: { keepSpecialCharacters?: boolean; keep?: string[] } = { keepSpecialCharacters: true }
 ): string {
   return splitAndPrefix(string, { ...options, prefix: ' ' }).reduce((result, word) => {
     return result + capitaliseWord(word)
@@ -269,7 +242,7 @@ export function capitalCase(
  */
 export function lowerCase(
   string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: true }
+  options: { keepSpecialCharacters?: boolean; keep?: string[] } = { keepSpecialCharacters: true }
 ): string {
   return splitAndPrefix(string, { ...options, prefix: ' ' })
     .join('')
@@ -291,7 +264,7 @@ export function lowerCase(
  */
 export function upperCase(
   string: string,
-  options: { keepSpecialCharacters: boolean } = { keepSpecialCharacters: true }
+  options: { keepSpecialCharacters?: boolean; keep?: string[] } = { keepSpecialCharacters: true }
 ): string {
   return splitAndPrefix(string, { ...options, prefix: ' ' })
     .join('')

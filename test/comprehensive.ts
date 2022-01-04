@@ -373,16 +373,16 @@ test(`snakeCase    keep   special characters`, (t) => { t.is(    snakeCase(`$mes
 test(`constantCase remove special characters`, (t) => { t.is( constantCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: false }), `MESQUEEB_BLUES_JAZZ_GITHUB_COM`) }) // prettier-ignore
 test(`constantCase keep   special characters`, (t) => { t.is( constantCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: true }),  `$MESQUEEB.BLUES_JAZZ@GITHUB.COM`) }) // prettier-ignore
 
-test(`spaceCase   keep   special characters`, (t) => { t.is(   spaceCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: true }),  `$mesqueeb.Blues Jazz@github.com`) }) // prettier-ignore
 test(`spaceCase   remove special characters`, (t) => { t.is(   spaceCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: false }), `mesqueeb Blues Jazz github com`) }) // prettier-ignore
-test(`pathCase    keep   special characters`, (t) => { t.is(    pathCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: true }),  `$mesqueeb/.Blues/Jazz/@github/.com`) }) // prettier-ignore
+test(`spaceCase   keep   special characters`, (t) => { t.is(   spaceCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: true }),  `$mesqueeb.Blues Jazz@github.com`) }) // prettier-ignore
 test(`pathCase    remove special characters`, (t) => { t.is(    pathCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: false }), `mesqueeb/Blues/Jazz/github/com`) }) // prettier-ignore
-test(`lowerCase   keep   special characters`, (t) => { t.is(   lowerCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: true }),  `$mesqueeb.blues jazz@github.com`) }) // prettier-ignore
+test(`pathCase    keep   special characters`, (t) => { t.is(    pathCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: true }),  `$mesqueeb/.Blues/Jazz/@github/.com`) }) // prettier-ignore
 test(`lowerCase   remove special characters`, (t) => { t.is(   lowerCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: false }), `mesqueeb blues jazz github com`) }) // prettier-ignore
-test(`upperCase   keep   special characters`, (t) => { t.is(   upperCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: true }),  `$MESQUEEB.BLUES JAZZ@GITHUB.COM`) }) // prettier-ignore
+test(`lowerCase   keep   special characters`, (t) => { t.is(   lowerCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: true }),  `$mesqueeb.blues jazz@github.com`) }) // prettier-ignore
 test(`upperCase   remove special characters`, (t) => { t.is(   upperCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: false }), `MESQUEEB BLUES JAZZ GITHUB COM`) }) // prettier-ignore
-test(`capitalCase keep   special characters`, (t) => { t.is( capitalCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: true }),  `$Mesqueeb.Blues Jazz@Github.Com`) }) // prettier-ignore
+test(`upperCase   keep   special characters`, (t) => { t.is(   upperCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: true }),  `$MESQUEEB.BLUES JAZZ@GITHUB.COM`) }) // prettier-ignore
 test(`capitalCase remove special characters`, (t) => { t.is( capitalCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: false }), `Mesqueeb Blues Jazz Github Com`) }) // prettier-ignore
+test(`capitalCase keep   special characters`, (t) => { t.is( capitalCase(`$mesqueeb.BluesJazz@github.com`, { keepSpecialCharacters: true }),  `$Mesqueeb.Blues Jazz@Github.Com`) }) // prettier-ignore
 
 // Spaces involved
 test(`camelCase    remove special characters (spaces)`, (t) => { t.is(    camelCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: false }), `mesqueebBluesjazzGithubPower`) }) // prettier-ignore
@@ -390,22 +390,45 @@ test(`camelCase    keep   special characters (spaces)`, (t) => { t.is(    camelC
 test(`pascalCase   remove special characters (spaces)`, (t) => { t.is(   pascalCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: false }), `MesqueebBluesjazzGithubPower`) }) // prettier-ignore
 test(`pascalCase   keep   special characters (spaces)`, (t) => { t.is(   pascalCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$Mesqueeb.Bluesjazz@Github_Power`) }) // prettier-ignore
 test(`kebabCase    remove special characters (spaces)`, (t) => { t.is(    kebabCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: false }), `mesqueeb-bluesjazz-github-power`) }) // prettier-ignore
-test(`kebabCase    keep   special characters (spaces)`, (t) => { t.is(    kebabCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$mesqueeb.bluesjazz@github_power`) }) // prettier-ignore
+test(`kebabCase    keep   special characters (spaces)`, (t) => { t.is(    kebabCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$mesqueeb-.bluesjazz-@github-_power`) }) // prettier-ignore
 test(`snakeCase    remove special characters (spaces)`, (t) => { t.is(    snakeCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: false }), `mesqueeb_bluesjazz_github_power`) }) // prettier-ignore
-test(`snakeCase    keep   special characters (spaces)`, (t) => { t.is(    snakeCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$mesqueeb.bluesjazz@github_power`) }) // prettier-ignore
+test(`snakeCase    keep   special characters (spaces)`, (t) => { t.is(    snakeCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$mesqueeb_.bluesjazz_@github__power`) }) // prettier-ignore
 test(`constantCase remove special characters (spaces)`, (t) => { t.is( constantCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: false }), `MESQUEEB_BLUESJAZZ_GITHUB_POWER`) }) // prettier-ignore
-test(`constantCase keep   special characters (spaces)`, (t) => { t.is( constantCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$MESQUEEB.BLUESJAZZ@GITHUB_POWER`) }) // prettier-ignore
+test(`constantCase keep   special characters (spaces)`, (t) => { t.is( constantCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$MESQUEEB_.BLUESJAZZ_@GITHUB__POWER`) }) // prettier-ignore
 
-test(`spaceCase   keep   special characters (spaces)`, (t) => { t.is(   spaceCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$mesqueeb .BluesJazz @github _POWER`) }) // prettier-ignore
 test(`spaceCase   remove special characters (spaces)`, (t) => { t.is(   spaceCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: false }), `mesqueeb BluesJazz github POWER`) }) // prettier-ignore
-test(`pathCase    keep   special characters (spaces)`, (t) => { t.is(    pathCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$mesqueeb/.BluesJazz/@github/_POWER`) }) // prettier-ignore
+test(`spaceCase   keep   special characters (spaces)`, (t) => { t.is(   spaceCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$mesqueeb .BluesJazz @github _POWER`) }) // prettier-ignore
 test(`pathCase    remove special characters (spaces)`, (t) => { t.is(    pathCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: false }), `mesqueeb/BluesJazz/github/POWER`) }) // prettier-ignore
-test(`lowerCase   keep   special characters (spaces)`, (t) => { t.is(   lowerCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$mesqueeb .bluesjazz @github _power`) }) // prettier-ignore
+test(`pathCase    keep   special characters (spaces)`, (t) => { t.is(    pathCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$mesqueeb/.BluesJazz/@github/_POWER`) }) // prettier-ignore
 test(`lowerCase   remove special characters (spaces)`, (t) => { t.is(   lowerCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: false }), `mesqueeb bluesjazz github power`) }) // prettier-ignore
-test(`upperCase   keep   special characters (spaces)`, (t) => { t.is(   upperCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$MESQUEEB .BLUESJAZZ @GITHUB _POWER`) }) // prettier-ignore
+test(`lowerCase   keep   special characters (spaces)`, (t) => { t.is(   lowerCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$mesqueeb .bluesjazz @github _power`) }) // prettier-ignore
 test(`upperCase   remove special characters (spaces)`, (t) => { t.is(   upperCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: false }), `MESQUEEB BLUESJAZZ GITHUB POWER`) }) // prettier-ignore
-test(`capitalCase keep   special characters (spaces)`, (t) => { t.is( capitalCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$Mesqueeb .Bluesjazz @Github _Power`) }) // prettier-ignore
+test(`upperCase   keep   special characters (spaces)`, (t) => { t.is(   upperCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$MESQUEEB .BLUESJAZZ @GITHUB _POWER`) }) // prettier-ignore
 test(`capitalCase remove special characters (spaces)`, (t) => { t.is( capitalCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: false }), `Mesqueeb Bluesjazz Github Power`) }) // prettier-ignore
+test(`capitalCase keep   special characters (spaces)`, (t) => { t.is( capitalCase(`$mesqueeb .BluesJazz @github _POWER`, { keepSpecialCharacters: true }),  `$Mesqueeb .Bluesjazz @Github _Power`) }) // prettier-ignore
+
+// Spaces & special characters in different spots
+test(`camelCase    remove special various characters (spaces)`, (t) => { t.is(    camelCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: false }), `mesqueebBluesjazzGithubPower`) }) // prettier-ignore
+test(`camelCase    keep   special various characters (spaces)`, (t) => { t.is(    camelCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: true }),  `$mesqueebBlues.jazzGit@hubPower`) }) // prettier-ignore
+test(`pascalCase   remove special various characters (spaces)`, (t) => { t.is(   pascalCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: false }), `MesqueebBluesjazzGithubPower`) }) // prettier-ignore
+test(`pascalCase   keep   special various characters (spaces)`, (t) => { t.is(   pascalCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: true }),  `$MesqueebBlues.jazzGit@hubPower`) }) // prettier-ignore
+test(`kebabCase    remove special various characters (spaces)`, (t) => { t.is(    kebabCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: false }), `mesqueeb-bluesjazz-github-power`) }) // prettier-ignore
+test(`kebabCase    keep   special various characters (spaces)`, (t) => { t.is(    kebabCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: true }),  `$mesqueeb-blues.jazz-git@hub-power`) }) // prettier-ignore
+test(`snakeCase    remove special various characters (spaces)`, (t) => { t.is(    snakeCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: false }), `mesqueeb_bluesjazz_github_power`) }) // prettier-ignore
+test(`snakeCase    keep   special various characters (spaces)`, (t) => { t.is(    snakeCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: true }),  `$mesqueeb_blues.jazz_git@hub_power`) }) // prettier-ignore
+test(`constantCase remove special various characters (spaces)`, (t) => { t.is( constantCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: false }), `MESQUEEB_BLUESJAZZ_GITHUB_POWER`) }) // prettier-ignore
+test(`constantCase keep   special various characters (spaces)`, (t) => { t.is( constantCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: true }),  `$MESQUEEB_BLUES.JAZZ_GIT@HUB_POWER`) }) // prettier-ignore
+
+test(`spaceCase   remove special various characters (spaces)`, (t) => { t.is(   spaceCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: false }), `mesqueeb BluesJazz github POWER`) }) // prettier-ignore
+test(`spaceCase   keep   special various characters (spaces)`, (t) => { t.is(   spaceCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: true }),  `$mesqueeb Blues.Jazz git@hub POWER`) }) // prettier-ignore
+test(`pathCase    remove special various characters (spaces)`, (t) => { t.is(    pathCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: false }), `mesqueeb/BluesJazz/github/POWER`) }) // prettier-ignore
+test(`pathCase    keep   special various characters (spaces)`, (t) => { t.is(    pathCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: true }),  `$mesqueeb/Blues.Jazz/git@hub/POWER`) }) // prettier-ignore
+test(`lowerCase   remove special various characters (spaces)`, (t) => { t.is(   lowerCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: false }), `mesqueeb bluesjazz github power`) }) // prettier-ignore
+test(`lowerCase   keep   special various characters (spaces)`, (t) => { t.is(   lowerCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: true }),  `$mesqueeb blues.jazz git@hub power`) }) // prettier-ignore
+test(`upperCase   remove special various characters (spaces)`, (t) => { t.is(   upperCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: false }), `MESQUEEB BLUESJAZZ GITHUB POWER`) }) // prettier-ignore
+test(`upperCase   keep   special various characters (spaces)`, (t) => { t.is(   upperCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: true }),  `$MESQUEEB BLUES.JAZZ GIT@HUB POWER`) }) // prettier-ignore
+test(`capitalCase remove special various characters (spaces)`, (t) => { t.is( capitalCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: false }), `Mesqueeb Bluesjazz Github Power`) }) // prettier-ignore
+test(`capitalCase keep   special various characters (spaces)`, (t) => { t.is( capitalCase(`$mesqueeb Blues.Jazz git@hub POWER`, { keepSpecialCharacters: true }),  `$Mesqueeb Blues.jazz Git@hub Power`) }) // prettier-ignore
 
 // DON'T strip special characters -- query without spaces
 test(`camelCase(query) - dont strip`, (t) =>

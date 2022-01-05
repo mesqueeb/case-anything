@@ -51,7 +51,7 @@
               }
           }
           if (keep) {
-              foundPrefix = foundPrefix.replaceAll(new RegExp(`[^${keep.join('')}]`, 'g'), '');
+              foundPrefix = foundPrefix.replace(new RegExp(`[^${keep.join('')}]`, 'g'), '');
           }
           // the first word doesn't need a prefix, so only return the found prefix
           if (i === 0) {

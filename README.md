@@ -10,10 +10,7 @@ npm i case-anything
 14 case changing functions: camelCase, kebab-case, PascalCase **and more**...<br />
 A simple integration with nano package size. (SMALL footprint!)
 
-> Case anything is also used by
->
-> - famous Mac app [Popclip](https://pilotmoon.com/popclip)
-> - [Openapi Format](https://github.com/thim81/openapi-format#readme)
+> Case anything is also used by famous Mac app [Popclip](https://pilotmoon.com/popclip); Library [Openapi Format](https://github.com/thim81/openapi-format#readme); ...
 
 ## Motivation
 

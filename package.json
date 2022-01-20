@@ -1,6 +1,7 @@
 {
   "name": "case-anything",
   "version": "2.1.2",
+  "type": "module",
   "sideEffects": false,
   "description": "camelCase, kebab-case, PascalCase... a simple integration with nano package size. (SMALL footprint!)",
   "module": "./dist/index.es.js",

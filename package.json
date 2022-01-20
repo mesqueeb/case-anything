@@ -23,26 +23,23 @@
   },
   "scripts": {
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "test": "ava",
-    "test--only": "ava --match='*only:*'",
+    "test": "vitest run --reporter=verbose",
     "rollup": "rollup -c build.js",
     "build": "rm -rf ./dist && npm run lint && npm run rollup && npm run test",
     "release": "npm run build && np"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.9.0",
-    "@typescript-eslint/parser": "^5.9.0",
-    "ava": "^4.0.0",
-    "eslint": "^8.6.0",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
+    "eslint": "^8.7.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-tree-shaking": "^1.9.2",
+    "eslint-plugin-tree-shaking": "^1.10.0",
     "np": "^7.6.0",
     "prettier": "^2.5.1",
-    "rollup": "^2.63.0",
+    "rollup": "^2.64.0",
     "rollup-plugin-typescript2": "^0.31.1",
-    "ts-node": "^10.4.0",
-    "tsconfig-paths": "^3.12.0",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "vitest": "^0.1.24"
   },
   "repository": {
     "type": "git",
@@ -77,15 +74,6 @@
     "url": "https://github.com/mesqueeb/case-anything/issues"
   },
   "homepage": "https://github.com/mesqueeb/case-anything#readme",
-  "ava": {
-    "extensions": [
-      "ts"
-    ],
-    "require": [
-      "tsconfig-paths/register",
-      "ts-node/register"
-    ]
-  },
   "np": {
     "yarn": false,
     "branch": "production"

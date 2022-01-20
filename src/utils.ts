@@ -17,11 +17,13 @@ export function getPartsAndIndexes(
   parts: string[]
   prefixes: string[]
 } {
-  const result = { parts: [], prefixes: [] }
+  const result = { parts: [] as string[], prefixes: [] as string[] }
   const matches = string.matchAll(splitRegex)
 
   let lastWordEndIndex = 0
   for (const match of matches) {
+    if (typeof match.index !== 'number') continue
+
     const word = match[0]
     result.parts.push(word)
 

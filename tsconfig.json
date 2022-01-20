@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "target": "ES6",
     "lib": ["ESNext"],
     "baseUrl": ".",

@@ -10,20 +10,32 @@ npm i case-anything
 14 case changing functions: camelCase, kebab-case, PascalCase **and more**...<br />
 A simple integration with nano package size. (SMALL footprint!)
 
-> Used by famous Mac app [Popclip](https://pilotmoon.com/popclip).
-
 ## Motivation
 
 I created this package because most other packages that do simple case changing are so big...
 
-Some features I focused on:
-
-- small footprint (it's [12+ times smaller](#package-size) than the next popular case changing package!!)
-- tree-shakable — only import what you need
-- awesome JSDocs popup documentation on hover
-- fully typed with TypeScript
-- complete coverage with unit testing
-- 0 dependencies
+<table>
+  <tr>
+    <td>
+      <p>Some features I focused on:</p>
+      <li>small footprint (it's <a href="#package-size">12+ times smaller</a> than the next popular case changing package!!)</li>
+      <li>tree-shakable — only import what you need</li>
+      <li>awesome JSDocs popup documentation on hover</li>
+      <li>fully typed with TypeScript</li>
+      <li>complete coverage with unit testing</li>
+      <li>0 dependencies</li>
+    </td>
+    <td>
+      <p>Case anything is used in...</p>
+      <li>Famous Mac app <a href="https://pilotmoon.com/popclip">Popclip 💊</a></li>
+      <li>State Management Library <a href="https://github.com/cycraft/magnetar">Magnetar 🌟</a></li>
+      <li>Vue Form Generator <a href="https://github.com/cycraft/blitzar">Blitzar ⚡️</a></li>
+      <li><a href="https://github.com/apideck-libraries/portman">Lottie-player ∫</a></li>
+      <li>OpenAPI CLI <a href="https://github.com/apideck-libraries/portman">Portman 👨🏽‍🚀</a></li>
+      <li>and <a href="https://github.com/mesqueeb/case-anything/network/dependents">100s more</a>...</li>
+    </td>
+  </tr>
+</table>
 
 ## Usage
 

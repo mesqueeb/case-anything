@@ -50,7 +50,7 @@ export default [
   defaults({
     input: 'src/index.ts',
     output: [
-      { file: 'dist/index.umd.js', format: 'umd' },
+      { file: 'dist/index.cjs', format: 'cjs' },
       { file: 'dist/index.es.js', format: 'esm' },
     ],
   }),

@@ -21,6 +21,11 @@ function getPartsAndIndexes(string, splitRegex) {
         result.prefixes.push(prefix);
         lastWordEndIndex = match.index + word.length;
     }
+    const tail = string.slice(lastWordEndIndex).trim();
+    if (tail) {
+        result.parts.push('');
+        result.prefixes.push(tail);
+    }
     return result;
 }
 /**
@@ -34,7 +39,8 @@ function splitAndPrefix(string, options) {
     const hasSpaces = normalString.includes(' ');
     const split = hasSpaces ? spaceSplit : magicSplit;
     const partsAndIndexes = getPartsAndIndexes(normalString, split);
-    return partsAndIndexes.parts.map((_part, i) => {
+    return partsAndIndexes.parts
+        .map((_part, i) => {
         let foundPrefix = partsAndIndexes.prefixes[i] || '';
         let part = _part;
         if (keepSpecialCharacters === false) {
@@ -54,6 +60,8 @@ function splitAndPrefix(string, options) {
             // console.log(`foundPrefix → `, foundPrefix)
             return foundPrefix + part;
         }
+        if (!foundPrefix && !part)
+            return '';
         if (!hasSpaces) {
             // return the found prefix OR fall back to a given prefix
             return (foundPrefix || prefix) + part;
@@ -65,7 +73,8 @@ function splitAndPrefix(string, options) {
             return ' ' + part;
         }
         return (foundPrefix || prefix) + part;
-    });
+    })
+        .filter(Boolean);
 }
 /**
  * Capitalises a single word

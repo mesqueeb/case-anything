@@ -32,6 +32,12 @@ export function getPartsAndIndexes(
 
     lastWordEndIndex = match.index + word.length
   }
+  const tail = string.slice(lastWordEndIndex).trim()
+  if (tail) {
+    result.parts.push('')
+    result.prefixes.push(tail)
+  }
+
   return result
 }
 
@@ -50,43 +56,47 @@ export function splitAndPrefix(
   const split = hasSpaces ? spaceSplit : magicSplit
   const partsAndIndexes = getPartsAndIndexes(normalString, split)
 
-  return partsAndIndexes.parts.map((_part, i) => {
-    let foundPrefix = partsAndIndexes.prefixes[i] || ''
-    let part = _part
+  return partsAndIndexes.parts
+    .map((_part, i) => {
+      let foundPrefix = partsAndIndexes.prefixes[i] || ''
+      let part = _part
 
-    if (keepSpecialCharacters === false) {
+      if (keepSpecialCharacters === false) {
+        if (keep) {
+          part = part.normalize('NFD').replace(new RegExp(`[^a-zA-ZØßø0-9${keep.join('')}]`, 'g'), '')
+        }
+        if (!keep) {
+          part = part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '')
+          foundPrefix = ''
+        }
+      }
+
       if (keep) {
-        part = part.normalize('NFD').replace(new RegExp(`[^a-zA-ZØßø0-9${keep.join('')}]`, 'g'), '')
+        foundPrefix = foundPrefix.replace(new RegExp(`[^${keep.join('')}]`, 'g'), '')
       }
-      if (!keep) {
-        part = part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '')
-        foundPrefix = ''
+
+      // the first word doesn't need a prefix, so only return the found prefix
+      if (i === 0) {
+        // console.log(`foundPrefix → `, foundPrefix)
+        return foundPrefix + part
       }
-    }
 
-    if (keep) {
-      foundPrefix = foundPrefix.replace(new RegExp(`[^${keep.join('')}]`, 'g'), '')
-    }
+      if (!foundPrefix && !part) return ''
 
-    // the first word doesn't need a prefix, so only return the found prefix
-    if (i === 0) {
-      // console.log(`foundPrefix → `, foundPrefix)
-      return foundPrefix + part
-    }
+      if (!hasSpaces) {
+        // return the found prefix OR fall back to a given prefix
+        return (foundPrefix || prefix) + part
+      }
 
-    if (!hasSpaces) {
-      // return the found prefix OR fall back to a given prefix
+      // space based sentence was split on spaces, so only return found prefixes
+      if (!foundPrefix && prefix.match(/\s/)) {
+        // in this case we have no more found prefix, it was trimmed, but we're looking to add a space
+        // so let's return that space
+        return ' ' + part
+      }
       return (foundPrefix || prefix) + part
-    }
-
-    // space based sentence was split on spaces, so only return found prefixes
-    if (!foundPrefix && prefix.match(/\s/)) {
-      // in this case we have no more found prefix, it was trimmed, but we're looking to add a space
-      // so let's return that space
-      return ' ' + part
-    }
-    return (foundPrefix || prefix) + part
-  })
+    })
+    .filter(Boolean)
 }
 
 /**

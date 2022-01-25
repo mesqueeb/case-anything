@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "module": "ES2020",
-    "moduleResolution": "node",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "target": "ES6",
-    "lib": ["ESNext"],
     "baseUrl": ".",
+    "module": "esnext",
+    "target": "es2019",
+    "lib": ["esnext", "DOM"],
+    "strict": true,
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "esModuleInterop": true,
     "declaration": true,
     "declarationDir": "./dist/types/"
   },

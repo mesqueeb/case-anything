@@ -148,7 +148,7 @@ const upperCamelCase = pascalCase;
  *   kebabCase('$catDog', { keepSpecialCharacters: true }) === '$cat-dog'
  */
 function kebabCase(string, options) {
-    return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '-' }))
+    return splitAndPrefix(string, { ...options, prefix: '-' })
         .join('')
         .toLowerCase();
 }
@@ -164,7 +164,7 @@ function kebabCase(string, options) {
  *   snakeCase('$catDog', { keepSpecialCharacters: true }) === '$cat_dog'
  */
 function snakeCase(string, options) {
-    return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '_' }))
+    return splitAndPrefix(string, { ...options, prefix: '_' })
         .join('')
         .toLowerCase();
 }
@@ -180,7 +180,7 @@ function snakeCase(string, options) {
  *   constantCase('$catDog', { keepSpecialCharacters: true }) === '$CAT_DOG'
  */
 function constantCase(string, options) {
-    return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '_' }))
+    return splitAndPrefix(string, { ...options, prefix: '_' })
         .join('')
         .toUpperCase();
 }
@@ -196,7 +196,7 @@ function constantCase(string, options) {
  *   trainCase('$catDog', { keepSpecialCharacters: true }) === '$Cat-Dog'
  */
 function trainCase(string, options) {
-    return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '-' }))
+    return splitAndPrefix(string, { ...options, prefix: '-' })
         .map((word) => capitaliseWord(word))
         .join('');
 }
@@ -212,7 +212,7 @@ function trainCase(string, options) {
  *   adaCase('$catDog', { keepSpecialCharacters: true }) === '$Cat_Dog'
  */
 function adaCase(string, options) {
-    return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '_' }))
+    return splitAndPrefix(string, { ...options, prefix: '_' })
         .map((part) => capitaliseWord(part))
         .join('');
 }
@@ -228,7 +228,7 @@ function adaCase(string, options) {
  *   cobolCase('$catDog', { keepSpecialCharacters: true }) === '$CAT-DOG'
  */
 function cobolCase(string, options) {
-    return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '-' }))
+    return splitAndPrefix(string, { ...options, prefix: '-' })
         .join('')
         .toUpperCase();
 }
@@ -244,7 +244,7 @@ function cobolCase(string, options) {
  *   dotNotation('$catDog', { keepSpecialCharacters: true }) === '$cat.Dog'
  */
 function dotNotation(string, options) {
-    return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: '.' })).join('');
+    return splitAndPrefix(string, { ...options, prefix: '.' }).join('');
 }
 /**
  * # 📂 Path/case
@@ -275,7 +275,7 @@ function pathCase(string, options = { keepSpecialCharacters: true }) {
  *   spaceCase('$catDog', { keepSpecialCharacters: false }) === 'cat Dog'
  */
 function spaceCase(string, options = { keepSpecialCharacters: true }) {
-    return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: ' ' })).join('');
+    return splitAndPrefix(string, { ...options, prefix: ' ' }).join('');
 }
 /**
  * # 🏛 Capital Case
@@ -291,7 +291,7 @@ function spaceCase(string, options = { keepSpecialCharacters: true }) {
  * ⟪ if you do not want to add spaces, use `pascalCase()` ⟫
  */
 function capitalCase(string, options = { keepSpecialCharacters: true }) {
-    return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: ' ' })).reduce((result, word) => {
+    return splitAndPrefix(string, { ...options, prefix: ' ' }).reduce((result, word) => {
         return result + capitaliseWord(word);
     }, '');
 }
@@ -309,7 +309,7 @@ function capitalCase(string, options = { keepSpecialCharacters: true }) {
  * ⟪ if you do not want to add spaces, use the native JS `toLowerCase()` ⟫
  */
 function lowerCase(string, options = { keepSpecialCharacters: true }) {
-    return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: ' ' }))
+    return splitAndPrefix(string, { ...options, prefix: ' ' })
         .join('')
         .toLowerCase();
 }
@@ -327,7 +327,7 @@ function lowerCase(string, options = { keepSpecialCharacters: true }) {
  * ⟪ if you do not want to add spaces, use the native JS `toUpperCase()` ⟫
  */
 function upperCase(string, options = { keepSpecialCharacters: true }) {
-    return splitAndPrefix(string, Object.assign(Object.assign({}, options), { prefix: ' ' }))
+    return splitAndPrefix(string, { ...options, prefix: ' ' })
         .join('')
         .toUpperCase();
 }

@@ -2,7 +2,6 @@
   "name": "case-anything",
   "version": "2.1.6",
   "sideEffects": false,
-  "type": "module",
   "description": "camelCase, kebab-case, PascalCase... a simple integration with nano package size. (SMALL footprint!)",
   "module": "./dist/index.es.js",
   "main": "./dist/index.cjs",
@@ -17,10 +16,6 @@
   "files": [
     "dist"
   ],
-  "engines": {
-    "node": ">=12.13",
-    "npm": ">=7"
-  },
   "scripts": {
     "lint": "tsc --noEmit && eslint ./src --ext .ts",
     "test": "vitest run",

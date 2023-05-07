@@ -23,7 +23,7 @@
   "scripts": {
     "lint": "tsc --noEmit && eslint ./src --ext .ts",
     "test": "vitest run",
-    "build": "rollup -c ./scripts/build.js",
+    "build": "rollup --bundleConfigAsCjs -c ./scripts/build.js",
     "release": "npm run lint && del dist && npm run build && np"
   },
   "devDependencies": {
@@ -35,8 +35,8 @@
     "eslint-plugin-tree-shaking": "^1.10.0",
     "np": "^7.6.0",
     "prettier": "^2.5.1",
-    "rollup": "^2.66.1",
-    "rollup-plugin-typescript2": "^0.31.1",
+    "rollup": "^3.21.5",
+    "rollup-plugin-typescript2": "^0.34.1",
     "typescript": "^4.5.5",
     "vitest": "^0.2.3"
   },

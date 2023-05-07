@@ -1,7 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 // Latin-1 Supplement
 // upper case ranges
 // [À-ÖØ-ß]

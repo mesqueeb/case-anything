@@ -104,6 +104,7 @@ export function splitAndPrefix(
  * @returns the word with the first character in uppercase and the rest in lowercase
  */
 export function capitaliseWord(string: string): string {
-  const firstLetterIndex = string.matchAll(magicSplit).next().value?.index || 0
+  const i = string.matchAll(magicSplit).next().value
+  const firstLetterIndex = typeof i === 'number' ? i : 0
   return string.slice(0, firstLetterIndex + 1).toUpperCase() + string.slice(firstLetterIndex + 1).toLowerCase()
 }

@@ -56,7 +56,8 @@ function splitAndPrefix(string, options) {
   }).filter(Boolean);
 }
 function capitaliseWord(string) {
-  const firstLetterIndex = string.matchAll(magicSplit).next().value?.index || 0;
+  const i = string.matchAll(magicSplit).next().value;
+  const firstLetterIndex = typeof i === "number" ? i : 0;
   return string.slice(0, firstLetterIndex + 1).toUpperCase() + string.slice(firstLetterIndex + 1).toLowerCase();
 }
 

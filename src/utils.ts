@@ -4,7 +4,7 @@
 // lower case ranges
 // [à-öø-ÿ]
 
-export const magicSplit = /^[a-zà-öø-ÿ]+|[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ]+|[a-zà-öø-ÿ]+|[0-9]+|[A-ZÀ-ÖØ-ß]+(?![a-zà-öø-ÿ])/g
+export const magicSplit = /^[a-zà-öø-ÿа-я]+|[A-ZÀ-ÖØ-ßА-Я][a-zà-öø-ÿа-я]+|[a-zà-öø-ÿа-я]+|[0-9]+|[A-ZÀ-ÖØ-ßА-Я]+(?![a-zà-öø-ÿа-я])/g
 export const spaceSplit = /\S+/g
 
 /**
@@ -63,10 +63,10 @@ export function splitAndPrefix(
 
       if (keepSpecialCharacters === false) {
         if (keep) {
-          part = part.normalize('NFD').replace(new RegExp(`[^a-zA-ZØßø0-9${keep.join('')}]`, 'g'), '')
+          part = part.normalize('NFD').replace(new RegExp(`[^a-zA-ZА-яØßø0-9${keep.join('')}]`, 'g'), '')
         }
         if (!keep) {
-          part = part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '')
+          part = part.normalize('NFD').replace(/[^a-zA-ZА-яØßø0-9]/g, '')
           foundPrefix = ''
         }
       }

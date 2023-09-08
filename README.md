@@ -237,7 +237,7 @@ What keeps my package small, is that literally just uses a regex to separate "wo
 ```js
 // the source code is similar to:
 export function splitOnSpecialChars(string: string): any[] {
-  return string.match(/^[a-z]+|[A-Z][a-z]+|[a-z]+|[0-9]+|[A-Z]+(?![a-z])/g)
+  return string.match(/^[a-zà-öø-ÿа-я]+|[A-ZÀ-ÖØ-ßА-Я][a-zà-öø-ÿа-я]+|[a-zà-öø-ÿа-я]+|[0-9]+|[A-ZÀ-ÖØ-ßА-Я]+(?![a-zà-öø-ÿа-я])/g)
 }
 ```
 

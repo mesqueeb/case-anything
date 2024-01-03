@@ -71,7 +71,7 @@ export function splitAndPrefix(
         }
       }
 
-      if (keep) {
+      if (keep && foundPrefix) {
         foundPrefix = foundPrefix.replace(new RegExp(`[^${keep.join('')}]`, 'g'), '')
       }
 

@@ -128,7 +128,7 @@ export function trainCase(string: string, options?: { keepSpecialCharacters?: bo
  * @example
  *   adaCase('$catDog', { keepSpecialCharacters: true }) === '$Cat_Dog'
  */
-export function adaCase(string: string, options?: { keepSpecialCharacters?: boolean; keep?: string[] }) {
+export function adaCase(string: string, options?: { keepSpecialCharacters?: boolean; keep?: string[] }): string {
   return splitAndPrefix(string, { ...options, prefix: '_' })
     .map((part) => capitaliseWord(part))
     .join('')

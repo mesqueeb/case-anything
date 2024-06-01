@@ -1,3 +1,4 @@
+import { capitaliseWord, magicSplit, splitAndPrefix } from './utils.js';
 /**
  * # 🐪 camelCase
  * converts a string to camelCase
@@ -9,10 +10,13 @@
  * @example
  *   camelCase('$catDog', { keepSpecialCharacters: true }) === '$catDog'
  */
-declare function camelCase(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
+export function camelCase(string, options) {
+    return splitAndPrefix(string, options).reduce((result, word, index) => {
+        return index === 0 || !(word[0] || '').match(magicSplit)
+            ? result + word.toLowerCase()
+            : result + capitaliseWord(word);
+    }, '');
+}
 /**
  * # 🐫 PascalCase
  * converts a string to PascalCase (also called UpperCamelCase)
@@ -24,10 +28,11 @@ declare function camelCase(string: string, options?: {
  * @example
  *   pascalCase('$catDog', { keepSpecialCharacters: true }) === '$CatDog'
  */
-declare function pascalCase(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
+export function pascalCase(string, options) {
+    return splitAndPrefix(string, options).reduce((result, word) => {
+        return result + capitaliseWord(word);
+    }, '');
+}
 /**
  * # 🐫 UpperCamelCase
  * converts a string to UpperCamelCase (also called PascalCase)
@@ -39,7 +44,7 @@ declare function pascalCase(string: string, options?: {
  * @example
  *   upperCamelCase('$catDog', { keepSpecialCharacters: true }) === '$CatDog'
  */
-declare const upperCamelCase: typeof pascalCase;
+export const upperCamelCase = pascalCase;
 /**
  * # 🥙 kebab-case
  * converts a string to kebab-case
@@ -51,10 +56,11 @@ declare const upperCamelCase: typeof pascalCase;
  * @example
  *   kebabCase('$catDog', { keepSpecialCharacters: true }) === '$cat-dog'
  */
-declare function kebabCase(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
+export function kebabCase(string, options) {
+    return splitAndPrefix(string, { ...options, prefix: '-' })
+        .join('')
+        .toLowerCase();
+}
 /**
  * # 🐍 snake_case
  * converts a string to snake_case
@@ -66,10 +72,11 @@ declare function kebabCase(string: string, options?: {
  * @example
  *   snakeCase('$catDog', { keepSpecialCharacters: true }) === '$cat_dog'
  */
-declare function snakeCase(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
+export function snakeCase(string, options) {
+    return splitAndPrefix(string, { ...options, prefix: '_' })
+        .join('')
+        .toLowerCase();
+}
 /**
  * # 📣 CONSTANT_CASE
  * converts a string to CONSTANT_CASE
@@ -81,10 +88,11 @@ declare function snakeCase(string: string, options?: {
  * @example
  *   constantCase('$catDog', { keepSpecialCharacters: true }) === '$CAT_DOG'
  */
-declare function constantCase(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
+export function constantCase(string, options) {
+    return splitAndPrefix(string, { ...options, prefix: '_' })
+        .join('')
+        .toUpperCase();
+}
 /**
  * # 🚂 Train-Case
  * converts strings to Train-Case
@@ -96,10 +104,11 @@ declare function constantCase(string: string, options?: {
  * @example
  *   trainCase('$catDog', { keepSpecialCharacters: true }) === '$Cat-Dog'
  */
-declare function trainCase(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
+export function trainCase(string, options) {
+    return splitAndPrefix(string, { ...options, prefix: '-' })
+        .map((word) => capitaliseWord(word))
+        .join('');
+}
 /**
  * # 🕊 Ada_Case
  * converts a string to Ada_Case
@@ -111,10 +120,11 @@ declare function trainCase(string: string, options?: {
  * @example
  *   adaCase('$catDog', { keepSpecialCharacters: true }) === '$Cat_Dog'
  */
-declare function adaCase(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
+export function adaCase(string, options) {
+    return splitAndPrefix(string, { ...options, prefix: '_' })
+        .map((part) => capitaliseWord(part))
+        .join('');
+}
 /**
  * # 👔 COBOL-CASE
  * converts a string to COBOL-CASE
@@ -126,10 +136,11 @@ declare function adaCase(string: string, options?: {
  * @example
  *   cobolCase('$catDog', { keepSpecialCharacters: true }) === '$CAT-DOG'
  */
-declare function cobolCase(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
+export function cobolCase(string, options) {
+    return splitAndPrefix(string, { ...options, prefix: '-' })
+        .join('')
+        .toUpperCase();
+}
 /**
  * # 📍 Dot.notation
  * converts a string to dot.notation
@@ -141,10 +152,9 @@ declare function cobolCase(string: string, options?: {
  * @example
  *   dotNotation('$catDog', { keepSpecialCharacters: true }) === '$cat.Dog'
  */
-declare function dotNotation(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
+export function dotNotation(string, options) {
+    return splitAndPrefix(string, { ...options, prefix: '.' }).join('');
+}
 /**
  * # 📂 Path/case
  * converts a string to path/case
@@ -156,10 +166,12 @@ declare function dotNotation(string: string, options?: {
  * @example
  *   pathCase('$catDog', { keepSpecialCharacters: false }) === 'cat/Dog'
  */
-declare function pathCase(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
+export function pathCase(string, options = { keepSpecialCharacters: true }) {
+    return splitAndPrefix(string, options).reduce((result, word, i) => {
+        const prefix = i === 0 || word[0] === '/' ? '' : '/';
+        return result + prefix + word;
+    }, '');
+}
 /**
  * # 🛰 Space case
  * converts a string to space case
@@ -171,10 +183,9 @@ declare function pathCase(string: string, options?: {
  * @example
  *   spaceCase('$catDog', { keepSpecialCharacters: false }) === 'cat Dog'
  */
-declare function spaceCase(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
+export function spaceCase(string, options = { keepSpecialCharacters: true }) {
+    return splitAndPrefix(string, { ...options, prefix: ' ' }).join('');
+}
 /**
  * # 🏛 Capital Case
  * converts a string to Capital Case
@@ -188,10 +199,11 @@ declare function spaceCase(string: string, options?: {
  *
  * ⟪ if you do not want to add spaces, use `pascalCase()` ⟫
  */
-declare function capitalCase(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
+export function capitalCase(string, options = { keepSpecialCharacters: true }) {
+    return splitAndPrefix(string, { ...options, prefix: ' ' }).reduce((result, word) => {
+        return result + capitaliseWord(word);
+    }, '');
+}
 /**
  * # 🔡 lower case
  * converts a string to lower case
@@ -205,10 +217,11 @@ declare function capitalCase(string: string, options?: {
  *
  * ⟪ if you do not want to add spaces, use the native JS `toLowerCase()` ⟫
  */
-declare function lowerCase(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
+export function lowerCase(string, options = { keepSpecialCharacters: true }) {
+    return splitAndPrefix(string, { ...options, prefix: ' ' })
+        .join('')
+        .toLowerCase();
+}
 /**
  * # 🔠 UPPER CASE
  * converts a string to UPPER CASE
@@ -222,9 +235,8 @@ declare function lowerCase(string: string, options?: {
  *
  * ⟪ if you do not want to add spaces, use the native JS `toUpperCase()` ⟫
  */
-declare function upperCase(string: string, options?: {
-    keepSpecialCharacters?: boolean;
-    keep?: string[];
-}): string;
-
-export { adaCase, camelCase, capitalCase, cobolCase, constantCase, dotNotation, kebabCase, lowerCase, pascalCase, pathCase, snakeCase, spaceCase, trainCase, upperCamelCase, upperCase };
+export function upperCase(string, options = { keepSpecialCharacters: true }) {
+    return splitAndPrefix(string, { ...options, prefix: ' ' })
+        .join('')
+        .toUpperCase();
+}

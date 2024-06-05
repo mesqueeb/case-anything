@@ -3,7 +3,7 @@
 // [À-ÖØ-ß]
 // lower case ranges
 // [à-öø-ÿ]
-export const magicSplit = /^[a-zà-öø-ÿ]+|[A-ZÀ-ÖØ-ß][a-zà-öø-ÿ]+|[a-zà-öø-ÿ]+|[0-9]+|[A-ZÀ-ÖØ-ß]+(?![a-zà-öø-ÿ])/g;
+export const magicSplit = /^[a-zà-öø-ÿа-я]+|[A-ZÀ-ÖØ-ßА-Я][a-zà-öø-ÿа-я]+|[a-zà-öø-ÿа-я]+|[0-9]+|[A-ZÀ-ÖØ-ßА-Я]+(?![a-zà-öø-ÿа-я])/g;
 export const spaceSplit = /\S+/g;
 /**
  * A string.matchAll function that will return an array of "string parts" and the indexes at which it split each part
@@ -45,7 +45,9 @@ export function splitAndPrefix(string, options) {
         let part = _part;
         if (keepSpecialCharacters === false) {
             if (keep) {
-                part = part.normalize('NFD').replace(new RegExp(`[^a-zA-ZØßø0-9${keep.join('')}]`, 'g'), '');
+                part = part
+                    .normalize('NFD')
+                    .replace(new RegExp(`[^a-zA-ZØßø0-9${keep.join('')}]`, 'g'), '');
             }
             if (!keep) {
                 part = part.normalize('NFD').replace(/[^a-zA-ZØßø0-9]/g, '');
@@ -83,5 +85,6 @@ export function splitAndPrefix(string, options) {
 export function capitaliseWord(string) {
     const match = string.matchAll(magicSplit).next().value;
     const firstLetterIndex = match ? match.index : 0;
-    return string.slice(0, firstLetterIndex + 1).toUpperCase() + string.slice(firstLetterIndex + 1).toLowerCase();
+    return (string.slice(0, firstLetterIndex + 1).toUpperCase() +
+        string.slice(firstLetterIndex + 1).toLowerCase());
 }

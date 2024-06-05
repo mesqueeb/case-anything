@@ -1,6 +1,6 @@
 {
   "name": "case-anything",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "camelCase, kebab-case, PascalCase... a simple integration with nano package size. (SMALL footprint!)",
   "type": "module",
   "sideEffects": false,

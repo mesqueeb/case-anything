@@ -1,0 +1,5 @@
+{
+  "name": "@mesqueeb/case-anything",
+  "version": "3.1.0",
+  "exports": "./src/index.ts"
+}

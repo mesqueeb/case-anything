@@ -3,8 +3,15 @@
 <a href="https://www.npmjs.com/package/case-anything"><img src="https://img.shields.io/npm/v/case-anything.svg" alt="Total Downloads"></a>
 <a href="https://www.npmjs.com/package/case-anything"><img src="https://img.shields.io/npm/dw/case-anything.svg" alt="Latest Stable Version"></a>
 
-```
+```sh
+# npm
 npm i case-anything
+
+# deno
+deno add jsr:@mesqueeb/case-anything
+
+# jsr (use any of npx, yarn dlx, pnpm dlx, or bunx)
+npx jsr add @mesqueeb/case-anything
 ```
 
 14 case changing functions: camelCase, kebab-case, PascalCase **and more**...<br />

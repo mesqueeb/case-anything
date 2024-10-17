@@ -129,7 +129,7 @@ export function constantCase(
 export function trainCase(
   string: string,
   options?: { keepSpecialCharacters?: boolean; keep?: string[] },
-) {
+): string {
   return splitAndPrefix(string, { ...options, prefix: '-' })
     .map((word) => capitaliseWord(word))
     .join('')

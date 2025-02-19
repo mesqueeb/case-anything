@@ -17,11 +17,11 @@
     "release": "npm run lint && npm run build && np"
   },
   "devDependencies": {
-    "@cycraft/eslint": "^0.4.3",
+    "@cycraft/eslint": "^0.4.4",
     "@cycraft/tsconfig": "^0.1.2",
     "del-cli": "^6.0.0",
     "np": "^10.2.0",
-    "vitest": "^2.1.9"
+    "vitest": "^3.0.6"
   },
   "files": [
     "dist"

@@ -13,7 +13,7 @@
   "scripts": {
     "lint": "tsc --noEmit && eslint ./src",
     "test": "vitest run",
-    "build": "tsdown --dts --sourcemap --minify --unbundle",
+    "build": "tsdown --dts --minify --unbundle",
     "release": "npm run lint && npm run build && np"
   },
   "devDependencies": {

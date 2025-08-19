@@ -229,4 +229,3 @@ declare function upperCase(string: string, options?: {
 }): string;
 //#endregion
 export { adaCase, camelCase, capitalCase, cobolCase, constantCase, dotNotation, kebabCase, lowerCase, pascalCase, pathCase, snakeCase, spaceCase, trainCase, upperCamelCase, upperCase };
-//# sourceMappingURL=core.d.ts.map

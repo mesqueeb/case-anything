@@ -13,15 +13,16 @@
   "scripts": {
     "lint": "tsc --noEmit && eslint ./src",
     "test": "vitest run",
-    "build": "del-cli dist && tsc",
+    "build": "tsdown --dts --minify --unbundle",
     "release": "npm run lint && npm run build && np"
   },
   "devDependencies": {
     "@cycraft/eslint": "^0.4.4",
     "@cycraft/tsconfig": "^0.1.2",
-    "del-cli": "^6.0.0",
     "np": "^10.2.0",
-    "vitest": "^3.0.6"
+    "tsdown": "^0.14.1",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
   },
   "files": [
     "dist"

@@ -58,5 +58,5 @@
   },
   "homepage": "https://github.com/mesqueeb/case-anything#readme",
   "bugs": "https://github.com/mesqueeb/case-anything/issues",
-  "packageManager": "pnpm@11.27.0"
+  "packageManager": "pnpm@12.4.2"
 }

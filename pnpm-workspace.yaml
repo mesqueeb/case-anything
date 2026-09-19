@@ -1,5 +1,6 @@
 minimumReleaseAgeExclude:
-  - '@cycraft/eslint@0.4.7'
+  - '@cycraft/eslint@0.4.7 || 0.4.10'
+  - '@types/node@22.20.4'
 overrides:
   '@eslint/plugin-kit@<0.3.4': ^0.3.4
   '@humanfs/node@<0.16.8': ^0.16.8

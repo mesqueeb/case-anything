@@ -1,6 +1,9 @@
 minimumReleaseAgeExclude:
   - '@cycraft/eslint@0.4.7 || 0.4.10'
   - '@types/node@22.20.4'
+  - '@vitest/mocker@5.0.2'
+  - '@vitest/spy@5.0.2'
+  - vitest@5.0.2
 overrides:
   '@eslint/plugin-kit@<0.3.4': ^0.3.4
   '@humanfs/node@<0.16.8': ^0.16.8

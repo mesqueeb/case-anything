@@ -68,12 +68,12 @@ case-anything has different behaviour if the string you pass has spaces or not.
 | 🐍 snake_case                     | `snakeCase('$catDog')`                                   | `cat_dog`      |
 | 📣 CONSTANT_CASE                  | `constantCase('$catDog')`                                | `CAT_DOG`      |
 | 🚂 Train-Case                     | `trainCase('$catDog')`                                   | `Cat-Dog`      |
-| 🕊 Ada_Case                       | `adaCase('$catDog')`                                     | `Cat_Dog`      |
+| 🕊 Ada_Case                        | `adaCase('$catDog')`                                     | `Cat_Dog`      |
 | 👔 COBOL-CASE                     | `cobolCase('$catDog')`                                   | `CAT-DOG`      |
 | 📍 Dot.notation                   | `dotNotation('$catDog')`                                 | `cat.Dog`      |
 | 📂 Path/case                      | `pathCase('$catDog')`                                    | `$cat/Dog`     |
-| 🛰 Space case                     | `spaceCase('$catDog')`                                   | `$cat Dog`     |
-| 🏛 Capital Case                   | `capitalCase('$catDog')`                                 | `$Cat Dog`     |
+| 🛰 Space case                      | `spaceCase('$catDog')`                                   | `$cat Dog`     |
+| 🏛 Capital Case                    | `capitalCase('$catDog')`                                 | `$Cat Dog`     |
 | 🔡 lower case                     | `lowerCase('$catDog')`                                   | `$cat dog`     |
 | 🔠 UPPER CASE                     | `upperCase('$catDog')`                                   | `$CAT DOG`     |
 
@@ -149,12 +149,12 @@ As soon as there is a space in the target string, it will regard the input as a 
 | 🐍 snake_case                     | `snakeCase("I'm O.K.!")`                                     | `im_ok`        |
 | 📣 CONSTANT_CASE                  | `constantCase("I'm O.K.!")`                                  | `IM_OK`        |
 | 🚂 Train-Case                     | `trainCase("I'm O.K.!")`                                     | `Im-Ok`        |
-| 🕊 Ada_Case                       | `adaCase("I'm O.K.!")`                                       | `Im_Ok`        |
+| 🕊 Ada_Case                        | `adaCase("I'm O.K.!")`                                       | `Im_Ok`        |
 | 👔 COBOL-CASE                     | `cobolCase("I'm O.K.!")`                                     | `IM-OK`        |
 | 📍 Dot.notation                   | `dotNotation("I'm O.K.!")`                                   | `Im.OK`        |
 | 📂 Path/case                      | `pathCase("I'm O.K.!")`                                      | `I'm/O.K.!`    |
-| 🛰 Space case                     | `spaceCase("I'm O.K.!")`                                     | `I'm O.K.!`    |
-| 🏛 Capital Case                   | `capitalCase("I'm O.K.!")`                                   | `I'm O.k.!`    |
+| 🛰 Space case                      | `spaceCase("I'm O.K.!")`                                     | `I'm O.K.!`    |
+| 🏛 Capital Case                    | `capitalCase("I'm O.K.!")`                                   | `I'm O.k.!`    |
 | 🔡 lower case                     | `lowerCase("I'm O.K.!")`                                     | `i'm o.k.!`    |
 | 🔠 UPPER CASE                     | `upperCase("I'm O.K.!")`                                     | `I'M O.K.!`    |
 

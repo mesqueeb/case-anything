@@ -19,131 +19,327 @@ import {
 // a bunch of different combinations
 
 test(`camelCase`, () => {
-  expect(camelCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('ponytaVaporeonPoliwrathButterfreeA')
-  expect(camelCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('ponytaVaporeonPoliwrathButterfreeA')
-  expect(camelCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('ponytaVaporeonPoliwrathButterfreeA')
-  expect(camelCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('ponytaVaporeonPoliwrathButterfreeA')
-  expect(camelCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponytaVaporeonPoliwrathButterfreeA')
-  expect(camelCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponytaVaporeonPoliwrathButterfreeA')
-  expect(camelCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('ponytaVaporeonPoliwrathButterfreeA')
+  expect(camelCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'ponytaVaporeonPoliwrathButterfreeA',
+  )
+  expect(camelCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'ponytaVaporeonPoliwrathButterfreeA',
+  )
+  expect(camelCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'ponytaVaporeonPoliwrathButterfreeA',
+  )
+  expect(camelCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'ponytaVaporeonPoliwrathButterfreeA',
+  )
+  expect(camelCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponytaVaporeonPoliwrathButterfreeA',
+  )
+  expect(camelCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponytaVaporeonPoliwrathButterfreeA',
+  )
+  expect(camelCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'ponytaVaporeonPoliwrathButterfreeA',
+  )
 })
 test(`pascalCase`, () => {
-  expect(pascalCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('PonytaVaporeonPoliwrathButterfreeA')
-  expect(pascalCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('PonytaVaporeonPoliwrathButterfreeA')
-  expect(pascalCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('PonytaVaporeonPoliwrathButterfreeA')
-  expect(pascalCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('PonytaVaporeonPoliwrathButterfreeA')
-  expect(pascalCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('PonytaVaporeonPoliwrathButterfreeA')
-  expect(pascalCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('PonytaVaporeonPoliwrathButterfreeA')
-  expect(pascalCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('PonytaVaporeonPoliwrathButterfreeA')
+  expect(pascalCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'PonytaVaporeonPoliwrathButterfreeA',
+  )
+  expect(pascalCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'PonytaVaporeonPoliwrathButterfreeA',
+  )
+  expect(pascalCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'PonytaVaporeonPoliwrathButterfreeA',
+  )
+  expect(pascalCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'PonytaVaporeonPoliwrathButterfreeA',
+  )
+  expect(pascalCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'PonytaVaporeonPoliwrathButterfreeA',
+  )
+  expect(pascalCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'PonytaVaporeonPoliwrathButterfreeA',
+  )
+  expect(pascalCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'PonytaVaporeonPoliwrathButterfreeA',
+  )
 })
 test(`kebabCase`, () => {
-  expect(kebabCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('ponyta-vaporeon-poliwrath-butterfree-a')
-  expect(kebabCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('ponyta-vaporeon-poliwrath-butterfree-a')
-  expect(kebabCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('ponyta-vaporeon-poliwrath-butterfree-a')
-  expect(kebabCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('ponyta-vaporeon-poliwrath-butterfree-a')
-  expect(kebabCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponyta-vaporeon-poliwrath-butterfree-a')
-  expect(kebabCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponyta-vaporeon-poliwrath-butterfree-a')
-  expect(kebabCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('ponyta-vaporeon-poliwrath-butterfree-a')
+  expect(kebabCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'ponyta-vaporeon-poliwrath-butterfree-a',
+  )
+  expect(kebabCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'ponyta-vaporeon-poliwrath-butterfree-a',
+  )
+  expect(kebabCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'ponyta-vaporeon-poliwrath-butterfree-a',
+  )
+  expect(kebabCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'ponyta-vaporeon-poliwrath-butterfree-a',
+  )
+  expect(kebabCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponyta-vaporeon-poliwrath-butterfree-a',
+  )
+  expect(kebabCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponyta-vaporeon-poliwrath-butterfree-a',
+  )
+  expect(kebabCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'ponyta-vaporeon-poliwrath-butterfree-a',
+  )
 })
 test(`snakeCase`, () => {
-  expect(snakeCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('ponyta_vaporeon_poliwrath_butterfree_a')
-  expect(snakeCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('ponyta_vaporeon_poliwrath_butterfree_a')
-  expect(snakeCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('ponyta_vaporeon_poliwrath_butterfree_a')
-  expect(snakeCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('ponyta_vaporeon_poliwrath_butterfree_a')
-  expect(snakeCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponyta_vaporeon_poliwrath_butterfree_a')
-  expect(snakeCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponyta_vaporeon_poliwrath_butterfree_a')
-  expect(snakeCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('ponyta_vaporeon_poliwrath_butterfree_a')
+  expect(snakeCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'ponyta_vaporeon_poliwrath_butterfree_a',
+  )
+  expect(snakeCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'ponyta_vaporeon_poliwrath_butterfree_a',
+  )
+  expect(snakeCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'ponyta_vaporeon_poliwrath_butterfree_a',
+  )
+  expect(snakeCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'ponyta_vaporeon_poliwrath_butterfree_a',
+  )
+  expect(snakeCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponyta_vaporeon_poliwrath_butterfree_a',
+  )
+  expect(snakeCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponyta_vaporeon_poliwrath_butterfree_a',
+  )
+  expect(snakeCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'ponyta_vaporeon_poliwrath_butterfree_a',
+  )
 })
 test(`constantCase`, () => {
-  expect(constantCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A')
-  expect(constantCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A')
-  expect(constantCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A')
-  expect(constantCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A')
-  expect(constantCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A')
-  expect(constantCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A')
-  expect(constantCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A')
+  expect(constantCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A',
+  )
+  expect(constantCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A',
+  )
+  expect(constantCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A',
+  )
+  expect(constantCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A',
+  )
+  expect(constantCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A',
+  )
+  expect(constantCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A',
+  )
+  expect(constantCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE_A',
+  )
 })
 test(`dotNotation`, () => {
-  expect(dotNotation('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('ponyta.Vaporeon.POLIWRATH.Butterfree.A')
-  expect(dotNotation('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('Ponyta.Vaporeon.POLIWRATH.Butterfree.A')
-  expect(dotNotation('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('ponyta.vaporeon.POLIWRATH.Butterfree.A')
-  expect(dotNotation('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('Ponyta.vaporeon.POLIWRATH.Butterfree.A')
-  expect(dotNotation('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponyta.vaporeon.POLIWRATH.Butterfree.A')
-  expect(dotNotation('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponyta.Vaporeon.POLIWRATH.Butterfree.A')
-  expect(dotNotation('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('ponyta.Vaporeon.POLIWRATH.Butterfree.A')
+  expect(dotNotation('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'ponyta.Vaporeon.POLIWRATH.Butterfree.A',
+  )
+  expect(dotNotation('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta.Vaporeon.POLIWRATH.Butterfree.A',
+  )
+  expect(dotNotation('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'ponyta.vaporeon.POLIWRATH.Butterfree.A',
+  )
+  expect(dotNotation('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'Ponyta.vaporeon.POLIWRATH.Butterfree.A',
+  )
+  expect(dotNotation('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponyta.vaporeon.POLIWRATH.Butterfree.A',
+  )
+  expect(dotNotation('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponyta.Vaporeon.POLIWRATH.Butterfree.A',
+  )
+  expect(dotNotation('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'ponyta.Vaporeon.POLIWRATH.Butterfree.A',
+  )
 })
 test(`adaCase`, () => {
-  expect(adaCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('Ponyta_Vaporeon_Poliwrath_Butterfree_A')
-  expect(adaCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('Ponyta_Vaporeon_Poliwrath_Butterfree_A')
-  expect(adaCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('Ponyta_Vaporeon_Poliwrath_Butterfree_A')
-  expect(adaCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('Ponyta_Vaporeon_Poliwrath_Butterfree_A')
-  expect(adaCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('Ponyta_Vaporeon_Poliwrath_Butterfree_A')
-  expect(adaCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('Ponyta_Vaporeon_Poliwrath_Butterfree_A')
-  expect(adaCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('Ponyta_Vaporeon_Poliwrath_Butterfree_A')
+  expect(adaCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta_Vaporeon_Poliwrath_Butterfree_A',
+  )
+  expect(adaCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta_Vaporeon_Poliwrath_Butterfree_A',
+  )
+  expect(adaCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'Ponyta_Vaporeon_Poliwrath_Butterfree_A',
+  )
+  expect(adaCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'Ponyta_Vaporeon_Poliwrath_Butterfree_A',
+  )
+  expect(adaCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta_Vaporeon_Poliwrath_Butterfree_A',
+  )
+  expect(adaCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta_Vaporeon_Poliwrath_Butterfree_A',
+  )
+  expect(adaCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'Ponyta_Vaporeon_Poliwrath_Butterfree_A',
+  )
 })
 test(`cobolCase`, () => {
-  expect(cobolCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A')
-  expect(cobolCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A')
-  expect(cobolCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A')
-  expect(cobolCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A')
-  expect(cobolCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A')
-  expect(cobolCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A')
-  expect(cobolCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A')
+  expect(cobolCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A',
+  )
+  expect(cobolCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A',
+  )
+  expect(cobolCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A',
+  )
+  expect(cobolCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A',
+  )
+  expect(cobolCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A',
+  )
+  expect(cobolCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A',
+  )
+  expect(cobolCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'PONYTA-VAPOREON-POLIWRATH-BUTTERFREE-A',
+  )
 })
 test(`trainCase`, () => {
-  expect(trainCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('Ponyta-Vaporeon-Poliwrath-Butterfree-A')
-  expect(trainCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('Ponyta-Vaporeon-Poliwrath-Butterfree-A')
-  expect(trainCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('Ponyta-Vaporeon-Poliwrath-Butterfree-A')
-  expect(trainCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('Ponyta-Vaporeon-Poliwrath-Butterfree-A')
-  expect(trainCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('Ponyta-Vaporeon-Poliwrath-Butterfree-A')
-  expect(trainCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('Ponyta-Vaporeon-Poliwrath-Butterfree-A')
-  expect(trainCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('Ponyta-Vaporeon-Poliwrath-Butterfree-A')
+  expect(trainCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta-Vaporeon-Poliwrath-Butterfree-A',
+  )
+  expect(trainCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta-Vaporeon-Poliwrath-Butterfree-A',
+  )
+  expect(trainCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'Ponyta-Vaporeon-Poliwrath-Butterfree-A',
+  )
+  expect(trainCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'Ponyta-Vaporeon-Poliwrath-Butterfree-A',
+  )
+  expect(trainCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta-Vaporeon-Poliwrath-Butterfree-A',
+  )
+  expect(trainCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta-Vaporeon-Poliwrath-Butterfree-A',
+  )
+  expect(trainCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'Ponyta-Vaporeon-Poliwrath-Butterfree-A',
+  )
 })
 test(`lowerCase`, () => {
-  expect(lowerCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('ponyta vaporeon poliwrath_butterfree a')
-  expect(lowerCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('ponyta vaporeon poliwrath_butterfree a')
-  expect(lowerCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('ponyta-vaporeon-poliwrath-butterfree a')
-  expect(lowerCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('ponyta~vaporeon~poliwrath/butterfree a')
-  expect(lowerCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponyta_vaporeon_poliwrath_butterfree a')
-  expect(lowerCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponyta_vaporeon_poliwrath_butterfree a')
-  expect(lowerCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('ponyta.vaporeon.poliwrath.butterfree a')
+  expect(lowerCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'ponyta vaporeon poliwrath_butterfree a',
+  )
+  expect(lowerCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'ponyta vaporeon poliwrath_butterfree a',
+  )
+  expect(lowerCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'ponyta-vaporeon-poliwrath-butterfree a',
+  )
+  expect(lowerCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'ponyta~vaporeon~poliwrath/butterfree a',
+  )
+  expect(lowerCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponyta_vaporeon_poliwrath_butterfree a',
+  )
+  expect(lowerCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponyta_vaporeon_poliwrath_butterfree a',
+  )
+  expect(lowerCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'ponyta.vaporeon.poliwrath.butterfree a',
+  )
 })
 test(`upperCase`, () => {
-  expect(upperCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('PONYTA VAPOREON POLIWRATH_BUTTERFREE A')
-  expect(upperCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('PONYTA VAPOREON POLIWRATH_BUTTERFREE A')
-  expect(upperCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('PONYTA-VAPOREON-POLIWRATH-BUTTERFREE A')
-  expect(upperCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('PONYTA~VAPOREON~POLIWRATH/BUTTERFREE A')
-  expect(upperCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('PONYTA_VAPOREON_POLIWRATH_BUTTERFREE A')
-  expect(upperCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('PONYTA_VAPOREON_POLIWRATH_BUTTERFREE A')
-  expect(upperCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('PONYTA.VAPOREON.POLIWRATH.BUTTERFREE A')
+  expect(upperCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'PONYTA VAPOREON POLIWRATH_BUTTERFREE A',
+  )
+  expect(upperCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'PONYTA VAPOREON POLIWRATH_BUTTERFREE A',
+  )
+  expect(upperCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'PONYTA-VAPOREON-POLIWRATH-BUTTERFREE A',
+  )
+  expect(upperCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'PONYTA~VAPOREON~POLIWRATH/BUTTERFREE A',
+  )
+  expect(upperCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE A',
+  )
+  expect(upperCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'PONYTA_VAPOREON_POLIWRATH_BUTTERFREE A',
+  )
+  expect(upperCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'PONYTA.VAPOREON.POLIWRATH.BUTTERFREE A',
+  )
 })
 test(`capitalCase`, () => {
-  expect(capitalCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('Ponyta Vaporeon Poliwrath_Butterfree A')
-  expect(capitalCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('Ponyta Vaporeon Poliwrath_Butterfree A')
-  expect(capitalCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('Ponyta-Vaporeon-Poliwrath-Butterfree A')
-  expect(capitalCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('Ponyta~Vaporeon~Poliwrath/Butterfree A')
-  expect(capitalCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('Ponyta_Vaporeon_Poliwrath_Butterfree A')
-  expect(capitalCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('Ponyta_Vaporeon_Poliwrath_Butterfree A')
-  expect(capitalCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('Ponyta.Vaporeon.Poliwrath.Butterfree A')
+  expect(capitalCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta Vaporeon Poliwrath_Butterfree A',
+  )
+  expect(capitalCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta Vaporeon Poliwrath_Butterfree A',
+  )
+  expect(capitalCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'Ponyta-Vaporeon-Poliwrath-Butterfree A',
+  )
+  expect(capitalCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'Ponyta~Vaporeon~Poliwrath/Butterfree A',
+  )
+  expect(capitalCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta_Vaporeon_Poliwrath_Butterfree A',
+  )
+  expect(capitalCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta_Vaporeon_Poliwrath_Butterfree A',
+  )
+  expect(capitalCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'Ponyta.Vaporeon.Poliwrath.Butterfree A',
+  )
 })
 test(`spaceCase`, () => {
-  expect(spaceCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('ponyta Vaporeon POLIWRATH_Butterfree A')
-  expect(spaceCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('Ponyta Vaporeon POLIWRATH_Butterfree A')
-  expect(spaceCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('ponyta-vaporeon-POLIWRATH-Butterfree A')
-  expect(spaceCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('Ponyta~vaporeon~POLIWRATH/Butterfree A')
-  expect(spaceCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponyta_vaporeon_POLIWRATH_Butterfree A')
-  expect(spaceCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponyta_Vaporeon_POLIWRATH_Butterfree A')
-  expect(spaceCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('ponyta.Vaporeon.POLIWRATH.Butterfree A')
+  expect(spaceCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'ponyta Vaporeon POLIWRATH_Butterfree A',
+  )
+  expect(spaceCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta Vaporeon POLIWRATH_Butterfree A',
+  )
+  expect(spaceCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'ponyta-vaporeon-POLIWRATH-Butterfree A',
+  )
+  expect(spaceCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'Ponyta~vaporeon~POLIWRATH/Butterfree A',
+  )
+  expect(spaceCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponyta_vaporeon_POLIWRATH_Butterfree A',
+  )
+  expect(spaceCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponyta_Vaporeon_POLIWRATH_Butterfree A',
+  )
+  expect(spaceCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'ponyta.Vaporeon.POLIWRATH.Butterfree A',
+  )
 })
 
 test(`pathCase`, () => {
-  expect(pathCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('ponyta/Vaporeon/POLIWRATH/_Butterfree/A')
-  expect(pathCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual('Ponyta/Vaporeon/POLIWRATH/_Butterfree/A')
-  expect(pathCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual('ponyta/-vaporeon/-POLIWRATH/-Butterfree/A')
-  expect(pathCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual('Ponyta/~vaporeon/~POLIWRATH/Butterfree/A')
-  expect(pathCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponyta/_vaporeon/_POLIWRATH/_Butterfree/A')
-  expect(pathCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual('ponyta/_Vaporeon/_POLIWRATH/_Butterfree/A')
-  expect(pathCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual('ponyta/.Vaporeon/.POLIWRATH/.Butterfree/A')
+  expect(pathCase('ponytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'ponyta/Vaporeon/POLIWRATH/_Butterfree/A',
+  )
+  expect(pathCase('PonytaVaporeonPOLIWRATH_ButterfreeA')).toEqual(
+    'Ponyta/Vaporeon/POLIWRATH/_Butterfree/A',
+  )
+  expect(pathCase('ponyta-vaporeon-POLIWRATH-ButterfreeA')).toEqual(
+    'ponyta/-vaporeon/-POLIWRATH/-Butterfree/A',
+  )
+  expect(pathCase('Ponyta~vaporeon~POLIWRATH/ButterfreeA')).toEqual(
+    'Ponyta/~vaporeon/~POLIWRATH/Butterfree/A',
+  )
+  expect(pathCase('ponyta_vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponyta/_vaporeon/_POLIWRATH/_Butterfree/A',
+  )
+  expect(pathCase('ponyta_Vaporeon_POLIWRATH_ButterfreeA')).toEqual(
+    'ponyta/_Vaporeon/_POLIWRATH/_Butterfree/A',
+  )
+  expect(pathCase('ponyta.Vaporeon.POLIWRATH.ButterfreeA')).toEqual(
+    'ponyta/.Vaporeon/.POLIWRATH/.Butterfree/A',
+  )
 })
 test(`lowerCase & strip special characters`, () => {
   expect(lowerCase('ponytaVaporeonPOLIWRATH_ButterfreeA', { keepSpecialCharacters: false })).toEqual('ponyta vaporeon poliwrath butterfree a') // prettier-ignore
@@ -259,7 +455,8 @@ test(`capitalCase  Double  Rainbow`, () => { expect(  capitalCase('Double  Rainb
 const n = (str: string) => str.normalize()
 
 // special characters with Canonical Composition:
-const specialCharsNFCSpaces = `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`.normalize('NFC')
+const specialCharsNFCSpaces =
+  `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`.normalize('NFC')
 
 test(`camelCase    specialChars NFC (spaces)`, () => { expect(n(    camelCase(specialCharsNFCSpaces))).toEqual(n(`agardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
 test(`pascalCase   specialChars NFC (spaces)`, () => { expect(n(   pascalCase(specialCharsNFCSpaces))).toEqual(n(`AgardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
@@ -277,7 +474,8 @@ test(`upperCase    specialChars NFC (spaces)`, () => { expect(n(    upperCase(sp
 test(`capitalCase  specialChars NFC (spaces)`, () => { expect(n(  capitalCase(specialCharsNFCSpaces))).toEqual(n(`Ågård Î Garçons Çafé Château Voilà Ñoël Été L'aïeul Ågård Àöøß Àöøÿ`)) }) // prettier-ignore
 
 // special characters with Canonical Decomposition:
-const specialCharsNFDSpaces = `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`.normalize('NFD')
+const specialCharsNFDSpaces =
+  `Ågård î garçons Çafé château voilà ñoël été l'aïeul Ågård ÀÖØß àöøÿ`.normalize('NFD')
 
 test(`camelCase    specialChars NFD (spaces)`, () => { expect(n(    camelCase(specialCharsNFDSpaces))).toEqual(n(`agardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
 test(`pascalCase   specialChars NFD (spaces)`, () => { expect(n(   pascalCase(specialCharsNFDSpaces))).toEqual(n(`AgardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
@@ -295,7 +493,8 @@ test(`upperCase    specialChars NFD (spaces)`, () => { expect(n(    upperCase(sp
 test(`capitalCase  specialChars NFD (spaces)`, () => { expect(n(  capitalCase(specialCharsNFDSpaces))).toEqual(n(`Ågård Î Garçons Çafé Château Voilà Ñoël Été L'aïeul Ågård Àöøß Àöøÿ`)) }) // prettier-ignore
 
 // special characters with Canonical Composition without spaces:
-const specialCharsNFC = `Ågård_î_garçons_Çafé_château_voilà_ñoël_été_laïeul_Ågård_ÀÖØß_àöøÿ`.normalize('NFC')
+const specialCharsNFC =
+  `Ågård_î_garçons_Çafé_château_voilà_ñoël_été_laïeul_Ågård_ÀÖØß_àöøÿ`.normalize('NFC')
 test(`camelCase    specialChars NFC`, () => { expect(n(    camelCase(specialCharsNFC))).toEqual(n(`agardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
 test(`pascalCase   specialChars NFC`, () => { expect(n(   pascalCase(specialCharsNFC))).toEqual(n(`AgardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
 test(`kebabCase    specialChars NFC`, () => { expect(n(    kebabCase(specialCharsNFC))).toEqual(n(`agard-i-garcons-cafe-chateau-voila-noel-ete-laieul-agard-aoøß-aoøy`)) }) // prettier-ignore
@@ -312,7 +511,8 @@ test(`upperCase    specialChars NFC`, () => { expect(n(    upperCase(specialChar
 test(`capitalCase  specialChars NFC`, () => { expect(n(  capitalCase(specialCharsNFC))).toEqual(n(`Ågård_Î_Garçons_Çafé_Château_Voilà_Ñoël_Été_Laïeul_Ågård_Àöøß_Àöøÿ`)) }) // prettier-ignore
 
 // special characters with Canonical Decomposition without spaces:
-const specialCharsNFD = `Ågård_î_garçons_Çafé_château_voilà_ñoël_été_laïeul_Ågård_ÀÖØß_àöøÿ`.normalize('NFD')
+const specialCharsNFD =
+  `Ågård_î_garçons_Çafé_château_voilà_ñoël_été_laïeul_Ågård_ÀÖØß_àöøÿ`.normalize('NFD')
 
 test(`camelCase    specialChars NFD`, () => { expect(n(    camelCase(specialCharsNFD))).toEqual(n(`agardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore
 test(`pascalCase   specialChars NFD`, () => { expect(n(   pascalCase(specialCharsNFD))).toEqual(n(`AgardIGarconsCafeChateauVoilaNoelEteLaieulAgardAoøßAoøy`)) }) // prettier-ignore

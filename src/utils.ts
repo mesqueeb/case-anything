@@ -9,7 +9,8 @@ export const magicSplit =
 export const spaceSplit = /\S+/g
 
 /**
- * A string.matchAll function that will return an array of "string parts" and the indexes at which it split each part
+ * A string.matchAll function that will return an array of "string parts" and the indexes at which
+ * it split each part
  */
 export function getPartsAndIndexes(
   string: string,
@@ -44,6 +45,7 @@ export function getPartsAndIndexes(
 
 /**
  * A function that splits a string on words and returns an array of words.
+ *
  * - It can prefix each word with a given character
  * - It can strip or keep special characters, this affects the logic for adding a prefix as well
  */
@@ -104,7 +106,8 @@ export function splitAndPrefix(
 
 /**
  * Capitalises a single word
- * @returns the word with the first character in uppercase and the rest in lowercase
+ *
+ * @returns The word with the first character in uppercase and the rest in lowercase
  */
 export function capitaliseWord(string: string): string {
   const match = string.matchAll(magicSplit).next().value

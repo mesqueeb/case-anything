@@ -3,10 +3,6 @@
   "version": "3.1.4",
   "exports": "./src/index.ts",
   "publish": {
-    "include": [
-      "src/**",
-      "README.md",
-      "LICENSE"
-    ]
+    "include": ["src/**", "README.md", "LICENSE"]
   }
 }

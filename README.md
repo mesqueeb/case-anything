@@ -248,7 +248,7 @@ export function splitOnSpecialChars(string: string): any[] {
 }
 ```
 
-The actual regex used is a little bit more comprehensive and can be found [here](https://github.com/mesqueeb/case-anything/blob/production/src/utils.ts#L7).
+The actual regex used is a little bit more comprehensive and can be found [here](https://github.com/mesqueeb/case-anything/blob/7542643af16d1a0fba0d67d09aa6f7415557b949/src/utils.ts#L7).
 
 ## Meet the family (more tiny utils with TS support)
 
